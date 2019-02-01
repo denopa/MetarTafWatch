@@ -150,11 +150,11 @@ class dataUpdater {
                     let stationDic = station as? [String: Any]
                     if (stationDic?["name"]) != nil {
                         let city = stationDic?["city"] as? String ?? " "
-                        let elevation = round(stationDic?["elevation"] as? Double ?? -999)
+                        let elevation = stationDic?["elevation"] as? NSNumber ?? -999
                         let runways = stationDic?["runways"] as! [[String: Any]]
                         let runway1 = runways[0]["ident1"] as? String ?? "missing"
                         let runway2 = runways[0]["ident2"] as? String ?? "missing"
-                        completionHandler([city, String(elevation), runway1, runway2], nil)
+                        completionHandler([city, NumberFormatter().string(from: elevation), runway1, runway2], nil)
                     }
                 }
             }
