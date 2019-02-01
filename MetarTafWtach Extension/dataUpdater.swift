@@ -63,13 +63,10 @@ class dataUpdater {
                         airportsArray[count].windSymbol = ""
                     }
                     if count == 0 { //check if an update to the complication and the background refresh call is required
-                        if airportsArray[count].metarTime != oldMetarTime {
+                        if (airportsArray[count].metarTime != oldMetarTime) || hasAirportChanged {
                             Refresher.scheduleUpdate(){(error) in}
-                            let complicationServer = CLKComplicationServer.sharedInstance()
-                            for complication in complicationServer.activeComplications! {
-                                complicationServer.reloadTimeline(for: complication)
-                                NSLog("updating complication from updateMetarForRow()")
-                            }
+                            updateComplications()
+                            hasAirportChanged = false
                         }
                     }
                     NSLog("Metar for \(airportsArray[count].airportName) : \(airportsArray[count].flightConditions) \(airportsArray[count].metarTime)")
@@ -81,7 +78,7 @@ class dataUpdater {
     
     func getTaf(airport : String!, completionHandler: @escaping ([String?], NSError?) -> Void) {
         //using  completion handler to deal with asynchronous process
-        let nextFlightConditionsSymbol = "" //actually not used anymore
+        var nextFlightConditions = ""
         let urlString = "http://avwx.rest/api/taf/\(String(describing: airport!))?format=json&onfail=cache"
         let url = URL(string: urlString)!
         let date = NSDate.init() as Date //UTC time to compare with the info on TAFS
@@ -106,6 +103,7 @@ class dataUpdater {
                             if startTime > currentTime {
                                 if nextForecast == "..." {
                                     if forecast[i]["Flight-Rules"] != nil {
+                                        nextFlightConditions = forecast[i]["Flight-Rules"] as! String
                                         nextWindSpeed = forecast[i]["Wind-Speed"] as! String
                                         nextForecast = forecast[i]["Sanitized"] as! String
                                     }
@@ -116,12 +114,13 @@ class dataUpdater {
                         let i = forecast.indices.last ?? 0 //if no next forecast, take the last available
                         if nextForecast == "..." {
                             if forecast[i]["Flight-Rules"] != nil {
+                                nextFlightConditions = forecast[i]["Flight-Rules"] as! String
                                 nextWindSpeed = forecast[i]["Wind-Speed"] as! String
                                 nextForecast = forecast[i]["Sanitized"] as! String
                             }
                         }
                         let tafText = tafDic?["Raw-Report"] as? String ?? "missing"
-                        completionHandler([nextFlightConditionsSymbol, tafText, tafTime, nextWindSpeed, nextForecast], nil)
+                        completionHandler([nextFlightConditions, tafText, tafTime, nextWindSpeed, nextForecast], nil)
                         // a completion handler deals with asynchronous processes
                     }
                 }

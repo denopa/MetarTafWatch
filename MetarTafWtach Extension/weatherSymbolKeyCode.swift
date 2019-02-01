@@ -13,8 +13,7 @@ class weatherSymbolKeyCode: WKInterfaceController {
     
     @IBOutlet weak var weatherLegendTable: WKInterfaceTable!
     
-    let flightConditionsArray = [["VFR" , "🔵"], ["MVFR" , "Ⓜ️"], ["IFR" , "🔴"], ["LIFR", "⚪️"]]
-    let flightConditionsColor = [["VFR" , UIColor.blue.withAlphaComponent(0.3)], ["MVFR" , UIColor.green.withAlphaComponent(0.3)], ["IFR" , UIColor.orange.withAlphaComponent(0.7)], ["LIFR", UIColor.red.withAlphaComponent(0.6)]]
+    let flightConditionsColor = [["VFR" , UIColor.blue.withAlphaComponent(0.3)], ["MVFR" , UIColor.green.withAlphaComponent(0.3)], ["IFR" , UIColor.orange.withAlphaComponent(0.87)], ["LIFR", UIColor.red.withAlphaComponent(0.7)]]
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -23,7 +22,7 @@ class weatherSymbolKeyCode: WKInterfaceController {
     }
     
     func setTheLegend(){
-        self.weatherLegendTable.setNumberOfRows(self.flightConditionsArray.count, withRowType: "weatherLegendRowController")
+        self.weatherLegendTable.setNumberOfRows(4, withRowType: "weatherLegendRowController")
         for count in 0...3 {
             let row = self.weatherLegendTable.rowController(at: count) as! weatherLegendRowController
             let rowLegend = flightConditionsColor[count].first as! String

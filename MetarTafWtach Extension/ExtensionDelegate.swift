@@ -52,6 +52,7 @@ class airportClass : NSObject {
 
 var airportsArray = [airportClass(ICAO : "EGLL"), airportClass(ICAO : "LFOV"), airportClass(ICAO : "EBFN"), airportClass(ICAO : "EBBR")]
 var airportsList = ["EGLF", "EGBB", "LFTH", "LFPO"]
+var hasAirportChanged: Bool = false
 
 func loadAirportsList(){
     let appGroupId = "group.com.nonneville.com.metarTaf"
@@ -88,6 +89,14 @@ func howOldIsMetar(metarDate : String!) -> String {
     }
 }
 
+func updateComplications(){
+    let complicationServer = CLKComplicationServer.sharedInstance()
+    for complication in complicationServer.activeComplications! {
+        complicationServer.reloadTimeline(for: complication)
+        NSLog("updating complications")
+    }
+}
+
 class Refresher {
     static func scheduleUpdate(scheduledCompletion: @escaping (Error?) -> Void) {
         let age: Double? = Double(howOldIsMetar(metarDate: airportsArray[0].metarTime))
@@ -96,8 +105,6 @@ class Refresher {
         print("scheduled refresh for \(Date().addingTimeInterval(minutesToRefresh * 60))")
     }
 }
-
-
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, URLSessionDelegate {
 

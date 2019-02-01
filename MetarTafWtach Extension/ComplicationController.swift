@@ -12,7 +12,7 @@ import CoreMotion
 
 class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDelegate {
     
-    let flighConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0, green: 1, blue: 1, alpha: 1), "MVFR" : UIColor.green.withAlphaComponent(1), "IFR" : UIColor.orange.withAlphaComponent(1), "LIFR": UIColor.red.withAlphaComponent(1)] //describes the color the lettering will take depending on weather conditions
+    let flighConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.44, green: 0.78, blue: 0.86, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.4, green: 0.85, blue: 0.49, alpha: 1), "IFR" : UIColor(displayP3Red: 1, green: 0.58, blue: 0.25, alpha: 1), "LIFR": UIColor(displayP3Red: 0.92, green: 0.30, blue: 0.24, alpha: 1)] //describes the color the lettering will take depending on weather conditions
     
     var altitudeText = "Altitude"
     var altitudeShortText = "Alt"
@@ -93,7 +93,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                         let graphicCorner = CLKComplicationTemplateGraphicCornerStackText()
                         //let metarColor = self.flighConditionsColor[airportsArray[0].flightConditions]
                         graphicCorner.outerTextProvider = CLKSimpleTextProvider(text: largeText)
-                        for minute in 0..<(limit-1) {
+                        for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
                             let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
                             graphicCorner.innerTextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) \(age)' ago")
                             graphicCorner.innerTextProvider.tintColor = metarColor ?? UIColor.white //must be set after the text
@@ -101,9 +101,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                             let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : graphicCorner)
                             timelineEntries.append(entry)
                         }
-                        graphicCorner.innerTextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) old")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : graphicCorner)
-                        timelineEntries.append(entry)
+                        if (limit > 1) { //add "old" at the end but only if limit>1
+                            graphicCorner.innerTextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) old")
+                            let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : graphicCorner)
+                            timelineEntries.append(entry)
+                        }
                     case .graphicBezel:
                         let circularSmallTemplate = CLKComplicationTemplateGraphicBezelCircularText()
                         circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude 3213")

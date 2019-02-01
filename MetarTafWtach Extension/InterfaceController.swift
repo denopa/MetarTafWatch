@@ -23,7 +23,8 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
     
     @IBOutlet weak var airportTable: WKInterfaceTable!
     
-    let flighConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor.blue.withAlphaComponent(0.3), "MVFR" : UIColor.green.withAlphaComponent(0.3), "IFR" : UIColor.orange.withAlphaComponent(0.7), "LIFR": UIColor.red.withAlphaComponent(0.6)] //describes the color the row will take depending on weather conditions
+    //let flightConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.09, green: 0.15, blue: 0.19, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.06, green: 0.17, blue: 0.09, alpha: 1), "IFR" : UIColor(displayP3Red: 0.19, green: 0.12, blue: 0.02, alpha: 1), "LIFR": UIColor(displayP3Red: 0.18, green: 0.05, blue: 0.05, alpha: 1)] //alternative pastel scheme
+    let flightConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" :  UIColor.blue.withAlphaComponent(0.3), "MVFR" : UIColor.green.withAlphaComponent(0.3), "IFR" : UIColor.orange.withAlphaComponent(0.87), "LIFR": UIColor.red.withAlphaComponent(0.7)] //describes the color the row will take depending on weather conditions
     var timerSeconds = Timer() //used to refresh Zulu watch
     var timerMinutes = Timer() //used to refresh Metar age
     
@@ -67,7 +68,7 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
     
     func updateRow(count: Int!){
         let row = self.airportTable.rowController(at: count) as! airportRowController
-        let metarColor = flighConditionsColor[airportsArray[count].flightConditions]
+        let metarColor = flightConditionsColor[airportsArray[count].flightConditions]
         row.windLabel.setText(airportsArray[count].windSymbol)
         row.airportLabel.setText(airportsArray[count].airportName)
         row.tafLabel.setText(airportsArray[count].nextForecast)

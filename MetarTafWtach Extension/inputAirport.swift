@@ -13,6 +13,7 @@ class inputAirport: WKInterfaceController {
     
     var letterValue = ["E","G","L", "L"]
     var airportName = "EGLL"
+    var oldAirportName = "EGLL"
     var airportIndex = 0
     
     @IBOutlet weak var setAirportLabelName: WKInterfaceLabel!
@@ -52,6 +53,7 @@ class inputAirport: WKInterfaceController {
         super.awake(withContext: context)
         airportIndex = context as! Int
         self.airportName = airportsList[airportIndex]
+        self.oldAirportName = self.airportName
         var airportCode = [0,0,0,0]
         for (i,l) in airportName.enumerated() {
             letterValue[i] = String(l)
@@ -97,5 +99,6 @@ class inputAirport: WKInterfaceController {
         airportsList[airportIndex] = airportName
         defaults?.set(airportsList, forKey: "airports")
         airportsArray[airportIndex] = airportClass(ICAO : airportName)
+        hasAirportChanged = (self.oldAirportName != self.airportName) && (airportIndex == 0)
     }
 }
