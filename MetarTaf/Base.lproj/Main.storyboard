@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XZP-ei-fLm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="88n-9v-xa3">
+            <objects>
+                <viewController id="XZP-ei-fLm" customClass="ViewController" customModule="MetarTaf" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wXg-5U-hVP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZQ-zu-FAC">
+                                <rect key="frame" x="96.5" y="318.5" width="182" height="30"/>
+                                <state key="normal" title="Request Location Services"/>
+                                <connections>
+                                    <action selector="requestLocationServices:" destination="XZP-ei-fLm" eventType="touchUpInside" id="pWT-Lr-RMa"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Only required once" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOw-Af-bpX">
+                                <rect key="frame" x="134" y="466" width="107.5" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude :  ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ei-SB-6AK">
+                                <rect key="frame" x="142" y="402" width="91.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jZQ-zu-FAC" firstAttribute="centerX" secondItem="wXg-5U-hVP" secondAttribute="centerX" id="73g-Df-O7D"/>
+                            <constraint firstItem="8Ei-SB-6AK" firstAttribute="centerX" secondItem="wXg-5U-hVP" secondAttribute="centerX" id="Bho-Cb-foQ"/>
+                            <constraint firstItem="mOw-Af-bpX" firstAttribute="centerY" secondItem="wXg-5U-hVP" secondAttribute="centerY" constant="139.5" id="K3T-QU-4Eg"/>
+                            <constraint firstItem="mOw-Af-bpX" firstAttribute="centerX" secondItem="wXg-5U-hVP" secondAttribute="centerX" id="LVN-FU-ggR"/>
+                            <constraint firstItem="jZQ-zu-FAC" firstAttribute="centerY" secondItem="wXg-5U-hVP" secondAttribute="centerY" id="Xd0-rD-wSS"/>
+                            <constraint firstItem="8Ei-SB-6AK" firstAttribute="centerY" secondItem="wXg-5U-hVP" secondAttribute="centerY" constant="79" id="ov3-Rk-4DC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Smd-C2-zUY"/>
+                    </view>
+                    <connections>
+                        <outlet property="altitudeLabel" destination="8Ei-SB-6AK" id="6bQ-qS-7F3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ygv-jZ-a4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1093.5999999999999" y="-483.50824587706148"/>
+        </scene>
+    </scenes>
+</document>

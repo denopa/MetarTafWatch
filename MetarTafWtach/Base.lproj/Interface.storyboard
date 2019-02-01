@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch44" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+    </dependencies>
+    <scenes>
+        <!--mainController-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="mainController" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MetarTafWtach" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="ghz-BX-UyU">
+                            <items>
+                                <tableRow identifier="airportRowController" id="Bwb-rI-4e1" customClass="airportRowController" customModule="MetarTafWtach_Extension">
+                                    <group key="rootItem" width="1" alignment="left" animationDuration="3" spacing="0.0" id="D17-JL-SkK">
+                                        <items>
+                                            <label width="0.59999999999999998" height="1" alignment="right" text="Label with TaF and a lot lot of text " numberOfLines="3" id="JXl-aH-nXc">
+                                                <fontDescription key="font" type="system" pointSize="11"/>
+                                            </label>
+                                            <group width="0.40000000000000002" height="42" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="jHf-lQ-izU">
+                                                <items>
+                                                    <group width="1" height="0.69999999999999996" alignment="left" id="TcS-Jo-EU5">
+                                                        <items>
+                                                            <label width="1" height="1" alignment="center" verticalAlignment="center" text="EGLL" textAlignment="center" id="DBH-80-HSp">
+                                                                <fontDescription key="font" type="boldSystem" pointSize="19"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group width="1" height="0.29999999999999999" alignment="left" verticalAlignment="bottom" id="sxo-Lc-Tgv">
+                                                        <items>
+                                                            <label width="0.29999999999999999" height="1" alignment="left" text="💨" id="eDq-2G-rXB"/>
+                                                            <label width="0.69999999999999996" height="1" alignment="center" text="34m ago" id="luH-lB-VcC">
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                        </items>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="airportLabel" destination="DBH-80-HSp" id="U7M-BM-tt2"/>
+                                        <outlet property="airportRowGroup" destination="D17-JL-SkK" id="hFD-7t-AhK"/>
+                                        <outlet property="metarTimeLabel" destination="luH-lB-VcC" id="g9B-cW-oms"/>
+                                        <outlet property="tafLabel" destination="JXl-aH-nXc" id="Md6-nD-RA9"/>
+                                        <outlet property="windLabel" destination="eDq-2G-rXB" id="ZZ4-lX-yKa"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <menu key="menu" id="nrS-at-Fav">
+                        <items>
+                            <menuItem title="Update" icon="resume" id="JCU-Gm-PtR">
+                                <connections>
+                                    <action selector="Updatedisplay" destination="AgC-eL-Hgc" id="dax-U5-jvv"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Set Airports" icon="shuffle" id="OPj-Vu-ZNJ">
+                                <connections>
+                                    <action selector="setAirports" destination="AgC-eL-Hgc" id="Pe6-Ce-UVq"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Legend" icon="info" id="2xa-3l-ykz">
+                                <connections>
+                                    <action selector="seeWeatherKey" destination="AgC-eL-Hgc" id="66k-0e-xtY"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Altitude" icon="more" id="xFH-9Q-BL2" userLabel="Altitude">
+                                <connections>
+                                    <action selector="seeAltitude" destination="AgC-eL-Hgc" id="ydy-h4-7vo"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="airportTable" destination="ghz-BX-UyU" id="55u-Mx-XNP"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="219.52173913043478" y="344.55357142857144"/>
+        </scene>
+        <!--Altitude-->
+        <scene sceneID="9bR-4A-JGO">
+            <objects>
+                <controller identifier="altitudeAlerter" title="Altitude" fullScreen="YES" id="kfj-Vc-MY2" customClass="altitudeInterfaceController" customModule="MetarTafWtach_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="n8c-i1-l54">
+                            <items>
+                                <label alignment="left" text="Press. Altitude:" id="nxg-fs-wA8">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <label alignment="center" text="altitudeLabel" numberOfLines="0" id="C3v-Qb-yyQ">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                                <label alignment="left" text="GPS Altitude:" id="fX5-Ug-ldm">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <label alignment="center" text="gpsAltitudeLabel" id="6s9-2K-2D2"/>
+                                <label alignment="left" text="Abs. Pressure :" id="BdU-y5-tmX">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <label height="20" alignment="center" text="pressureLabel" numberOfLines="0" id="01w-n8-gfF">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                                <label alignment="left" text="GPS derived QNH:" id="JcI-p5-o8b">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <label alignment="center" text="qnhLabel" id="vUe-20-KIS"/>
+                            </items>
+                        </group>
+                    </items>
+                    <menu key="menu" id="BKx-iE-3ZQ">
+                        <items>
+                            <menuItem title="Info" icon="info" id="Ej2-6S-fSc">
+                                <connections>
+                                    <action selector="altitudeInfo" destination="kfj-Vc-MY2" id="1mP-Gb-FHW"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="altitudeLabel" destination="C3v-Qb-yyQ" id="eMV-IT-WTR"/>
+                        <outlet property="gpsAltitudeLabel" destination="6s9-2K-2D2" id="dcT-US-omL"/>
+                        <outlet property="pressureLabel" destination="01w-n8-gfF" id="MvH-sX-vna"/>
+                        <outlet property="qnhLabel" destination="vUe-20-KIS" id="itX-qj-Fba"/>
+                        <outlet property="qnhOrDeltaP" destination="JcI-p5-o8b" id="zzB-QK-UmS"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="219" y="651"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="grb-hW-exe">
+            <objects>
+                <controller identifier="altitudeInfo" title="Info" id="Hm6-tg-eAb">
+                    <items>
+                        <label width="1" alignment="center" verticalAlignment="center" numberOfLines="0" id="uX1-c0-HY4">
+                            <string key="text">A QNH  is derived from the diffrence between pressure and GPS altitude. If this difference is larger than 2000 feet, your watch will assume you are in a pressurised vessel and calculate the pressure differential. If you do not receive GPS altitude updates, open the app on your iPhone and request location services.</string>
+                        </label>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="542" y="686"/>
+        </scene>
+        <!--Input Airport-->
+        <scene sceneID="uja-4e-Mzb">
+            <objects>
+                <controller identifier="inputAirport" title="Input Airport" id="Gbt-6P-pXG" customClass="inputAirport" customModule="MetarTafWtach_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="vertical" id="FQx-sl-wd4">
+                            <items>
+                                <group width="1" height="0.40000000000000002" alignment="left" id="rhP-eg-Z8I">
+                                    <items>
+                                        <picker width="0.25" height="1" alignment="left" focusStyle="stack" id="Qmd-q9-0Ba">
+                                            <connections>
+                                                <action selector="letter1Changed:" destination="Gbt-6P-pXG" id="bkQ-oV-8W6"/>
+                                            </connections>
+                                        </picker>
+                                        <picker width="0.25" height="1" alignment="left" focusStyle="stack" id="sfb-KA-oG6">
+                                            <connections>
+                                                <action selector="letter2Changed:" destination="Gbt-6P-pXG" id="rvN-w9-jkN"/>
+                                            </connections>
+                                        </picker>
+                                        <picker width="0.25" height="1" alignment="left" focusStyle="stack" id="YzH-1N-76f">
+                                            <connections>
+                                                <action selector="letter3Changed:" destination="Gbt-6P-pXG" id="d04-jM-mKN"/>
+                                            </connections>
+                                        </picker>
+                                        <picker width="0.25" height="1" alignment="left" focusStyle="stack" id="VaJ-G8-C3w">
+                                            <connections>
+                                                <action selector="letter4Changed:" destination="Gbt-6P-pXG" id="5Ho-yj-a6M"/>
+                                            </connections>
+                                        </picker>
+                                    </items>
+                                </group>
+                                <label width="1" height="0.29999999999999999" alignment="center" verticalAlignment="center" text="EGLL" textAlignment="center" id="37s-ms-11P">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle0"/>
+                                </label>
+                                <button width="1" height="0.29999999999999999" alignment="left" verticalAlignment="bottom" title="OK" id="5Z7-06-aEh">
+                                    <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                    <connections>
+                                        <action selector="acceptAirport" destination="Gbt-6P-pXG" id="Iek-C2-vR7"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="letter1" destination="Qmd-q9-0Ba" id="d2f-5w-Obz"/>
+                        <outlet property="letter2" destination="sfb-KA-oG6" id="UUR-4a-78c"/>
+                        <outlet property="letter3" destination="YzH-1N-76f" id="Tbw-wm-Jtv"/>
+                        <outlet property="letter4" destination="VaJ-G8-C3w" id="V0E-8o-tCP"/>
+                        <outlet property="setAirportLabelName" destination="37s-ms-11P" id="ijB-Rk-IpL"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="214" y="-616"/>
+        </scene>
+        <!--Choose the airport-->
+        <scene sceneID="Bhm-ig-h44">
+            <objects>
+                <controller identifier="setAirports" title="Choose the airport" id="e3D-rd-kfz" customClass="setAirportController" customModule="MetarTafWtach_Extension">
+                    <items>
+                        <table alignment="left" id="U0I-ne-UP7" userLabel="setAirportTable">
+                            <items>
+                                <tableRow identifier="setAirportRowController" id="TvA-QI-NMR" customClass="setAirportRowController" customModule="MetarTafWtach_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Ly5-Fq-YVB">
+                                        <items>
+                                            <label height="1" alignment="center" text="setEGLL" id="6ia-tb-ZwC">
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="setAirportLabel" destination="6ia-tb-ZwC" id="Zkv-l3-iBF"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="setAirportTable" destination="U0I-ne-UP7" id="mUa-2d-9hY"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="214" y="-307"/>
+        </scene>
+        <!--Weather Legend-->
+        <scene sceneID="OVg-iv-IUH">
+            <objects>
+                <controller identifier="weatherLegend" title="Weather Legend" fullScreen="YES" id="7Vp-Bn-fvv" customClass="weatherSymbolKeyCode" customModule="MetarTafWtach_Extension">
+                    <items>
+                        <table alignment="left" id="Ndx-Au-MqI" userLabel="Weather Legend Table">
+                            <items>
+                                <tableRow identifier="weatherLegendRowController" id="KwO-LC-07O" customClass="weatherLegendRowController" customModule="MetarTafWtach_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Yuv-zQ-RbV">
+                                        <items>
+                                            <label width="1" height="33" alignment="center" verticalAlignment="center" text="weatherLegendLabel" id="kXo-Ec-9bU">
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="weatherLegendGroup" destination="Yuv-zQ-RbV" id="n08-QV-Fge"/>
+                                        <outlet property="weatherLegendLabel" destination="kXo-Ec-9bU" id="Do4-u7-H7r"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="weatherLegendTable" destination="Ndx-Au-MqI" id="jQw-2N-WRi"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="3"/>
+        </scene>
+        <!--Airport Detail-->
+        <scene sceneID="NCt-4u-i4R">
+            <objects>
+                <controller identifier="airportDetail" title="Airport Detail" id="Rip-Tn-7lU" customClass="airportDetailCode" customModule="MetarTafWtach_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="Q7y-d7-R5F">
+                            <items>
+                                <label alignment="left" text="City" id="EZx-6k-5nZ"/>
+                                <label alignment="left" text="Elevation" id="1f8-iO-eza"/>
+                                <label alignment="left" text="Runways" id="YzN-Pg-8uF"/>
+                                <separator alignment="left" id="erj-Yr-tfS"/>
+                                <label alignment="left" text="metarLabel" numberOfLines="0" id="H2s-3U-1tF"/>
+                                <separator alignment="left" id="0IO-if-aV2"/>
+                                <label alignment="left" text="tafLabel" numberOfLines="0" id="79v-5x-ASD"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="cityLabel" destination="EZx-6k-5nZ" id="Dd2-AZ-awi"/>
+                        <outlet property="elevationLabel" destination="1f8-iO-eza" id="OKB-gK-wBD"/>
+                        <outlet property="metarLabel" destination="H2s-3U-1tF" id="ogG-ua-KuZ"/>
+                        <outlet property="runwaysLabel" destination="YzN-Pg-8uF" id="0Ba-8I-Ygj"/>
+                        <outlet property="tafLabel" destination="79v-5x-ASD" id="QuP-Sc-EHC"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="542" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut" customClass="NotificationController" customModule="MetarTafWtach_Extension">
+                    <items>
+                        <label alignment="left" text="Cabin altitude above 10,000 feet" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="Altitude Alerts" handlesGrouping="YES" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="-490" y="1490"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="MetarTafWtach" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="-157" y="1490"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="MetarTafWtach" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="1490"/>
+        </scene>
+    </scenes>
+</document>
