@@ -85,7 +85,7 @@ class dataUpdater {
         let calendar = Calendar.current
         let day = calendar.component(.day, from: date)
         let hour = calendar.component(.hour, from: date)
-        let currentTime = 100 * day + hour
+        let currentTime = 100 * day + hour //day+time in TAF format, e.g. 0123
         var nextForecastHeader = "" //eg "PROB30 TEMPO 0123/0206" or "BCMG 0123/0206"
         var nextWindSpeed = "0"
         var nextForecast = "..."
@@ -100,19 +100,14 @@ class dataUpdater {
                         let forecast = tafDic?["Forecast"] as! [[String: Any]]
                         let tafTime = tafDic?["Time"] as! String
                         for i in forecast.indices {//running through all the forecasts to find the next one
-                            let startTime = (forecast[i]["Start-Time"] as! NSString).integerValue
-                            if startTime > currentTime {
-                                if nextForecast == "..." {
+                            let endTime = (forecast[i]["End-Time"] as! NSString).integerValue
+                            if (nextForecast == "...") && (endTime > currentTime) && (i > 0){ //last condition avoids taking the first taf
                                     if forecast[i]["Flight-Rules"] != nil {
                                         nextFlightConditions = forecast[i]["Flight-Rules"] as! String
                                         nextWindSpeed = forecast[i]["Wind-Speed"] as! String
                                         nextForecast = forecast[i]["Sanitized"] as! String
-                                        let nextForecastProb =  ((forecast[i]["Probability"] as! String != "") ? "PROB" : "") + String(describing: forecast[i]["Probability"] ?? "") + ((forecast[i]["Probability"] as! String != "") ? " " : "") //need to add a space if proba present
-                                        let nextForecastType = String(describing: forecast[i]["Type"] ?? "") + " "
-                                        let nextForecastPeriod = String(describing: forecast[i]["Start-Time"] ?? "") + "/" + String(describing: forecast[i]["End-Time"] ?? "") + " "
-                                        nextForecastHeader = nextForecastProb + nextForecastType + nextForecastPeriod
+                                        nextForecastHeader = self.createTafHeader(prob: (forecast[i]["Probability"] as! String), tafType: String(describing: forecast[i]["Type"] ?? ""), startTime: String(describing: forecast[i]["Start-Time"] ?? ""), endTime: String(describing: forecast[i]["End-Time"] ?? ""))
                                     }
-                                }
                             }
                         }
                         let i = forecast.indices.last ?? 0 //if no next forecast, take the last available
@@ -121,10 +116,7 @@ class dataUpdater {
                                 nextFlightConditions = forecast[i]["Flight-Rules"] as! String
                                 nextWindSpeed = forecast[i]["Wind-Speed"] as! String
                                 nextForecast = forecast[i]["Sanitized"] as! String
-                                let nextForecastProb =  ((forecast[i]["Probability"] as! String != "") ? "PROB" : "") + String(describing: forecast[i]["Probability"] ?? "") + ((forecast[i]["Probability"] as! String != "") ? " " : "") //need to add a space if proba present
-                                let nextForecastType = String(describing: forecast[i]["Type"] ?? "") + " "
-                                let nextForecastPeriod = String(describing: forecast[i]["Start-Time"] ?? "") + "/" + String(describing: forecast[i]["End-Time"] ?? "") + " "
-                                nextForecastHeader = nextForecastProb + nextForecastType + nextForecastPeriod
+                                nextForecastHeader = self.createTafHeader(prob: (forecast[i]["Probability"] as! String), tafType: String(describing: forecast[i]["Type"] ?? ""), startTime: String(describing: forecast[i]["Start-Time"] ?? ""), endTime: String(describing: forecast[i]["End-Time"] ?? ""))
                             }
                         }
                         let tafText = tafDic?["Raw-Report"] as? String ?? "missing"
@@ -135,6 +127,12 @@ class dataUpdater {
             }
         }
         task.resume()
+    }
+    
+    func createTafHeader(prob : String!, tafType : String!, startTime : String!, endTime : String!) -> String {
+        var tafHeader = (prob != "" ? "PROB" + prob + " " : "") // if prob not empty, return "PROBprob " otheriwse ""
+        tafHeader += tafType + " " + startTime + "/" + endTime + " "
+        return(tafHeader)
     }
     
     func airportsListToArray(airportsList : [String]) -> [airportClass] {

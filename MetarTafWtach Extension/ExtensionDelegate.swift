@@ -20,6 +20,7 @@ class airportClass : NSObject {
     var windSpeed : Int
     var windSymbol : String
     var forecast : Any
+    var forecastArray : [[String]]
     var nextFlightConditions : String
     var nextForecast : String
     var taf : String
@@ -33,20 +34,21 @@ class airportClass : NSObject {
     var runway2: String
     init(ICAO : String) {
         airportName = ICAO
-        flightConditions = " "
-        metar = "missing"
-        metarTime = "..."
-        metarAge = "..."
-        windSpeed = 0
-        windSymbol = ""
-        forecast = [nil]
-        tafTime = ""
-        nextFlightConditions = " "
-        nextForecast = "..."
-        taf = "missing"
-        nextForecastHeader = "missing TAF"
-        nextWindSpeed = 0
-        nextWindSymbol = ""
+        flightConditions = " " ///VFR, MVFR, IFR or LIFR from the METAR
+        metar = "missing" //sanitised METAR
+        metarTime = "..." //time the METAR was published
+        metarAge = "..." //how old the METAR is in minutes
+        windSpeed = 0 //windSpeed from the METAR
+        windSymbol = "" //emoji for the METAR wind
+        forecast = [nil] // array containing the TAF json output of sequential forecasts
+        forecastArray = [[]] // array of taf headers, flight conditions and sanitized TAF in the shape ["PROB30 TEMPO 0123/0206","IFR", "35012KT 9999 SCT02"]
+        tafTime = "" //time the TAF was published
+        nextFlightConditions = " " ///VFR, MVFR, IFR or LIFR from the next TAF section
+        nextForecast = "..." //sanitised next TAF section
+        taf = "missing" //full taf
+        nextForecastHeader = "missing TAF" //eg "PROB30 TEMPO 0123/0206" or "BCMG 0123/0206" from next TAF section
+        nextWindSpeed = 0 //windSpeed from the next TAF section
+        nextWindSymbol = "" //emoji for the next TAF section wind
         city = ""
         elevation = "0"
         runway1 = "00"

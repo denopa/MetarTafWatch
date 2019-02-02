@@ -71,7 +71,7 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
         let metarColor = flightConditionsColor[airportsArray[count].flightConditions]
         row.windLabel.setText(airportsArray[count].windSymbol)
         row.airportLabel.setText(airportsArray[count].airportName)
-        row.tafLabel.setText(airportsArray[count].nextForecast)
+        row.self.tafLabel.setText("\(airportsArray[count].nextForecastHeader + airportsArray[count].nextFlightConditions)")
         row.metarTimeLabel.setText("\(airportsArray[count].metarAge)' ago")
         row.airportRowGroup.setBackgroundColor(metarColor)
     }
@@ -111,7 +111,7 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
                         if airportsArray[count].nextWindSpeed>15 {
                             airportsArray[count].nextWindSymbol = "💨"
                         }
-                        row.self.tafLabel.setText("\(airportsArray[count].nextForecast)")
+                        row.self.tafLabel.setText("\(airportsArray[count].nextForecastHeader + airportsArray[count].nextFlightConditions)")
                     }
                 }
             }
