@@ -272,13 +272,32 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Q7y-d7-R5F">
                             <items>
-                                <label alignment="left" text="City" id="EZx-6k-5nZ"/>
-                                <label alignment="left" text="Elevation" id="1f8-iO-eza"/>
+                                <group width="1" alignment="left" id="hl0-2i-VJn">
+                                    <items>
+                                        <label alignment="left" text="City" id="EZx-6k-5nZ">
+                                            <color key="textColor" red="0.0" green="0.59741545373835625" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                                        </label>
+                                        <label alignment="right" text="Elevation" id="1f8-iO-eza">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                    </items>
+                                </group>
                                 <label alignment="left" text="Runways" id="YzN-Pg-8uF"/>
-                                <separator alignment="left" id="erj-Yr-tfS"/>
-                                <label alignment="left" text="metarLabel" numberOfLines="0" id="H2s-3U-1tF"/>
-                                <separator alignment="left" id="0IO-if-aV2"/>
-                                <label alignment="left" text="tafLabel" numberOfLines="0" id="79v-5x-ASD"/>
+                                <separator alignment="left" id="erj-Yr-tfS">
+                                    <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </separator>
+                                <group width="1" alignment="left" id="Ph4-ML-3GV">
+                                    <items>
+                                        <label width="1" alignment="left" text="metarLabel" numberOfLines="0" id="H2s-3U-1tF"/>
+                                    </items>
+                                    <color key="backgroundColor" red="0.0" green="0.59741545370000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </group>
+                                <separator alignment="left" id="0IO-if-aV2">
+                                    <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </separator>
+                                <label width="1" alignment="left" text="tafLabel" numberOfLines="0" id="79v-5x-ASD"/>
                             </items>
                         </group>
                     </items>
