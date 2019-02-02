@@ -76,7 +76,7 @@ class dataUpdater {
         }
     }
     
-    func getTaf(airport : String!, completionHandler: @escaping ([String?], NSError?) -> Void) {
+    func getTaf(airport : String!, completionHandler: @escaping ([Any?], NSError?) -> Void) {
         //using  completion handler to deal with asynchronous process
         var nextFlightConditions = ""
         let urlString = "http://avwx.rest/api/taf/\(String(describing: airport!))?format=json&onfail=cache"
@@ -120,7 +120,7 @@ class dataUpdater {
                             }
                         }
                         let tafText = tafDic?["Raw-Report"] as? String ?? "missing"
-                        completionHandler([nextFlightConditions, tafText, tafTime, nextWindSpeed, nextForecast], nil)
+                        completionHandler([nextFlightConditions, tafText, tafTime, nextWindSpeed, nextForecast, forecast], nil)
                         // a completion handler deals with asynchronous processes
                     }
                 }

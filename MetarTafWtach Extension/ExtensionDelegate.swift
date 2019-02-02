@@ -19,6 +19,7 @@ class airportClass : NSObject {
     var metarAge : String
     var windSpeed : Int
     var windSymbol : String
+    var forecast : Any
     var nextFlightConditions : String
     var nextForecast : String
     var taf : String
@@ -37,6 +38,7 @@ class airportClass : NSObject {
         metarAge = "..."
         windSpeed = 0
         windSymbol = ""
+        forecast = [nil]
         nextFlightConditions = " "
         nextForecast = "..."
         taf = "missing"

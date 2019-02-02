@@ -17,15 +17,19 @@ class airportDetailCode: WKInterfaceController {
     @IBOutlet weak var elevationLabel: WKInterfaceLabel!
     @IBOutlet weak var runwaysLabel: WKInterfaceLabel!
     @IBOutlet weak var cityLabel: WKInterfaceLabel!
+    @IBOutlet weak var metarGroup: WKInterfaceGroup!
     
+
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        let weather = context as! [String]
-        self.metarLabel.setText("METAR \(weather[0])")
-        self.tafLabel.setText("TAF \(weather[1])")
-        self.elevationLabel.setText("\(weather[2]) feet")
-        self.runwaysLabel.setText("Runways: \(weather[3]), \(weather[4]) ")
-        self.cityLabel.setText(weather[5])
+        let rowIndex = context as! Int
+        self.metarLabel.setText("METAR \(airportsArray[rowIndex].metar)")
+        let metarLabelColor = flightConditionsColor[airportsArray[rowIndex].flightConditions]
+        self.metarGroup.setBackgroundColor(metarLabelColor)
+        self.tafLabel.setText("TAF \(airportsArray[rowIndex].taf)")
+        self.elevationLabel.setText("\(airportsArray[rowIndex].elevation) feet")
+        self.runwaysLabel.setText("Runways: \(airportsArray[rowIndex].runway1), \(airportsArray[rowIndex].runway2) ")
+        self.cityLabel.setText(airportsArray[rowIndex].city)
     }
 }

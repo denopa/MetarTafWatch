@@ -288,7 +288,7 @@
                                 <separator alignment="left" id="erj-Yr-tfS">
                                     <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </separator>
-                                <group width="1" alignment="left" id="Ph4-ML-3GV">
+                                <group width="1" alignment="left" radius="6" id="Ph4-ML-3GV">
                                     <items>
                                         <label width="1" alignment="left" text="metarLabel" numberOfLines="0" id="H2s-3U-1tF"/>
                                     </items>
@@ -304,6 +304,7 @@
                     <connections>
                         <outlet property="cityLabel" destination="EZx-6k-5nZ" id="Dd2-AZ-awi"/>
                         <outlet property="elevationLabel" destination="1f8-iO-eza" id="OKB-gK-wBD"/>
+                        <outlet property="metarGroup" destination="Ph4-ML-3GV" id="qOh-c8-8sT"/>
                         <outlet property="metarLabel" destination="H2s-3U-1tF" id="ogG-ua-KuZ"/>
                         <outlet property="runwaysLabel" destination="YzN-Pg-8uF" id="0Ba-8I-Ygj"/>
                         <outlet property="tafLabel" destination="79v-5x-ASD" id="QuP-Sc-EHC"/>

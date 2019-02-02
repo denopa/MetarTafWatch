@@ -29,7 +29,7 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
     var timerMinutes = Timer() //used to refresh Metar age
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) { //pushes into the detail screen
-        self.pushController(withName: "airportDetail", context: [airportsArray[rowIndex].metar, airportsArray[rowIndex].taf, airportsArray[rowIndex].elevation, airportsArray[rowIndex].runway1, airportsArray[rowIndex].runway2, airportsArray[rowIndex].city])
+        self.pushController(withName: "airportDetail", context: rowIndex)
     }
     
     
@@ -101,11 +101,12 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
                 }
                 else{
                     if let fCS = tafArray[0] {          //To get rid of optional
-                        airportsArray[count].nextFlightConditions = fCS
-                        airportsArray[count].taf = tafArray[1] ?? "missing"
-                        airportsArray[count].tafTime = tafArray[2] ?? "missing"
-                        airportsArray[count].nextWindSpeed = Int(tafArray[3] ?? "0") ?? 0
-                        airportsArray[count].nextForecast = tafArray[4] ?? "..."
+                        airportsArray[count].forecast = tafArray[5] as! [Any]
+                        airportsArray[count].nextFlightConditions = fCS as! String
+                        airportsArray[count].taf = String(describing: tafArray[1] ?? "missing")
+                        airportsArray[count].tafTime = String(describing: tafArray[2] ?? "missing")
+                        airportsArray[count].nextWindSpeed = Int(String(describing: tafArray[3] ?? "0")) ?? 0
+                        airportsArray[count].nextForecast = String(describing: tafArray[4] ?? "...")
                         if airportsArray[count].nextWindSpeed>15 {
                             airportsArray[count].nextWindSymbol = "💨"
                         }
