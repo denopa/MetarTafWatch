@@ -102,9 +102,10 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
                 else{
                     if let fCS = tafArray[0] {          //To get rid of optional
                         airportsArray[count].forecast = tafArray[5] as! [Any]
+                        airportsArray[count].taf = String(describing: tafArray[6] ?? "...")
                         airportsArray[count].nextFlightConditions = fCS as! String
                         airportsArray[count].taf = String(describing: tafArray[1] ?? "missing")
-                        airportsArray[count].tafTime = String(describing: tafArray[2] ?? "missing")
+                        airportsArray[count].nextForecastHeader = String(describing: tafArray[2] ?? "...")
                         airportsArray[count].nextWindSpeed = Int(String(describing: tafArray[3] ?? "0")) ?? 0
                         airportsArray[count].nextForecast = String(describing: tafArray[4] ?? "...")
                         if airportsArray[count].nextWindSpeed>15 {

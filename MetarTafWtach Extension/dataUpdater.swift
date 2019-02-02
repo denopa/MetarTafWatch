@@ -86,7 +86,7 @@ class dataUpdater {
         let day = calendar.component(.day, from: date)
         let hour = calendar.component(.hour, from: date)
         let currentTime = 100 * day + hour
-        var tafTime = String(currentTime) //datetime in the Metar format
+        var nextForecastHeader = "" //eg "PROB30 TEMPO 0123/0206" or "BCMG 0123/0206"
         var nextWindSpeed = "0"
         var nextForecast = "..."
         var request = URLRequest(url: url)
@@ -98,6 +98,7 @@ class dataUpdater {
                     let tafDic = taf as? [String: Any] //as? because the format of the json is not guaranteed
                     if (tafDic?["Station"]) != nil { //using tafDic? because not sure if there is a Station field, but this line allows us to check the tafDic has the right kind of data before loading everything
                         let forecast = tafDic?["Forecast"] as! [[String: Any]]
+                        let tafTime = tafDic?["Time"] as! String
                         for i in forecast.indices {//running through all the forecasts to find the next one
                             let startTime = (forecast[i]["Start-Time"] as! NSString).integerValue
                             if startTime > currentTime {
@@ -106,8 +107,11 @@ class dataUpdater {
                                         nextFlightConditions = forecast[i]["Flight-Rules"] as! String
                                         nextWindSpeed = forecast[i]["Wind-Speed"] as! String
                                         nextForecast = forecast[i]["Sanitized"] as! String
+                                        let nextForecastProb =  ((forecast[i]["Probability"] as! String != "") ? "PROB" : "") + String(describing: forecast[i]["Probability"] ?? "") + ((forecast[i]["Probability"] as! String != "") ? " " : "") //need to add a space if proba present
+                                        let nextForecastType = String(describing: forecast[i]["Type"] ?? "") + " "
+                                        let nextForecastPeriod = String(describing: forecast[i]["Start-Time"] ?? "") + "/" + String(describing: forecast[i]["End-Time"] ?? "") + " "
+                                        nextForecastHeader = nextForecastProb + nextForecastType + nextForecastPeriod
                                     }
-                                    tafTime = String(startTime)
                                 }
                             }
                         }
@@ -117,10 +121,14 @@ class dataUpdater {
                                 nextFlightConditions = forecast[i]["Flight-Rules"] as! String
                                 nextWindSpeed = forecast[i]["Wind-Speed"] as! String
                                 nextForecast = forecast[i]["Sanitized"] as! String
+                                let nextForecastProb =  ((forecast[i]["Probability"] as! String != "") ? "PROB" : "") + String(describing: forecast[i]["Probability"] ?? "") + ((forecast[i]["Probability"] as! String != "") ? " " : "") //need to add a space if proba present
+                                let nextForecastType = String(describing: forecast[i]["Type"] ?? "") + " "
+                                let nextForecastPeriod = String(describing: forecast[i]["Start-Time"] ?? "") + "/" + String(describing: forecast[i]["End-Time"] ?? "") + " "
+                                nextForecastHeader = nextForecastProb + nextForecastType + nextForecastPeriod
                             }
                         }
                         let tafText = tafDic?["Raw-Report"] as? String ?? "missing"
-                        completionHandler([nextFlightConditions, tafText, tafTime, nextWindSpeed, nextForecast, forecast], nil)
+                        completionHandler([nextFlightConditions, tafText, nextForecastHeader, nextWindSpeed, nextForecast, forecast, tafTime], nil)
                         // a completion handler deals with asynchronous processes
                     }
                 }
