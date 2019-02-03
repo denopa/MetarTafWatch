@@ -18,18 +18,37 @@ class airportDetailCode: WKInterfaceController {
     @IBOutlet weak var runwaysLabel: WKInterfaceLabel!
     @IBOutlet weak var cityLabel: WKInterfaceLabel!
     @IBOutlet weak var metarGroup: WKInterfaceGroup!
+    @IBOutlet weak var tafTable: WKInterfaceTable!
     
-
+    func setTafRow(rowIndex: Int!, count : Int!){
+        let row = self.tafTable.rowController(at: count) as! tafRowController
+        let tafColor = flightConditionsColor[airportsArray[rowIndex].forecastArray[count][1]]
+        row.tafRowGroup.setBackgroundColor(tafColor)
+        row.tafRowHeader.setText(airportsArray[rowIndex].forecastArray[count][0])
+        row.tafRowForecast.setText(airportsArray[rowIndex].forecastArray[count][2])
+    }
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         let rowIndex = context as! Int
+        
+        //airport section
+        self.cityLabel.setText(airportsArray[rowIndex].city)
+        self.elevationLabel.setText("\(airportsArray[rowIndex].elevation) feet")
+        self.runwaysLabel.setText("Runways: \(airportsArray[rowIndex].runway1), \(airportsArray[rowIndex].runway2) ")
+        
+        //metar section
         self.metarLabel.setText("METAR \(airportsArray[rowIndex].metar)")
         let metarLabelColor = flightConditionsColor[airportsArray[rowIndex].flightConditions]
         self.metarGroup.setBackgroundColor(metarLabelColor)
-        self.tafLabel.setText("TAF \(airportsArray[rowIndex].taf)")
-        self.elevationLabel.setText("\(airportsArray[rowIndex].elevation) feet")
-        self.runwaysLabel.setText("Runways: \(airportsArray[rowIndex].runway1), \(airportsArray[rowIndex].runway2) ")
-        self.cityLabel.setText(airportsArray[rowIndex].city)
+        
+        //taf section
+        self.tafLabel.setText("TAF \(airportsArray[rowIndex].tafTime)")
+        let rows : Int = airportsArray[rowIndex].numberOfForecasts
+        self.tafTable.setNumberOfRows(rows, withRowType: "tafRowController")
+        for count in 0..<airportsArray[rowIndex].numberOfForecasts {
+            self.setTafRow(rowIndex: rowIndex, count : count)
+        }
     }
+    
 }

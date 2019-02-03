@@ -99,6 +99,7 @@ class dataUpdater {
                     if (tafDic?["Station"]) != nil { //using tafDic? because not sure if there is a Station field, but this line allows us to check the tafDic has the right kind of data before loading everything
                         let forecast = tafDic?["Forecast"] as! [[String: Any]]
                         let tafTime = tafDic?["Time"] as! String
+                        let (forecastArray, numberOfForecasts) = self.createForecastArray(forecast: forecast)
                         for i in forecast.indices {//running through all the forecasts to find the next one
                             let endTime = (forecast[i]["End-Time"] as! NSString).integerValue
                             if (nextForecast == "...") && (endTime > currentTime) && (i > 0){ //last condition avoids taking the first taf
@@ -120,7 +121,7 @@ class dataUpdater {
                             }
                         }
                         let tafText = tafDic?["Raw-Report"] as? String ?? "missing"
-                        completionHandler([nextFlightConditions, tafText, nextForecastHeader, nextWindSpeed, nextForecast, forecast, tafTime], nil)
+                        completionHandler([nextFlightConditions, tafText, nextForecastHeader, nextWindSpeed, nextForecast, forecast, tafTime, forecastArray, numberOfForecasts], nil)
                         // a completion handler deals with asynchronous processes
                     }
                 }
@@ -133,6 +134,20 @@ class dataUpdater {
         var tafHeader = (prob != "" ? "PROB" + prob + " " : "") // if prob not empty, return "PROBprob " otheriwse ""
         tafHeader += tafType + " " + startTime + "/" + endTime + " "
         return(tafHeader)
+    }
+    
+    func createForecastArray(forecast: [[String: Any]]) -> ([[String]], Int) {
+        var forecastArray : [[String]] = []
+        var counter : Int = 0
+        for i in forecast.indices {
+            counter += 1
+            let nextForecastHeader = self.createTafHeader(prob: (forecast[i]["Probability"] as! String), tafType: String(describing: forecast[i]["Type"] ?? ""), startTime: String(describing: forecast[i]["Start-Time"] ?? ""), endTime: String(describing: forecast[i]["End-Time"] ?? ""))
+            let flightConditions = String(describing: forecast[i]["Flight-Rules"] ?? "")
+            let fullTaf = String(describing: forecast[i]["Sanitized"] ?? "")
+            let taf = fullTaf.replacingOccurrences(of: nextForecastHeader, with: "")
+            forecastArray.append([nextForecastHeader, flightConditions, taf])
+        }
+        return(forecastArray, counter)
     }
     
     func airportsListToArray(airportsList : [String]) -> [airportClass] {

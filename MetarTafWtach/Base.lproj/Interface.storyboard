@@ -12,7 +12,7 @@
         <!--mainController-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="mainController" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MetarTafWtach" customModuleProvider="target">
+                <controller identifier="mainController" id="AgC-eL-Hgc" customClass="MainInterfaceController" customModule="MetarTafWtach" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="ghz-BX-UyU">
                             <items>
@@ -265,10 +265,10 @@
             </objects>
             <point key="canvasLocation" x="220" y="3"/>
         </scene>
-        <!--Airport Detail-->
+        <!--airportDetail-->
         <scene sceneID="NCt-4u-i4R">
             <objects>
-                <controller identifier="airportDetail" title="Airport Detail" id="Rip-Tn-7lU" customClass="airportDetailCode" customModule="MetarTafWtach_Extension">
+                <controller identifier="airportDetail" id="Rip-Tn-7lU" customClass="airportDetailCode" customModule="MetarTafWtach_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Q7y-d7-R5F">
                             <items>
@@ -292,7 +292,7 @@
                                     <items>
                                         <label width="1" alignment="left" text="metarLabel" numberOfLines="0" id="H2s-3U-1tF"/>
                                     </items>
-                                    <color key="backgroundColor" red="0.0" green="0.59741545370000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </group>
                                 <separator alignment="left" id="0IO-if-aV2">
                                     <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -300,6 +300,31 @@
                                 <label width="1" alignment="left" text="tafLabel" numberOfLines="0" id="79v-5x-ASD"/>
                             </items>
                         </group>
+                        <table alignment="left" id="X2P-CX-T89">
+                            <items>
+                                <tableRow identifier="tafRowController" id="ZHx-Aq-zkv" customClass="tafRowController" customModule="MetarTafWtach_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="Emq-xU-VNZ">
+                                        <items>
+                                            <label alignment="left" text="1202/1207" textAlignment="left" id="LDd-lS-7Jl">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                            <label alignment="left" verticalAlignment="bottom" text="31520KT 999 FEW020 -FZRA" numberOfLines="0" id="iTM-ym-gjV">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.050477594137191772" green="0.047974415123462677" blue="0.14773693680763245" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="tafRowForecast" destination="iTM-ym-gjV" id="7o5-mI-n5D"/>
+                                        <outlet property="tafRowGroup" destination="Emq-xU-VNZ" id="Eum-re-y0u"/>
+                                        <outlet property="tafRowHeader" destination="LDd-lS-7Jl" id="1eb-OV-zEh"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
                     </items>
                     <connections>
                         <outlet property="cityLabel" destination="EZx-6k-5nZ" id="Dd2-AZ-awi"/>
@@ -308,6 +333,7 @@
                         <outlet property="metarLabel" destination="H2s-3U-1tF" id="ogG-ua-KuZ"/>
                         <outlet property="runwaysLabel" destination="YzN-Pg-8uF" id="0Ba-8I-Ygj"/>
                         <outlet property="tafLabel" destination="79v-5x-ASD" id="QuP-Sc-EHC"/>
+                        <outlet property="tafTable" destination="X2P-CX-T89" id="vyH-Fb-yGQ"/>
                     </connections>
                 </controller>
             </objects>

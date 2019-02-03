@@ -20,7 +20,7 @@
 		CD7A670821CAE62B00BE499F /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7A670621CAE62B00BE499F /* Interface.storyboard */; };
 		CD7A670A21CAE62D00BE499F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7A670921CAE62D00BE499F /* Assets.xcassets */; };
 		CD7A671121CAE62D00BE499F /* MetarTafWtach Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CD7A671021CAE62D00BE499F /* MetarTafWtach Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CD7A671621CAE62D00BE499F /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A671521CAE62D00BE499F /* InterfaceController.swift */; };
+		CD7A671621CAE62D00BE499F /* MainInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A671521CAE62D00BE499F /* MainInterfaceController.swift */; };
 		CD7A671821CAE62D00BE499F /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A671721CAE62D00BE499F /* ExtensionDelegate.swift */; };
 		CD7A671A21CAE62D00BE499F /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A671921CAE62D00BE499F /* NotificationController.swift */; };
 		CD7A671C21CAE62D00BE499F /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A671B21CAE62D00BE499F /* ComplicationController.swift */; };
@@ -31,6 +31,7 @@
 		CD80E1A121DD480B0073C975 /* setAirportRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD80E1A021DD480B0073C975 /* setAirportRowController.swift */; };
 		CD80E1A321DD492F0073C975 /* setAirportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD80E1A221DD492F0073C975 /* setAirportController.swift */; };
 		CD80E1A521DD547F0073C975 /* inputAirport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD80E1A421DD547F0073C975 /* inputAirport.swift */; };
+		CDED946D2206075C005584F0 /* tafRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED946C2206075C005584F0 /* tafRowController.swift */; };
 		CDFF10B421D3CBD90034718E /* altitudeInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF10B321D3CBD90034718E /* altitudeInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,7 +113,7 @@
 		CD7A670921CAE62D00BE499F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD7A670B21CAE62D00BE499F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD7A671021CAE62D00BE499F /* MetarTafWtach Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MetarTafWtach Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD7A671521CAE62D00BE499F /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		CD7A671521CAE62D00BE499F /* MainInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInterfaceController.swift; sourceTree = "<group>"; };
 		CD7A671721CAE62D00BE499F /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		CD7A671921CAE62D00BE499F /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		CD7A671B21CAE62D00BE499F /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		CDD1B00421DDF39800F53BCD /* MetarTafWtach Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MetarTafWtach Extension.entitlements"; sourceTree = "<group>"; };
 		CDD1B00521DDF4D100F53BCD /* MetarTafWtach.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetarTafWtach.entitlements; sourceTree = "<group>"; };
 		CDD1B00621DDF4DA00F53BCD /* MetarTaf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetarTaf.entitlements; sourceTree = "<group>"; };
+		CDED946C2206075C005584F0 /* tafRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tafRowController.swift; sourceTree = "<group>"; };
 		CDFF10B321D3CBD90034718E /* altitudeInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = altitudeInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,23 +234,24 @@
 		CD7A671421CAE62D00BE499F /* MetarTafWtach Extension */ = {
 			isa = PBXGroup;
 			children = (
-				CDD1B00421DDF39800F53BCD /* MetarTafWtach Extension.entitlements */,
-				CD7A671521CAE62D00BE499F /* InterfaceController.swift */,
+				CD7A671521CAE62D00BE499F /* MainInterfaceController.swift */,
+				CD7A672C21CAE6DB00BE499F /* airportRowController.swift */,
 				CD73B9B921D0C8C4000B12CE /* weatherSymbolKeyCode.swift */,
-				CD80E1A221DD492F0073C975 /* setAirportController.swift */,
 				CD7A673021CEDA7000BE499F /* airportDetailCode.swift */,
+				CDED946C2206075C005584F0 /* tafRowController.swift */,
+				CD80E1A221DD492F0073C975 /* setAirportController.swift */,
+				CD80E1A021DD480B0073C975 /* setAirportRowController.swift */,
 				CD80E1A421DD547F0073C975 /* inputAirport.swift */,
 				CDFF10B321D3CBD90034718E /* altitudeInterfaceController.swift */,
-				CD7A672C21CAE6DB00BE499F /* airportRowController.swift */,
-				CD80E1A021DD480B0073C975 /* setAirportRowController.swift */,
 				CD73BBD721D0F881001206A0 /* weatherLegendRowController.swift */,
 				CD7A671721CAE62D00BE499F /* ExtensionDelegate.swift */,
+				CD698CD121F7C44700D1CD79 /* dataUpdater.swift */,
 				CD7A671921CAE62D00BE499F /* NotificationController.swift */,
 				CD7A671B21CAE62D00BE499F /* ComplicationController.swift */,
 				CD7A671D21CAE62E00BE499F /* Assets.xcassets */,
 				CD7A671F21CAE62E00BE499F /* Info.plist */,
+				CDD1B00421DDF39800F53BCD /* MetarTafWtach Extension.entitlements */,
 				CD7A672021CAE62E00BE499F /* PushNotificationPayload.apns */,
-				CD698CD121F7C44700D1CD79 /* dataUpdater.swift */,
 			);
 			path = "MetarTafWtach Extension";
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDED946D2206075C005584F0 /* tafRowController.swift in Sources */,
 				CD80E1A321DD492F0073C975 /* setAirportController.swift in Sources */,
 				CD7A672D21CAE6DB00BE499F /* airportRowController.swift in Sources */,
 				CDFF10B421D3CBD90034718E /* altitudeInterfaceController.swift in Sources */,
@@ -502,7 +506,7 @@
 				CD7A671C21CAE62D00BE499F /* ComplicationController.swift in Sources */,
 				CD7A673121CEDA7000BE499F /* airportDetailCode.swift in Sources */,
 				CD7A671821CAE62D00BE499F /* ExtensionDelegate.swift in Sources */,
-				CD7A671621CAE62D00BE499F /* InterfaceController.swift in Sources */,
+				CD7A671621CAE62D00BE499F /* MainInterfaceController.swift in Sources */,
 				CD73B9BA21D0C8C4000B12CE /* weatherSymbolKeyCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

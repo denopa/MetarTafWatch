@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController , URLSessionDelegate {
+class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
 
     // todo: fix complication, add option for nearest airport, add explanations, add feature to change units from hPa to InHG
     
@@ -108,6 +108,10 @@ class InterfaceController: WKInterfaceController , URLSessionDelegate {
                         airportsArray[count].nextForecastHeader = String(describing: tafArray[2] ?? "...")
                         airportsArray[count].nextWindSpeed = Int(String(describing: tafArray[3] ?? "0")) ?? 0
                         airportsArray[count].nextForecast = String(describing: tafArray[4] ?? "...")
+                        airportsArray[count].tafTime = String(describing: tafArray[6] ?? "...")
+                        airportsArray[count].forecast = tafArray[5] as! [Any]
+                        airportsArray[count].forecastArray = tafArray[7] as! [[String]]
+                        airportsArray[count].numberOfForecasts = tafArray[8] as! Int
                         if airportsArray[count].nextWindSpeed>15 {
                             airportsArray[count].nextWindSymbol = "💨"
                         }

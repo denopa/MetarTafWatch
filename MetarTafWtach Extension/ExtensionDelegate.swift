@@ -20,6 +20,7 @@ class airportClass : NSObject {
     var windSpeed : Int
     var windSymbol : String
     var forecast : Any
+    var numberOfForecasts : Int
     var forecastArray : [[String]]
     var nextFlightConditions : String
     var nextForecast : String
@@ -41,6 +42,7 @@ class airportClass : NSObject {
         windSpeed = 0 //windSpeed from the METAR
         windSymbol = "" //emoji for the METAR wind
         forecast = [nil] // array containing the TAF json output of sequential forecasts
+        numberOfForecasts = 0 // the number of forecasts in the TAF
         forecastArray = [[]] // array of taf headers, flight conditions and sanitized TAF in the shape ["PROB30 TEMPO 0123/0206","IFR", "35012KT 9999 SCT02"]
         tafTime = "" //time the TAF was published
         nextFlightConditions = " " ///VFR, MVFR, IFR or LIFR from the next TAF section
