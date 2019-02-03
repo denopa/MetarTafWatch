@@ -11,6 +11,7 @@ import WatchKit
 
 class tafRowController: NSObject {
     @IBOutlet weak var tafRowGroup: WKInterfaceGroup!
+    @IBOutlet weak var tafForecastRowGroup: WKInterfaceGroup!
     @IBOutlet weak var tafRowHeader: WKInterfaceLabel!
     @IBOutlet weak var tafRowForecast: WKInterfaceLabel!
     

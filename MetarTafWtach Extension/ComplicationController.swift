@@ -12,7 +12,7 @@ import CoreMotion
 
 class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDelegate {
     
-    let flighConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.44, green: 0.78, blue: 0.86, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.4, green: 0.85, blue: 0.49, alpha: 1), "IFR" : UIColor(displayP3Red: 1, green: 0.58, blue: 0.25, alpha: 1), "LIFR": UIColor(displayP3Red: 0.92, green: 0.30, blue: 0.24, alpha: 1)] //describes the color the lettering will take depending on weather conditions
+    let flightConditionsTextColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.44, green: 0.78, blue: 0.86, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.4, green: 0.85, blue: 0.49, alpha: 1), "IFR" : UIColor(displayP3Red: 1, green: 0.58, blue: 0.25, alpha: 1), "LIFR": UIColor(displayP3Red: 0.92, green: 0.30, blue: 0.24, alpha: 1)] //describes the color the lettering will take depending on weather conditions
     
     var altitudeText = "Altitude"
     var altitudeShortText = "Alt"
@@ -51,7 +51,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries after to the given date
         var timelineEntries: [CLKComplicationTimelineEntry] = []
-        let metarColor = self.flighConditionsColor[airportsArray[0].flightConditions]
+        let metarColor = self.flightConditionsTextColor[airportsArray[0].flightConditions]
         let largeText = airportsArray[0].airportName
                 switch complication.family {
                     case .circularSmall:

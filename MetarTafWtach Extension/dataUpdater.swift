@@ -26,10 +26,11 @@ class dataUpdater {
                     let metarDic = metar as? [String: Any]
                     if (metarDic?["Flight-Rules"]) != nil {
                         let flightConditions = metarDic?["Flight-Rules"] as? String ?? " "
-                        let metarText = metarDic?["Sanitized"] as? String ?? "missing"
+                        var metarText = metarDic?["Sanitized"] as? String ?? "missing"
                         let metarTime = metarDic?["Time"] as? String ?? "missing"
                         let windSpeed = metarDic?["Wind-Speed"] as? String ?? "0"
                         let metarAge = howOldIsMetar(metarDate: metarTime)
+                        metarText = metarText.replacingOccurrences(of: "\(String(describing: airport!)) \(metarTime) ", with: "")
                         completionHandler([flightConditions, metarText, metarTime, windSpeed, metarAge], nil)
                     }
                 }
@@ -136,21 +137,34 @@ class dataUpdater {
         return(tafHeader)
     }
     
-    func createForecastArray(forecast: [[String: Any]]) -> ([[String]], Int) {
+    func cleanTaf(fullTaf : String!, prob: String!, tafType: String!) -> String {//aims to remove "FROM", "PROB" etc and date
+        var taf : String = fullTaf.replacingOccurrences(of: "PROB\(String(describing: prob!)) ", with: "")
+        taf = taf.replacingOccurrences(of: "\(String(describing: tafType!)) ", with: "")
+        taf = String(taf[taf.index(taf.startIndex, offsetBy: 10)...])
+        return(taf)
+    }
+    
+    func createForecastArray(forecast: [[String: Any]]) -> ([[String]], Int) { //create an array with individual forecasts from TAF
         var forecastArray : [[String]] = []
         var counter : Int = 0
         for i in forecast.indices {
             counter += 1
-            let nextForecastHeader = self.createTafHeader(prob: (forecast[i]["Probability"] as! String), tafType: String(describing: forecast[i]["Type"] ?? ""), startTime: String(describing: forecast[i]["Start-Time"] ?? ""), endTime: String(describing: forecast[i]["End-Time"] ?? ""))
-            let flightConditions = String(describing: forecast[i]["Flight-Rules"] ?? "")
+            let forecastHeader = self.createTafHeader(prob: (forecast[i]["Probability"] as! String), tafType: String(describing: forecast[i]["Type"] ?? ""), startTime: String(describing: forecast[i]["Start-Time"] ?? ""), endTime: String(describing: forecast[i]["End-Time"] ?? ""))
+            var flightConditions = String(describing: forecast[i]["Flight-Rules"] ?? "")
             let fullTaf = String(describing: forecast[i]["Sanitized"] ?? "")
-            let taf = fullTaf.replacingOccurrences(of: nextForecastHeader, with: "")
-            forecastArray.append([nextForecastHeader, flightConditions, taf])
+            let taf = cleanTaf(fullTaf: fullTaf, prob: (forecast[i]["Probability"] as! String), tafType: String(describing: forecast[i]["Type"] ?? ""))
+            if taf.range(of: "CAVOK") != nil {// if the TAF contains CAVOK
+                flightConditions = "VFR"
+            }
+            if taf.range(of: "FG") != nil {// if the TAF contains Fog
+                flightConditions = "LIFR"
+            }
+            forecastArray.append([forecastHeader, flightConditions, taf])
         }
         return(forecastArray, counter)
     }
     
-    func airportsListToArray(airportsList : [String]) -> [airportClass] {
+    func airportsListToArray(airportsList : [String]) -> [airportClass] {// inits an array of airportClass from the list of airports
         var airportsArray : [airportClass] = []
         for i in 0...3 {
             airportsArray.append(airportClass(ICAO : airportsList[i]))
@@ -158,7 +172,7 @@ class dataUpdater {
         return airportsArray
     }
     
-    func getStation(airport : String!, completionHandler: @escaping ([String?], NSError?) -> Void) {
+    func getStation(airport : String!, completionHandler: @escaping (String?, String?, [String?], NSError?) -> Void) {
         //get Station information
         let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))"
         let url = URL(string: urlString)!
@@ -172,9 +186,14 @@ class dataUpdater {
                         let city = stationDic?["city"] as? String ?? " "
                         let elevation = stationDic?["elevation"] as? NSNumber ?? -999
                         let runways = stationDic?["runways"] as! [[String: Any]]
-                        let runway1 = runways[0]["ident1"] as? String ?? "missing"
-                        let runway2 = runways[0]["ident2"] as? String ?? "missing"
-                        completionHandler([city, NumberFormatter().string(from: elevation), runway1, runway2], nil)
+                        var runwayList : [String] = []
+                        for i in runways.indices {
+                            var runway = String(describing: runways[i]["ident1"] ?? "00")
+                            runway = String(runway[..<runway.index(runway.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
+                            runwayList.append(runway)
+                        }
+                        runwayList = Array(Set(runwayList)) //making it a set to remove duplicates, then back to array
+                        completionHandler(city, NumberFormatter().string(from: elevation), runwayList, nil)
                     }
                 }
             }
@@ -186,19 +205,16 @@ class dataUpdater {
         // initialises the airportArray for that row, and puts in airport data
         let airportName = airportsArray[count].airportName
         airportsArray[count] = airportClass(ICAO: airportName)
-        self.getStation(airport: airportsArray[count].airportName) { (stationArray, error) -> Void in
+        self.getStation(airport: airportsArray[count].airportName) { (city, elevation, runwayList, error) -> Void in
             if error != nil{
                 print(error!)
                 completionHandler(error!)
             }
             else{
-                if stationArray[0] != nil {//To get rid of optional
-                    airportsArray[count].city = stationArray[0] ?? "missing"
-                    airportsArray[count].elevation = stationArray[1] ?? "missing"
-                    airportsArray[count].runway1 = stationArray[2] ?? "missing"
-                    airportsArray[count].runway2 = stationArray[3] ?? "missing"
+                airportsArray[count].city = city ?? "missing"
+                airportsArray[count].elevation = elevation ?? "missing"
+                airportsArray[count].runwayList = runwayList as! [String]
                     completionHandler(nil)
-                }
             }
         }
     }

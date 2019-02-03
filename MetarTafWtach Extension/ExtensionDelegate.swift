@@ -31,8 +31,7 @@ class airportClass : NSObject {
     var nextWindSymbol : String
     var city: String
     var elevation: String
-    var runway1: String
-    var runway2: String
+    var runwayList: [String]
     init(ICAO : String) {
         airportName = ICAO
         flightConditions = " " ///VFR, MVFR, IFR or LIFR from the METAR
@@ -53,8 +52,7 @@ class airportClass : NSObject {
         nextWindSymbol = "" //emoji for the next TAF section wind
         city = ""
         elevation = "0"
-        runway1 = "00"
-        runway2 = "00"
+        runwayList = []
     }
 }
 
@@ -87,7 +85,7 @@ func howOldIsMetar(metarDate : String!) -> String {
         dateFormatter.dateFormat = "mm"
         let nowMinute = Int(dateFormatter.string(from: nowDate)) ?? 0
         let metarDay = Int(metarDate[..<metarDate.index(metarDate.startIndex, offsetBy: 2)]) ?? 0//this is how you get the first 2 characters of a String in Swift 😱
-        let metarHour = Int(metarDate[metarDate.index(metarDate.startIndex, offsetBy: 2)...metarDate.index(metarDate.startIndex, offsetBy: 3)]) ?? 0
+        let metarHour = Int(metarDate[metarDate.index(metarDate.startIndex, offsetBy: 2)...metarDate.index(metarDate.startIndex, offsetBy: 3)]) ?? 0 //how to get the 3rd and 4th characters
         let metarMinute = Int(metarDate[metarDate.index(metarDate.startIndex, offsetBy: 4)...metarDate.index(metarDate.startIndex, offsetBy: 5)]) ?? 0
         var minutes = (nowMinute - metarMinute) + 60 * (nowHour - metarHour)
         if nowDay>metarDay {

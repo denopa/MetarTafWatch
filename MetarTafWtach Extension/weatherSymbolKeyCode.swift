@@ -13,7 +13,7 @@ class weatherSymbolKeyCode: WKInterfaceController {
     
     @IBOutlet weak var weatherLegendTable: WKInterfaceTable!
     
-    let flightConditionsColor = [["VFR" , UIColor.blue.withAlphaComponent(0.3)], ["MVFR" , UIColor.green.withAlphaComponent(0.3)], ["IFR" , UIColor.orange.withAlphaComponent(0.87)], ["LIFR", UIColor.red.withAlphaComponent(0.7)]]
+    let flightConditionsColor = [["VFR" , UIColor.blue.withAlphaComponent(0.3)], ["MVFR (marginal VFR)" , UIColor.green.withAlphaComponent(0.3)], ["IFR" , UIColor.orange.withAlphaComponent(0.87)], ["LIFR (low IFR)", UIColor.red.withAlphaComponent(0.7)]]
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
