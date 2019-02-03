@@ -149,7 +149,7 @@
                     </items>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="542" y="686"/>
+            <point key="canvasLocation" x="220" y="963"/>
         </scene>
         <!--Input Airport-->
         <scene sceneID="uja-4e-Mzb">
@@ -321,6 +321,7 @@
                                                 <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </group>
                                         </items>
+                                        <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                     </group>
                                     <connections>
