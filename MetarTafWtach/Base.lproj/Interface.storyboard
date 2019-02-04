@@ -95,26 +95,55 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="n8c-i1-l54">
                             <items>
-                                <label alignment="left" text="Press. Altitude:" id="nxg-fs-wA8">
-                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                <group width="1" alignment="left" layout="vertical" id="bQO-2f-kAt">
+                                    <items>
+                                        <label alignment="left" text="Press. Altitude" id="nxg-fs-wA8">
+                                            <color key="textColor" red="0.0" green="0.41256421230000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                        </label>
+                                        <label alignment="center" text="altitudeLabel" numberOfLines="0" id="C3v-Qb-yyQ">
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                        </label>
+                                    </items>
+                                    <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </group>
+                                <group width="1" alignment="left" layout="vertical" id="kSs-d2-vB0">
+                                    <items>
+                                        <label alignment="left" text="GPS Altitude" id="fX5-Ug-ldm">
+                                            <color key="textColor" red="0.0" green="0.41256421230000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                        </label>
+                                        <label alignment="center" text="gpsAltitudeLabel" id="6s9-2K-2D2"/>
+                                    </items>
+                                    <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </group>
+                                <group width="1" alignment="left" layout="vertical" id="M5h-br-iPQ">
+                                    <items>
+                                        <label alignment="left" text="GPS derived QNH" id="JcI-p5-o8b">
+                                            <color key="textColor" red="0.0" green="0.41256421230000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                        </label>
+                                        <label alignment="center" text="qnhLabel" id="vUe-20-KIS"/>
+                                    </items>
+                                    <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </group>
+                                <group width="1" alignment="left" layout="vertical" id="Dsr-uw-atI">
+                                    <items>
+                                        <label alignment="left" text="Abs. Pressure" id="BdU-y5-tmX">
+                                            <color key="textColor" red="0.0" green="0.41256421230000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                        </label>
+                                        <label height="20" alignment="center" text="pressureLabel" numberOfLines="0" id="01w-n8-gfF">
+                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                        </label>
+                                    </items>
+                                    <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </group>
+                                <label alignment="left" text="Forcetouch for explanations" numberOfLines="0" id="ID4-Ip-39G">
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                 </label>
-                                <label alignment="center" text="altitudeLabel" numberOfLines="0" id="C3v-Qb-yyQ">
-                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                </label>
-                                <label alignment="left" text="GPS Altitude:" id="fX5-Ug-ldm">
-                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                </label>
-                                <label alignment="center" text="gpsAltitudeLabel" id="6s9-2K-2D2"/>
-                                <label alignment="left" text="Abs. Pressure :" id="BdU-y5-tmX">
-                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                </label>
-                                <label height="20" alignment="center" text="pressureLabel" numberOfLines="0" id="01w-n8-gfF">
-                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                </label>
-                                <label alignment="left" text="GPS derived QNH:" id="JcI-p5-o8b">
-                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                </label>
-                                <label alignment="center" text="qnhLabel" id="vUe-20-KIS"/>
                             </items>
                         </group>
                     </items>
@@ -144,7 +173,7 @@
                 <controller identifier="altitudeInfo" title="Info" id="Hm6-tg-eAb">
                     <items>
                         <label width="1" alignment="center" verticalAlignment="center" numberOfLines="0" id="uX1-c0-HY4">
-                            <string key="text">A QNH  is derived from the diffrence between pressure and GPS altitude. If this difference is larger than 2000 feet, your watch will assume you are in a pressurised vessel and calculate the pressure differential. If you do not receive GPS altitude updates, open the app on your iPhone and request location services.</string>
+                            <string key="text">A QNH  is derived from the difference between pressure and GPS altitude. If this difference is larger than 2000 feet, your watch will assume you are in a pressurised vessel and calculate the pressure differential. If you do not receive GPS altitude updates, open the app on your iPhone and request location services.</string>
                         </label>
                     </items>
                 </controller>

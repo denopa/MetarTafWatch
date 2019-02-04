@@ -47,6 +47,13 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
         }
         if self.airportTable.numberOfRows == 0 {//if the table has not yet been set, set it
             loadAirportsList() //load defaults
+            print("first time user ? \(firstTimeUser)")
+            if firstTimeUser {
+                let h0 = { print("ok")}
+                let action1 = WKAlertAction(title: "Got it", style: .default, handler:h0)
+                self.presentAlert(withTitle: "", message: "Force touch to access the menu.", preferredStyle: WKAlertControllerStyle.alert, actions:[action1])
+                firstTimeUser = false
+            }
             airportsArray = dataUpdater().airportsListToArray(airportsList: airportsList) //take the new list of airports and populate airportsArray
             self.airportTable.setNumberOfRows(4, withRowType: "airportRowController")
         }

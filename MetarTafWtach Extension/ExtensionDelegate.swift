@@ -61,6 +61,7 @@ class airportClass : NSObject {
 var airportsArray = [airportClass(ICAO : "EGLL"), airportClass(ICAO : "LFOV"), airportClass(ICAO : "EBFN"), airportClass(ICAO : "EBBR")]
 var airportsList = ["EGLF", "EGBB", "LFTH", "LFPO"]
 var hasAirportChanged: Bool = false
+var firstTimeUser: Bool = false
 
 func loadAirportsList(){
     let appGroupId = "group.com.nonneville.com.metarTaf"
@@ -68,6 +69,7 @@ func loadAirportsList(){
     if let airports = defaults?.object(forKey: "airports"){
         airportsList = airports as! [String]
     } else {
+        firstTimeUser = true
         defaults?.register(defaults: ["airports" : airportsList])
     }
 }

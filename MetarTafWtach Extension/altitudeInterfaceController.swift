@@ -31,14 +31,14 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        let center = UNUserNotificationCenter.current()
+        /*let center = UNUserNotificationCenter.current()
         let options: UNAuthorizationOptions = [.alert, .sound, .criticalAlert]
         center.requestAuthorization(options: options) {
             (granted, error) in
             if !granted {
                 print("You will not get altitude alerts")
             }
-        }
+        }*/
         self.qnhOrDeltaP.setText("GPS derived QNH")
         self.altitudeLabel.setText("...")
         self.pressureLabel.setText("...")
@@ -49,6 +49,10 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
             self.gpsAltitudeLabel.setText("updating...")
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+        } else {
+            let h0 = { print("ok")}
+            let action1 = WKAlertAction(title: "Got it", style: .default, handler:h0)
+            self.presentAlert(withTitle: "", message: "To get GPS altitude readings, you need to open the iPhone app and press 'Request Location Services'. You only need to do that once.", preferredStyle: WKAlertControllerStyle.alert, actions:[action1])
         }
        
         startAltimeter()
@@ -128,14 +132,15 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
         DispatchQueue.main.async {
             let location: CLLocation = locations.last! as CLLocation
             let verticalAccuracy = location.verticalAccuracy
-            if verticalAccuracy < 11 {
+            if verticalAccuracy < 100 {
                 self.gpsAltitude = location.altitude * 3.28084
-                self.gpsAltitudeLabel.setText("\(String(format: "%.00f", self.gpsAltitude)) ft")
+                self.gpsAltitudeLabel.setText("\(String(format: "%.00f", self.gpsAltitude)) ±\(String(format: "%.00f", verticalAccuracy)) ft")
                 if self.altitude > -1000 {
                     if abs(self.altitude - self.gpsAltitude) < 1999 { //estimate QNH if gps and pressure altitudes are close enough
                         let qnh = (1013 + (self.gpsAltitude - self.altitude) * 0.036622931)
+                        let qnhAccuracy = verticalAccuracy * 0.036622931
                         self.qnhOrDeltaP.setText("GPS derived QNH")
-                        self.qnhLabel.setText("\(String(format: "%.00f", qnh)) hPa")
+                        self.qnhLabel.setText("\(String(format: "%.00f", qnh)) ±\(String(format: "%.00f", qnhAccuracy)) hPa")
                     }
                     else { //calculate DeltaP
                         self.qnhOrDeltaP.setText("GPS derived DeltaP")
