@@ -285,7 +285,10 @@
                                         </label>
                                     </items>
                                 </group>
-                                <label alignment="left" text="Runways" id="YzN-Pg-8uF"/>
+                                <label alignment="left" text="RW24 🔽16KT ◀️9KT" id="YzN-Pg-8uF">
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                </label>
                                 <separator alignment="left" id="erj-Yr-tfS">
                                     <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </separator>

@@ -28,10 +28,11 @@ class dataUpdater {
                         let flightConditions = metarDic?["Flight-Rules"] as? String ?? " "
                         var metarText = metarDic?["Sanitized"] as? String ?? "missing"
                         let metarTime = metarDic?["Time"] as? String ?? "missing"
+                        let windDirection = metarDic?["Wind-Direction"] as? String ?? "0"
                         let windSpeed = metarDic?["Wind-Speed"] as? String ?? "0"
                         let metarAge = howOldIsMetar(metarDate: metarTime)
                         metarText = metarText.replacingOccurrences(of: "\(String(describing: airport!)) \(metarTime) ", with: "")
-                        completionHandler([flightConditions, metarText, metarTime, windSpeed, metarAge], nil)
+                        completionHandler([flightConditions, metarText, metarTime, windDirection, windSpeed, metarAge], nil)
                     }
                 }
             }
@@ -55,8 +56,9 @@ class dataUpdater {
                     airportsArray[count].flightConditions = metarArray[0] ?? "missing"
                     airportsArray[count].metar = metarArray[1] ?? "missing"
                     airportsArray[count].metarTime = metarArray[2] ?? "missing"
-                    airportsArray[count].windSpeed = Int(metarArray[3] ?? "0") ?? 0
-                    airportsArray[count].metarAge = metarArray[4] ?? "missing"
+                    airportsArray[count].windDirection = Double(metarArray[3] ?? "0") ?? 0
+                    airportsArray[count].windSpeed = Double(metarArray[4] ?? "0") ?? 0
+                    airportsArray[count].metarAge = metarArray[5] ?? "missing"
                     if airportsArray[count].windSpeed>15 {
                         airportsArray[count].windSymbol = "💨"
                     }
@@ -172,7 +174,7 @@ class dataUpdater {
         return airportsArray
     }
     
-    func getStation(airport : String!, completionHandler: @escaping (String?, String?, [String?], NSError?) -> Void) {
+    func getStation(airport : String!, completionHandler: @escaping (String?, String?, [Double?], NSError?) -> Void) {
         //get Station information
         let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))"
         let url = URL(string: urlString)!
@@ -186,11 +188,14 @@ class dataUpdater {
                         let city = stationDic?["city"] as? String ?? " "
                         let elevation = stationDic?["elevation"] as? NSNumber ?? -999
                         let runways = stationDic?["runways"] as! [[String: Any]]
-                        var runwayList : [String] = []
+                        var runwayList : [Double] = []
                         for i in runways.indices {
-                            var runway = String(describing: runways[i]["ident1"] ?? "00")
-                            runway = String(runway[..<runway.index(runway.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
-                            runwayList.append(runway)
+                            var runwayName = String(describing: runways[i]["ident1"] ?? "00")
+                            var runway = Double(runwayName[..<runwayName.index(runwayName.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
+                            runwayList.append(runway ?? 0)
+                            runwayName = String(describing: runways[i]["ident2"] ?? "00") //take the reciprocal
+                            runway = Double(runwayName[..<runwayName.index(runwayName.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
+                            runwayList.append(runway ?? 0)
                         }
                         runwayList = Array(Set(runwayList)) //making it a set to remove duplicates, then back to array
                         completionHandler(city, NumberFormatter().string(from: elevation), runwayList, nil)
@@ -213,7 +218,7 @@ class dataUpdater {
             else{
                 airportsArray[count].city = city ?? "missing"
                 airportsArray[count].elevation = elevation ?? "missing"
-                airportsArray[count].runwayList = runwayList as! [String]
+                airportsArray[count].runwayList = runwayList as! [Double]
                     completionHandler(nil)
             }
         }

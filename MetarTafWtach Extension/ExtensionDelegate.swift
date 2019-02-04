@@ -17,7 +17,8 @@ class airportClass : NSObject {
     var metar : String
     var metarTime : String
     var metarAge : String
-    var windSpeed : Int
+    var windDirection : Double
+    var windSpeed : Double
     var windSymbol : String
     var forecast : Any
     var numberOfForecasts : Int
@@ -31,13 +32,14 @@ class airportClass : NSObject {
     var nextWindSymbol : String
     var city: String
     var elevation: String
-    var runwayList: [String]
+    var runwayList: [Double]
     init(ICAO : String) {
         airportName = ICAO
         flightConditions = " " ///VFR, MVFR, IFR or LIFR from the METAR
         metar = "missing" //sanitised METAR
         metarTime = "..." //time the METAR was published
         metarAge = "..." //how old the METAR is in minutes
+        windDirection = 999 //windDirection from the METAR
         windSpeed = 0 //windSpeed from the METAR
         windSymbol = "" //emoji for the METAR wind
         forecast = [nil] // array containing the TAF json output of sequential forecasts

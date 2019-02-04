@@ -42,7 +42,17 @@ class airportDetailCode: WKInterfaceController {
         //airport section
         self.cityLabel.setText(airportsArray[rowIndex].city)
         self.elevationLabel.setText("\(airportsArray[rowIndex].elevation) feet")
-        self.runwaysLabel.setText("Runways: \(airportsArray[rowIndex].runwayList)")
+        if (airportsArray[rowIndex].runwayList != [])&&(airportsArray[rowIndex].windDirection != 999){
+            let bestRunwayArray : [String] = runwayCalculations().findBestRunway(runwayNames: airportsArray[rowIndex].runwayList, windDirection: airportsArray[rowIndex].windDirection, windSpeed: airportsArray[rowIndex].windSpeed)
+            if bestRunwayArray[0] != "998" {
+                let bestRunway = bestRunwayArray[0]
+                let headwind = bestRunwayArray[1]
+                let crosswind = bestRunwayArray[2]
+                let indicator = bestRunwayArray[3]
+                self.runwaysLabel.setText("RW\(bestRunway) 🔽\(headwind)kt \(indicator + crosswind)kt")
+            }
+        }
+       
         
         //metar section
         self.metarHeader.setText("METAR \(airportsArray[rowIndex].metarTime)")
