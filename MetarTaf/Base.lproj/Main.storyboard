@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XZP-ei-fLm">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,37 +15,47 @@
             <objects>
                 <viewController id="XZP-ei-fLm" customClass="ViewController" customModule="MetarTaf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wXg-5U-hVP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZQ-zu-FAC">
-                                <rect key="frame" x="96.5" y="318.5" width="182" height="30"/>
-                                <state key="normal" title="Request Location Services"/>
-                                <connections>
-                                    <action selector="requestLocationServices:" destination="XZP-ei-fLm" eventType="touchUpInside" id="pWT-Lr-RMa"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Only required once" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOw-Af-bpX">
-                                <rect key="frame" x="134" y="466" width="107.5" height="14.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude :  ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ei-SB-6AK">
-                                <rect key="frame" x="142" y="402" width="91.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="B0U-sC-7If">
+                                <rect key="frame" x="38" y="88" width="244.5" height="392.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open your watch to use the app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWx-JN-j0i">
+                                        <rect key="frame" x="0.0" y="0.0" width="244.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="watchScreenshot" translatesAutoresizingMaskIntoConstraints="NO" id="NnJ-4g-FuR">
+                                        <rect key="frame" x="24" y="45.5" width="196" height="207"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude :  ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ei-SB-6AK">
+                                        <rect key="frame" x="76.5" y="277.5" width="91.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZQ-zu-FAC">
+                                        <rect key="frame" x="31" y="323" width="182" height="30"/>
+                                        <state key="normal" title="Request Location Services"/>
+                                        <connections>
+                                            <action selector="requestLocationServices:" destination="XZP-ei-fLm" eventType="touchUpInside" id="pWT-Lr-RMa"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Only required once" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOw-Af-bpX">
+                                        <rect key="frame" x="68.5" y="378" width="107.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jZQ-zu-FAC" firstAttribute="centerX" secondItem="wXg-5U-hVP" secondAttribute="centerX" id="73g-Df-O7D"/>
-                            <constraint firstItem="8Ei-SB-6AK" firstAttribute="centerX" secondItem="wXg-5U-hVP" secondAttribute="centerX" id="Bho-Cb-foQ"/>
-                            <constraint firstItem="mOw-Af-bpX" firstAttribute="centerY" secondItem="wXg-5U-hVP" secondAttribute="centerY" constant="139.5" id="K3T-QU-4Eg"/>
-                            <constraint firstItem="mOw-Af-bpX" firstAttribute="centerX" secondItem="wXg-5U-hVP" secondAttribute="centerX" id="LVN-FU-ggR"/>
-                            <constraint firstItem="jZQ-zu-FAC" firstAttribute="centerY" secondItem="wXg-5U-hVP" secondAttribute="centerY" id="Xd0-rD-wSS"/>
-                            <constraint firstItem="8Ei-SB-6AK" firstAttribute="centerY" secondItem="wXg-5U-hVP" secondAttribute="centerY" constant="79" id="ov3-Rk-4DC"/>
+                            <constraint firstItem="B0U-sC-7If" firstAttribute="centerX" secondItem="wXg-5U-hVP" secondAttribute="centerX" id="exK-eW-hLB"/>
+                            <constraint firstItem="B0U-sC-7If" firstAttribute="centerY" secondItem="wXg-5U-hVP" secondAttribute="centerY" id="wP1-Vv-sYF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Smd-C2-zUY"/>
                     </view>
@@ -55,7 +65,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygv-jZ-a4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093.5999999999999" y="-483.50824587706148"/>
+            <point key="canvasLocation" x="1092.753623188406" y="-484.15178571428567"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="watchScreenshot" width="196" height="207"/>
+    </resources>
 </document>

@@ -53,80 +53,153 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
         var timelineEntries: [CLKComplicationTimelineEntry] = []
         let metarColor = self.flightConditionsTextColor[airportsArray[0].flightConditions]
         let largeText = airportsArray[0].airportName
-                switch complication.family {
-                    case .circularSmall:
-                        let circularSmallTemplate = CLKComplicationTemplateCircularSmallSimpleText()
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude098")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .modularSmall:
-                        let circularSmallTemplate = CLKComplicationTemplateModularSmallSimpleText()
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude3321")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .modularLarge:
-                        let circularSmallTemplate = CLKComplicationTemplateModularLargeStandardBody()
-                        circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "Pressure Altitude1432")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .utilitarianSmall:
-                        let circularSmallTemplate = CLKComplicationTemplateUtilitarianSmallRingText()
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude 421")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .utilitarianSmallFlat:
-                        let circularSmallTemplate = CLKComplicationTemplateUtilitarianSmallRingText()
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude 143")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .utilitarianLarge:
-                        let circularSmallTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude 653")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .extraLarge:
-                        let circularSmallTemplate = CLKComplicationTemplateExtraLargeSimpleText()
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude 656")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .graphicCorner:
-                        let graphicCorner = CLKComplicationTemplateGraphicCornerStackText()
-                        //let metarColor = self.flighConditionsColor[airportsArray[0].flightConditions]
-                        graphicCorner.outerTextProvider = CLKSimpleTextProvider(text: largeText)
-                        for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
-                            let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
-                            graphicCorner.innerTextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) \(age)' ago")
-                            graphicCorner.innerTextProvider.tintColor = metarColor ?? UIColor.white //must be set after the text
-                            let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
-                            let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : graphicCorner)
-                            timelineEntries.append(entry)
-                        }
-                        if (limit > 1) { //add "old" at the end but only if limit>1
-                            graphicCorner.innerTextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) old")
-                            let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : graphicCorner)
-                            timelineEntries.append(entry)
-                        }
-                    case .graphicBezel:
-                        let circularSmallTemplate = CLKComplicationTemplateGraphicBezelCircularText()
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude 3213")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .graphicCircular:
-                        let circularSmallTemplate =  CLKComplicationTemplateGraphicCornerTextImage()
-                        let cornerImage = UIImage(named: "Graphic Corner")
-                        circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
-                        circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "1,556 ft", shortText: "1.5k ft")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
-                    case .graphicRectangular:
-                        let circularSmallTemplate = CLKComplicationTemplateGraphicRectangularTextGauge()
-                        circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "Pressure Altitude 7645")
-                        let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                        timelineEntries.append(entry)
+        let veryLargeText = "\(airportsArray[0].airportName) - \(airportsArray[0].city)"
+        let nextTaf = "\(airportsArray[0].nextForecastHeader + airportsArray[0].nextFlightConditions)"
+        var runwayString = nextTaf
+        if (airportsArray[0].runwayList != [])&&(airportsArray[0].windDirection != 999){
+            let bestRunwayArray : [String] = runwayCalculations().findBestRunway(runwayNames: airportsArray[0].runwayList, windDirection: airportsArray[0].windDirection, windSpeed: airportsArray[0].windSpeed)
+            if bestRunwayArray[0] != "998" {
+                let bestRunway = bestRunwayArray[0]
+                let headwind = bestRunwayArray[1]
+                let crosswind = bestRunwayArray[2]
+                let indicator = bestRunwayArray[3]
+                runwayString = "RW\(bestRunway) 🔽\(headwind)kt \(indicator + crosswind)kt"
+            }
+        }
+        switch complication.family {
+            case .circularSmall:
+                let circularSmallTemplate = CLKComplicationTemplateCircularSmallSimpleText()
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: largeText)
+                circularSmallTemplate.textProvider.tintColor = metarColor ?? UIColor.white
+                let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
+                timelineEntries.append(entry)
+            case .modularSmall:
+                let circularSmallTemplate = CLKComplicationTemplateModularSmallSimpleText()
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: largeText)
+                circularSmallTemplate.textProvider.tintColor = metarColor ?? UIColor.white
+                let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
+                timelineEntries.append(entry)
+            case .modularLarge:
+                let modularLargeTemplate = CLKComplicationTemplateModularLargeStandardBody()
+                modularLargeTemplate.headerTextProvider = CLKSimpleTextProvider(text: veryLargeText)
+                modularLargeTemplate.headerTextProvider.tintColor = metarColor ?? UIColor.white //must be set after the text
+                for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
+                    let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
+                    modularLargeTemplate.body1TextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) \(age)' ago" )
+                     modularLargeTemplate.body2TextProvider = CLKSimpleTextProvider(text: runwayString )
+                    let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
+                    let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : modularLargeTemplate)
+                    timelineEntries.append(entry)
                 }
-                handler(timelineEntries)
-            //}
-        //}
+                if (limit > 1) { //add "old" at the end but only if limit>1
+                    modularLargeTemplate.body1TextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) old")
+                    let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : modularLargeTemplate)
+                    timelineEntries.append(entry)
+                }
+            case .utilitarianSmall:
+                let circularSmallTemplate = CLKComplicationTemplateUtilitarianSmallRingText()
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: largeText)
+                circularSmallTemplate.textProvider.tintColor = metarColor ?? UIColor.white
+                let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
+                timelineEntries.append(entry)
+            case .utilitarianSmallFlat:
+                let circularSmallTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: largeText)
+                circularSmallTemplate.textProvider.tintColor = metarColor ?? UIColor.white
+                let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
+                timelineEntries.append(entry)
+            case .utilitarianLarge:
+                let utilitarianLargeTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
+                for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
+                    let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
+                    utilitarianLargeTemplate.textProvider = CLKSimpleTextProvider(text: "\(largeText) \(airportsArray[0].flightConditions) \(age)' ago" )
+                    utilitarianLargeTemplate.textProvider.tintColor = metarColor ?? UIColor.white //must be set after the text
+                    let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
+                    let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : utilitarianLargeTemplate)
+                    timelineEntries.append(entry)
+                }
+                if (limit > 1) { //add "old" at the end but only if limit>1
+                    utilitarianLargeTemplate.textProvider = CLKSimpleTextProvider(text: "\(largeText) \(airportsArray[0].flightConditions) old")
+                    let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : utilitarianLargeTemplate)
+                    timelineEntries.append(entry)
+            }
+            case .extraLarge:
+                let extraLargeTemplate = CLKComplicationTemplateExtraLargeStackText()
+                extraLargeTemplate.line1TextProvider = CLKSimpleTextProvider(text: largeText)
+                for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
+                    let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
+                    extraLargeTemplate.line2TextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) \(age)' ago" )
+                    extraLargeTemplate.line2TextProvider.tintColor = metarColor ?? UIColor.white //must be set after the text
+                    let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
+                    let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : extraLargeTemplate)
+                    timelineEntries.append(entry)
+                }
+                if (limit > 1) { //add "old" at the end but only if limit>1
+                    extraLargeTemplate.line2TextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) old")
+                    let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : extraLargeTemplate)
+                    timelineEntries.append(entry)
+                }
+            case .graphicCorner:
+                let graphicCorner = CLKComplicationTemplateGraphicCornerStackText()
+                graphicCorner.outerTextProvider = CLKSimpleTextProvider(text: largeText)
+                for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
+                    let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
+                    graphicCorner.innerTextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) \(age)' ago")
+                    graphicCorner.innerTextProvider.tintColor = metarColor ?? UIColor.white //must be set after the text
+                    let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
+                    let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : graphicCorner)
+                    timelineEntries.append(entry)
+                }
+                if (limit > 1) { //add "old" at the end but only if limit>1
+                    graphicCorner.innerTextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) old")
+                    let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : graphicCorner)
+                    timelineEntries.append(entry)
+                }
+            case .graphicBezel:
+                let graphicBezelTemplate = CLKComplicationTemplateGraphicBezelCircularText()
+                for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
+                    let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
+                    graphicBezelTemplate.textProvider = CLKSimpleTextProvider(text: "\(largeText) \(airportsArray[0].flightConditions) \(age)' ago" )
+                    graphicBezelTemplate.textProvider?.tintColor = metarColor ?? UIColor.white //must be set after the text
+                    let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
+                    let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : graphicBezelTemplate)
+                    timelineEntries.append(entry)
+                }
+                if (limit > 1) { //add "old" at the end but only if limit>1
+                    graphicBezelTemplate.textProvider = CLKSimpleTextProvider(text: "\(largeText) \(airportsArray[0].flightConditions) old")
+                    let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : graphicBezelTemplate)
+                    timelineEntries.append(entry)
+            }
+            /*case .graphicCircular: // not used
+                let circularSmallTemplate =  CLKComplicationTemplateGraphicCornerTextImage()
+                let cornerImage = UIImage(named: "Graphic Corner")
+                circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: largeText)
+                circularSmallTemplate.textProvider.tintColor = metarColor ?? UIColor.white
+                let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
+                timelineEntries.append(entry)*/
+            case .graphicRectangular:
+                let graphicRectangularTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()
+                graphicRectangularTemplate.headerTextProvider = CLKSimpleTextProvider(text: veryLargeText)
+                graphicRectangularTemplate.headerTextProvider.tintColor = metarColor ?? UIColor.white //must be set after the text
+                graphicRectangularTemplate.body2TextProvider = CLKSimpleTextProvider(text: runwayString)
+                for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
+                    let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
+                    graphicRectangularTemplate.body1TextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) \(age)' ago" )
+                    
+                    let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
+                    let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : graphicRectangularTemplate)
+                    timelineEntries.append(entry)
+                }
+                if (limit > 1) { //add "old" at the end but only if limit>1
+                    graphicRectangularTemplate.body1TextProvider = CLKSimpleTextProvider(text: "\(airportsArray[0].flightConditions) old")
+                    let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : graphicRectangularTemplate)
+                    timelineEntries.append(entry)
+                }
+        default :
+            preconditionFailure("Complication family not supported")
+        }
+        handler(timelineEntries)
     }
     
     // MARK: - Placeholder Templates
@@ -138,31 +211,32 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
         switch complication.family {
             case .circularSmall:
                 let circularSmallTemplate = CLKComplicationTemplateCircularSmallSimpleText()
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .modularSmall:
                 let circularSmallTemplate = CLKComplicationTemplateModularSmallSimpleText()
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .modularLarge:
                 let circularSmallTemplate = CLKComplicationTemplateModularLargeStandardBody()
-                circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                circularSmallTemplate.headerTextProvider = CLKSimpleTextProvider(text: "AIRPORT")
+                circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .utilitarianSmall:
                 let circularSmallTemplate = CLKComplicationTemplateUtilitarianSmallRingText()
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .utilitarianSmallFlat:
-                let circularSmallTemplate = CLKComplicationTemplateUtilitarianSmallRingText()
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                let circularSmallTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .utilitarianLarge:
                 let circularSmallTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .extraLarge:
                 let circularSmallTemplate = CLKComplicationTemplateExtraLargeSimpleText()
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .graphicCorner:
                 let circularSmallTemplate = CLKComplicationTemplateGraphicCornerStackText()
@@ -171,20 +245,28 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                 template = circularSmallTemplate
             case .graphicBezel:
                 let circularSmallTemplate = CLKComplicationTemplateGraphicBezelCircularText()
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                let innerCircleTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                innerCircleTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
+                innerCircleTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
+                innerCircleTemplate.gaugeProvider = CLKGaugeProvider()
+                circularSmallTemplate.circularTemplate = innerCircleTemplate
+                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
-            case .graphicCircular:
-                let circularSmallTemplate = CLKComplicationTemplateGraphicCornerTextImage()
-                let cornerImage = UIImage(named: "Graphic Corner")
-                circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "11,556 ft", shortText: "11.5k ft")
-                template = circularSmallTemplate
+            case .graphicCircular: //not used
+                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                //let cornerImage = UIImage(named: "Graphic Corner")
+                //circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
+                circularSmallTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
+                circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
+                circularSmallTemplate.gaugeProvider = CLKGaugeProvider()
+                template = circularSmallTemplate 
             case .graphicRectangular:
                 let circularSmallTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()
-                circularSmallTemplate.headerTextProvider = CLKSimpleTextProvider(text: "Header")
-                circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "Pressure Altitude")
+                circularSmallTemplate.headerTextProvider = CLKSimpleTextProvider(text: "AIRPORT")
+                circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
         }
         handler(template)
     }
+    
 }
