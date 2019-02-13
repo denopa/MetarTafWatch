@@ -171,8 +171,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                     timelineEntries.append(entry)
             }
             /*case .graphicCircular: // not used
-                let circularSmallTemplate =  CLKComplicationTemplateGraphicCornerTextImage()
+                let circularSmallTemplate =  CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
                 let cornerImage = UIImage(named: "Graphic Corner")
+                circularSmallTemplate.
                 circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
                 circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: largeText)
                 circularSmallTemplate.textProvider.tintColor = metarColor ?? UIColor.white

@@ -22,6 +22,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
     @IBAction func seeAltitude() {self.pushController(withName: "altitudeAlerter", context: Any?.self)}
     
     @IBOutlet weak var airportTable: WKInterfaceTable!
+    @IBOutlet weak var lastUpdateLabel: WKInterfaceLabel!
     
     //let flightConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.09, green: 0.15, blue: 0.19, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.06, green: 0.17, blue: 0.09, alpha: 1), "IFR" : UIColor(displayP3Red: 0.19, green: 0.12, blue: 0.02, alpha: 1), "LIFR": UIColor(displayP3Red: 0.18, green: 0.05, blue: 0.05, alpha: 1)] //alternative pastel scheme
     let flightConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" :  UIColor.blue.withAlphaComponent(0.3), "MVFR" : UIColor.green.withAlphaComponent(0.3), "IFR" : UIColor.orange.withAlphaComponent(0.87), "LIFR": UIColor.red.withAlphaComponent(0.7)] //describes the color the row will take depending on weather conditions
@@ -133,6 +134,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
                 }
             }
         }
+        self.lastUpdateLabel.setText("Last updated \(lastUpdateTime())")
     }
     
     func startupdateAge(){
@@ -171,4 +173,13 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
         timerSeconds.invalidate()
     }
 
+    func lastUpdateTime() -> String {
+        let date = NSDate.init() as Date //UTC time to compare with the info on TAFS
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        let currentTime = 10000 * day + 100 * hour + minute //day+time in METAR format, e.g. 012312
+        return ("\(String(currentTime))Z")
+    }
 }

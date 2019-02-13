@@ -56,6 +56,10 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <label alignment="left" text="Last updated:  041230Z" id="RPI-ng-blz">
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                        </label>
                     </items>
                     <menu key="menu" id="nrS-at-Fav">
                         <items>
@@ -83,6 +87,7 @@
                     </menu>
                     <connections>
                         <outlet property="airportTable" destination="ghz-BX-UyU" id="55u-Mx-XNP"/>
+                        <outlet property="lastUpdateLabel" destination="RPI-ng-blz" id="Sp3-V5-uSq"/>
                     </connections>
                 </controller>
             </objects>
