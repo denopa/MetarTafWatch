@@ -134,7 +134,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
                 }
             }
         }
-        self.lastUpdateLabel.setText("Last updated \(lastUpdateTime())")
+        self.lastUpdateLabel.setText("Force touch for menu")
     }
     
     func startupdateAge(){
@@ -174,12 +174,10 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
     }
 
     func lastUpdateTime() -> String {
-        let date = NSDate.init() as Date //UTC time to compare with the info on TAFS
-        let calendar = Calendar.current
-        let day = calendar.component(.day, from: date)
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-        let currentTime = 10000 * day + 100 * hour + minute //day+time in METAR format, e.g. 012312
-        return ("\(String(currentTime))Z")
+        let nowDate = NSDate.init() as Date //UTC time to compare with the info on TAFS
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.dateFormat = "HH:mm"
+        return ("\(dateFormatter.string(from: nowDate))Z")
     }
 }
