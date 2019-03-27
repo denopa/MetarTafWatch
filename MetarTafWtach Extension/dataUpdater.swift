@@ -14,7 +14,7 @@ class dataUpdater {
     func getMetar(airport : String!, completionHandler: @escaping ([String?], Error?) -> Void) {
         // the getTaf method has more detailed comments. 'airport' can actually be a location in the format of a string "lat, lont"
         print("getmetar \(String(describing: airport!))")
-        let urlString = "http://avwx.rest/api/metar/\(String(describing: airport!))?options=info&format=json&onfail=error"
+        let urlString = "http://avwx.rest/api/legacy/metar/\(String(describing: airport!))?options=info&format=json&onfail=error"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
@@ -95,7 +95,7 @@ class dataUpdater {
     func getTaf(airport : String!, completionHandler: @escaping ([Any?], NSError?) -> Void) {
         //using  completion handler to deal with asynchronous process
         var nextFlightConditions = ""
-        let urlString = "http://avwx.rest/api/taf/\(String(describing: airport!))?format=json&onfail=error"
+        let urlString = "http://avwx.rest/api/legacy/taf/\(String(describing: airport!))?format=json&onfail=error"
         let url = URL(string: urlString)!
         let date = NSDate.init() as Date //UTC time to compare with the info on TAFS
         let calendar = Calendar.current
@@ -190,7 +190,7 @@ class dataUpdater {
     
     func getStation(airport : String!, completionHandler: @escaping (String?, String?, [Double?], NSError?) -> Void) {
         //get Station information
-        let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))"
+        let urlString = "http://avwx.rest/api/legacy/station/\(String(describing: airport!))"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData

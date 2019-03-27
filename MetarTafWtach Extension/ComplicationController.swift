@@ -249,17 +249,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                 let innerCircleTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
                 innerCircleTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
                 innerCircleTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
-                innerCircleTemplate.gaugeProvider = CLKGaugeProvider()
+                //innerCircleTemplate.gaugeProvider = CLKGaugeProvider()
                 circularSmallTemplate.circularTemplate = innerCircleTemplate
                 circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
             case .graphicCircular: //not used
-                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
-                //let cornerImage = UIImage(named: "Graphic Corner")
-                //circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
-                circularSmallTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
-                circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
-                circularSmallTemplate.gaugeProvider = CLKGaugeProvider()
+                //let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularImage()
+                let cornerImage = UIImage(named: "Graphic Corner")
+                circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
+                //circularSmallTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
+                //circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
+                //circularSmallTemplate.gaugeProvider = CLKGaugeProvider()
                 template = circularSmallTemplate 
             case .graphicRectangular:
                 let circularSmallTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()
