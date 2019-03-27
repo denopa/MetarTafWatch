@@ -50,6 +50,7 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         } else {
+            self.gpsAltitudeLabel.setText("open the iPhone app to grant location")
             let h0 = { print("ok")}
             let action1 = WKAlertAction(title: "Got it", style: .default, handler:h0)
             self.presentAlert(withTitle: "", message: "To get GPS altitude readings, you need to open the iPhone app and press 'Request Location Services'. You only need to do that once.", preferredStyle: WKAlertControllerStyle.alert, actions:[action1])

@@ -21,7 +21,7 @@ class setAirportController: WKInterfaceController {
         for count in 0...3 {
             let row = self.setAirportTable.rowController(at: count) as! setAirportRowController
             let airport = self.airportsList[count]
-            row.setAirportLabel.setText("\(airport)")
+            row.setAirportLabel.setText("change \(airport)")
         }
         print("setAirport Table set")
     }

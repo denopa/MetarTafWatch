@@ -12,13 +12,11 @@ import Foundation
 class dataUpdater {
     
     func getMetar(airport : String!, completionHandler: @escaping ([String?], Error?) -> Void) {
-        // the getTaf method has more detailed comments
-        let urlString = "http://avwx.rest/api/metar/\(String(describing: airport!))?format=json&onfail=cache"
+        // the getTaf method has more detailed comments. 'airport' can actually be a location in the format of a string "lat, lont"
+        print("getmetar \(String(describing: airport!))")
+        let urlString = "http://avwx.rest/api/metar/\(String(describing: airport!))?options=info&format=json&onfail=error"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
-        //let configuration = URLSessionConfiguration.default
-        //configuration.timeoutIntervalForRequest = TimeInterval(10)
-        //configuration.timeoutIntervalForResource = TimeInterval(10)
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
@@ -31,8 +29,9 @@ class dataUpdater {
                         let windDirection = metarDic?["Wind-Direction"] as? String ?? "0"
                         let windSpeed = metarDic?["Wind-Speed"] as? String ?? "0"
                         let metarAge = howOldIsMetar(metarDate: metarTime)
+                        let station = metarDic?["Station"] as? String ?? "missing"
                         metarText = metarText.replacingOccurrences(of: "\(String(describing: airport!)) \(metarTime) ", with: "")
-                        completionHandler([flightConditions, metarText, metarTime, windDirection, windSpeed, metarAge], nil)
+                        completionHandler([flightConditions, metarText, metarTime, windDirection, windSpeed, metarAge, station], nil)
                     }
                 }
             }
@@ -45,9 +44,11 @@ class dataUpdater {
     
     func updateMetarForRow(count: Int, completionHandler: @escaping (NSError?) -> Void){
         let oldMetarTime = airportsArray[0].metarTime
-        if count == 0 {
+        var airport = airportsArray[count].airportName
+        if airportsArray[count].nearest { //if using nearest, send location instead of ICAO
+            airport = airportsArray[count].location
         }
-        self.getMetar(airport: airportsArray[count].airportName) { (metarArray, error) -> Void in
+        self.getMetar(airport: airport) { (metarArray, error) -> Void in
             if error != nil{
                 print(error!)
             }
@@ -65,6 +66,18 @@ class dataUpdater {
                     else {
                         airportsArray[count].windSymbol = ""
                     }
+                    if (airportsArray[count].nearest)&&(airportsArray[count].airportName != "⊕\(String(describing: metarArray[6]))") {
+                        hasAirportChanged = true
+                        airportsArray[count].airportName = "⊕\(metarArray[6] ?? "missing")"
+                        print("airport \(count) renamed to ⊕\(metarArray[6] ?? "missing")")
+                        airportsList[count] = metarArray[6] ?? "missing"
+                        dataUpdater().updateStationForRow(count: count) { (error) in
+                            if error != nil{
+                                print(error!)
+                            }
+                        }
+                        self.saveAirports()
+                    }
                     if count == 0 { //check if an update to the complication and the background refresh call is required
                         if (airportsArray[count].metarTime != oldMetarTime) || hasAirportChanged {
                             Refresher.scheduleUpdate(){(error) in}
@@ -72,7 +85,7 @@ class dataUpdater {
                             hasAirportChanged = false
                         }
                     }
-                    NSLog("Metar for \(airportsArray[count].airportName) : \(airportsArray[count].flightConditions) \(airportsArray[count].metarTime)")
+                    NSLog("Metar for \(airportsArray[count].airportName) : \(airportsArray[count].flightConditions) \(airportsArray[count].metarTime) nearest: \(airportsArray[count].nearest)")
                     completionHandler(nil)
                 }
             }
@@ -82,7 +95,7 @@ class dataUpdater {
     func getTaf(airport : String!, completionHandler: @escaping ([Any?], NSError?) -> Void) {
         //using  completion handler to deal with asynchronous process
         var nextFlightConditions = ""
-        let urlString = "http://avwx.rest/api/taf/\(String(describing: airport!))?format=json&onfail=cache"
+        let urlString = "http://avwx.rest/api/taf/\(String(describing: airport!))?format=json&onfail=error"
         let url = URL(string: urlString)!
         let date = NSDate.init() as Date //UTC time to compare with the info on TAFS
         let calendar = Calendar.current
@@ -135,7 +148,7 @@ class dataUpdater {
     
     func createTafHeader(prob : String!, tafType : String!, startTime : String!, endTime : String!) -> String {
         var tafHeader = (prob != "" ? "PROB" + prob + " " : "") // if prob not empty, return "PROBprob " otheriwse ""
-        tafHeader += tafType + " " + startTime + "/" + endTime + " "
+        tafHeader = tafHeader + tafType + " " + startTime + "/" + endTime + " "
         return(tafHeader)
     }
     
@@ -170,6 +183,7 @@ class dataUpdater {
         var airportsArray : [airportClass] = []
         for i in 0...3 {
             airportsArray.append(airportClass(ICAO : airportsList[i]))
+            airportsArray[i].nearest = nearestList[i]
         }
         return airportsArray
     }
@@ -187,13 +201,13 @@ class dataUpdater {
                     if (stationDic?["name"]) != nil {
                         let city = stationDic?["city"] as? String ?? " "
                         let elevation = stationDic?["elevation"] as? NSNumber ?? -999
-                        let runways = stationDic?["runways"] as! [[String: Any]]
+                        let runways = stationDic?["runways"] as? [[String: Any]] ?? [["ident1":"37","ident2":"37"]]
                         var runwayList : [Double] = []
                         for i in runways.indices {
-                            var runwayName = String(describing: runways[i]["ident1"] ?? "00")
+                            var runwayName = String(describing: runways[i]["ident1"] ?? "37")
                             var runway = Double(runwayName[..<runwayName.index(runwayName.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
                             runwayList.append(runway ?? 0)
-                            runwayName = String(describing: runways[i]["ident2"] ?? "00") //take the reciprocal
+                            runwayName = String(describing: runways[i]["ident2"] ?? "37") //take the reciprocal
                             runway = Double(runwayName[..<runwayName.index(runwayName.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
                             runwayList.append(runway ?? 0)
                         }
@@ -207,10 +221,8 @@ class dataUpdater {
     }
     
     func updateStationForRow(count : Int!, completionHandler: @escaping (NSError?) -> Void){
-        // initialises the airportArray for that row, and puts in airport data
-        let airportName = airportsArray[count].airportName
-        airportsArray[count] = airportClass(ICAO: airportName)
-        self.getStation(airport: airportsArray[count].airportName) { (city, elevation, runwayList, error) -> Void in
+        // puts in static airport data
+        self.getStation(airport: airportsArray[count].airportName.replacingOccurrences(of: "⊕", with: "")) { (city, elevation, runwayList, error) -> Void in
             if error != nil{
                 print(error!)
                 completionHandler(error!)
@@ -224,4 +236,9 @@ class dataUpdater {
         }
     }
     
+    func saveAirports(){
+        let appGroupId = "group.com.nonneville.com.metarTaf"
+        let defaults = UserDefaults(suiteName: appGroupId)
+        defaults?.set(airportsList, forKey: "airports")
+    }
 }

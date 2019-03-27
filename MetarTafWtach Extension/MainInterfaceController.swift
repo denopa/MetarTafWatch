@@ -8,8 +8,11 @@
 
 import WatchKit
 import Foundation
+import CoreMotion
+import UserNotifications
+import CoreLocation
 
-class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
+class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLocationManagerDelegate {
 
     // todo: fix complication, add option for nearest airport, add explanations, add feature to change units from hPa to InHG
     
@@ -22,6 +25,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
     @IBAction func seeAltitude() {self.pushController(withName: "altitudeAlerter", context: Any?.self)}
     
     @IBOutlet weak var airportTable: WKInterfaceTable!
+    
     @IBOutlet weak var lastUpdateLabel: WKInterfaceLabel!
     
     //let flightConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.09, green: 0.15, blue: 0.19, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.06, green: 0.17, blue: 0.09, alpha: 1), "IFR" : UIColor(displayP3Red: 0.19, green: 0.12, blue: 0.02, alpha: 1), "LIFR": UIColor(displayP3Red: 0.18, green: 0.05, blue: 0.05, alpha: 1)] //alternative pastel scheme
@@ -46,6 +50,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
             self.startZuluWatch()
             self.startupdateAge()
         }
+        print("number of rows \(self.airportTable.numberOfRows)")
         if self.airportTable.numberOfRows == 0 {//if the table has not yet been set, set it
             loadAirportsList() //load defaults
             print("first time user ? \(firstTimeUser)")
@@ -60,6 +65,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
         }
         updateDisplay()
         if WKExtension.shared().applicationState == WKApplicationState.active {//only update the data if app is active
+            //dataUpdater().getLocation()
             updateDataAndDisplay()
         }
         
@@ -93,6 +99,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
     
     func updateDataAndDisplay(){
         NSLog("updating data and display")
+        self.getLocation()
         for count in 0...3 {
             let row = self.airportTable.rowController(at: count) as! airportRowController
             dataUpdater().updateMetarForRow(count: count) { (error) -> Void in
@@ -103,7 +110,11 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
                     self.updateRow(count: count)
                 }
             }
-            dataUpdater().getTaf(airport: airportsArray[count].airportName) { (tafArray, error) -> Void in
+            var airport = airportsArray[count].airportName
+            if airportsArray[count].nearest { //if using nearest, send location instead of ICAO
+                airport = airportsArray[count].location
+            }
+            dataUpdater().getTaf(airport: airport) { (tafArray, error) -> Void in
                 if error != nil{
                     print(error!)
                 }
@@ -180,4 +191,37 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate {
         dateFormatter.dateFormat = "HH:mm"
         return ("\(dateFormatter.string(from: nowDate))Z")
     }
+    
+    let locationManager = CLLocationManager()
+    
+    func getLocation(){
+        let nowDate = Date()
+        if nowDate.timeIntervalSince(lastPositionUpdate)/60 > 15 {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.delegate = self
+                locationManager.requestLocation()
+                print("requesting location from MainInterfaceController")
+            } else {
+                locationManager.requestWhenInUseAuthorization()
+                print("location not authorized")
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        DispatchQueue.main.async {
+            let location: CLLocation = locations.last! as CLLocation
+            let loc = "\(String(describing: round(location.coordinate.latitude*100)/100)),\(String(describing: round(location.coordinate.longitude*100)/100))"
+            print("current location \(loc)")
+            for i in 0...3 {
+                airportsArray[i].location = loc
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Prblem getting the location")
+        print(error.localizedDescription)
+    }
+    
 }

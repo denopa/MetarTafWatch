@@ -31,26 +31,31 @@ class runwayCalculations {
     
     func findBestRunway(runwayNames :[Double]!, windDirection: Double!, windSpeed: Double!) -> [String] {
         var headwindRunways :[Double] = []
-        for i in runwayNames.indices { //find runways with a headwind
-            if headwind(runwayHeading: runwayNames[i], windDirection: windDirection, windSpeed: windSpeed) > 0 {
-                headwindRunways.append(runwayNames[i])
-            }
+        if runwayNames[0] ==  37 { //if the airport has no runways
+            return ["998"]
         }
-        if headwindRunways != [] {
-            var bestRunway = headwindRunways[0]
-            var minCrosswind = crosswind(runwayHeading: bestRunway, windDirection: windDirection, windSpeed: windSpeed)
-            var crosswindIndicator = ((windDirection - 10 * bestRunway) > 0 ? "◀️" : "▶️")
-            for i in headwindRunways.indices {
-                let runwayCrosswind = crosswind(runwayHeading: headwindRunways[i], windDirection: windDirection, windSpeed: windSpeed)
-                if  runwayCrosswind < minCrosswind {
-                    minCrosswind = runwayCrosswind
-                    bestRunway = headwindRunways[i]
-                    crosswindIndicator = ((windDirection - 10 * bestRunway) > 0 ? "◀️" : "▶️")
+        else {
+            for i in runwayNames.indices { //find runways with a headwind
+                if headwind(runwayHeading: runwayNames[i], windDirection: windDirection, windSpeed: windSpeed) > 0 {
+                    headwindRunways.append(runwayNames[i])
                 }
             }
-            let bestRunwayString = String(format: "%.00f", (bestRunway))
-            let minCrosswindString = String(format: "%.00f", (minCrosswind))
-            return [bestRunwayString, String(format: "%.00f", (headwind(runwayHeading: bestRunway, windDirection: windDirection, windSpeed: windSpeed))), minCrosswindString, crosswindIndicator]
+            if headwindRunways != [] {
+                var bestRunway = headwindRunways[0]
+                var minCrosswind = crosswind(runwayHeading: bestRunway, windDirection: windDirection, windSpeed: windSpeed)
+                var crosswindIndicator = ((windDirection - 10 * bestRunway) > 0 ? "◀️" : "▶️")
+                for i in headwindRunways.indices {
+                    let runwayCrosswind = crosswind(runwayHeading: headwindRunways[i], windDirection: windDirection, windSpeed: windSpeed)
+                    if  runwayCrosswind < minCrosswind {
+                        minCrosswind = runwayCrosswind
+                        bestRunway = headwindRunways[i]
+                        crosswindIndicator = ((windDirection - 10 * bestRunway) > 0 ? "◀️" : "▶️")
+                    }
+                }
+                let bestRunwayString = String(format: "%.00f", (bestRunway))
+                let minCrosswindString = String(format: "%.00f", (minCrosswind))
+                return [bestRunwayString, String(format: "%.00f", (headwind(runwayHeading: bestRunway, windDirection: windDirection, windSpeed: windSpeed))), minCrosswindString, crosswindIndicator]
+            }
         }
         return ["998"]
     }

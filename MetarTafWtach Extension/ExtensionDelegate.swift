@@ -13,6 +13,7 @@ import CoreMotion
 
 class airportClass : NSObject {
     var airportName : String
+    var nearest : Bool
     var flightConditions : String
     var metar : String
     var metarTime : String
@@ -33,8 +34,10 @@ class airportClass : NSObject {
     var city: String
     var elevation: String
     var runwayList: [Double]
+    var location : String
     init(ICAO : String) {
         airportName = ICAO
+        nearest  = false
         flightConditions = " " ///VFR, MVFR, IFR or LIFR from the METAR
         metar = "missing" //sanitised METAR
         metarTime = "..." //time the METAR was published
@@ -55,13 +58,16 @@ class airportClass : NSObject {
         city = ""
         elevation = "0"
         runwayList = []
+        location = "50.47,-0.1" //latitude, longgitude. Used only if nearest = true
     }
 }
 
 var airportsArray = [airportClass(ICAO : "EGLL"), airportClass(ICAO : "LFOV"), airportClass(ICAO : "EBFN"), airportClass(ICAO : "EBBR")]
 var airportsList = ["EGLF", "EGBB", "LFTH", "LFPO"]
+var nearestList = [true, false, false, false]
 var hasAirportChanged: Bool = false
 var firstTimeUser: Bool = false
+var lastPositionUpdate : Date = Date(timeIntervalSinceNow: -20*60)
 
 func loadAirportsList(){
     let appGroupId = "group.com.nonneville.com.metarTaf"
@@ -71,6 +77,12 @@ func loadAirportsList(){
     } else {
         firstTimeUser = true
         defaults?.register(defaults: ["airports" : airportsList])
+    }
+    if let nearest = defaults?.object(forKey: "nearest"){
+        nearestList = nearest as! [Bool]
+    } else {
+        firstTimeUser = true
+        defaults?.register(defaults: ["nearest" : nearestList])
     }
 }
 

@@ -56,7 +56,7 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <label alignment="left" text="Last updated:  041230Z" id="RPI-ng-blz">
+                        <label alignment="left" text="Force touch for menu" id="RPI-ng-blz">
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
@@ -190,7 +190,7 @@
             <objects>
                 <controller identifier="inputAirport" title="Input Airport" id="Gbt-6P-pXG" customClass="inputAirport" customModule="MetarTafWtach_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" layout="vertical" id="FQx-sl-wd4">
+                        <group width="1" height="1" heightAdjustment="20" alignment="left" layout="vertical" id="FQx-sl-wd4">
                             <items>
                                 <group width="1" height="0.40000000000000002" alignment="left" id="rhP-eg-Z8I">
                                     <items>
@@ -216,14 +216,20 @@
                                         </picker>
                                     </items>
                                 </group>
-                                <label width="1" height="0.29999999999999999" alignment="center" verticalAlignment="center" text="EGLL" textAlignment="center" id="37s-ms-11P">
+                                <label width="1" height="0.20000000000000001" alignment="center" verticalAlignment="center" text="EGLL" textAlignment="center" id="37s-ms-11P">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle0"/>
                                 </label>
-                                <button width="1" height="0.29999999999999999" alignment="left" verticalAlignment="bottom" title="OK" id="5Z7-06-aEh">
+                                <button width="1" height="0.20000000000000001" alignment="left" verticalAlignment="bottom" title="OK" id="5Z7-06-aEh">
                                     <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                     <connections>
                                         <action selector="acceptAirport" destination="Gbt-6P-pXG" id="Iek-C2-vR7"/>
+                                    </connections>
+                                </button>
+                                <button width="1" height="0.20000000000000001" alignment="left" verticalAlignment="bottom" title="NEAREST ⊕ " id="6Bg-e0-Lqb">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                    <connections>
+                                        <action selector="setToNearest" destination="Gbt-6P-pXG" id="Pt1-hb-drq"/>
                                     </connections>
                                 </button>
                             </items>

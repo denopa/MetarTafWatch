@@ -47,6 +47,18 @@ class inputAirport: WKInterfaceController {
         self.popToRootController()
     }
     
+    @IBAction func setToNearest() {
+        let oldName = airportsArray[airportIndex].airportName
+        let oldLoc = airportsArray[airportIndex].location
+        airportsArray[airportIndex] = airportClass(ICAO: oldName)
+        airportsArray[airportIndex].airportName = "⊕\(oldName)"
+        airportsArray[airportIndex].location = oldLoc
+        airportsArray[airportIndex].nearest = true
+        nearestList[airportIndex] = true
+        hasAirportChanged = true
+        self.popToRootController()
+    }
+    
     let alphabet : [String] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     
     override func awake(withContext context: Any?) {
@@ -99,6 +111,9 @@ class inputAirport: WKInterfaceController {
         airportsList[airportIndex] = airportName
         defaults?.set(airportsList, forKey: "airports")
         airportsArray[airportIndex] = airportClass(ICAO : airportName)
+        airportsArray[airportIndex].nearest = false
+        nearestList[airportIndex] = false
+        defaults?.set(nearestList, forKey: "nearest")
         hasAirportChanged = (self.oldAirportName != self.airportName) && (airportIndex == 0)
     }
 }
