@@ -196,6 +196,8 @@ extension WKSnapshotReason: CustomStringConvertible {
         case .complicationUpdate: return "complicationUpdate"
         case .prelaunch: return "prelaunch"
         case .returnToDefaultState: return "returnToDefaultState"
+        @unknown default:
+            return "returnToDefaultState"
         }
     }
 }

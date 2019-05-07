@@ -190,7 +190,7 @@ class dataUpdater {
     
     func getStation(airport : String!, completionHandler: @escaping (String?, String?, [Double?], NSError?) -> Void) {
         //get Station information
-        let urlString = "http://avwx.rest/api/legacy/station/\(String(describing: airport!))"
+        let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
@@ -200,6 +200,7 @@ class dataUpdater {
                     let stationDic = station as? [String: Any]
                     if (stationDic?["name"]) != nil {
                         let city = stationDic?["city"] as? String ?? " "
+                        print("got station info for \(city)")
                         let elevation = stationDic?["elevation"] as? NSNumber ?? -999
                         let runways = stationDic?["runways"] as? [[String: Any]] ?? [["ident1":"37","ident2":"37"]]
                         var runwayList : [Double] = []

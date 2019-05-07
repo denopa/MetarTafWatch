@@ -245,14 +245,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                 circularSmallTemplate.outerTextProvider = CLKSimpleTextProvider(text: "Airport")
                 template = circularSmallTemplate
             case .graphicBezel:
-                let circularSmallTemplate = CLKComplicationTemplateGraphicBezelCircularText()
-                let innerCircleTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                /*let circularSmallTemplate = CLKComplicationTemplateGraphicBezelCircularText()
+                let innerCircleTemplate = CLKComplicationTemplateGraphicCircular()
                 innerCircleTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
                 innerCircleTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
-                //innerCircleTemplate.gaugeProvider = CLKGaugeProvider()
+                innerCircleTemplate.gaugeProvider = CLKGaugeProvider()
                 circularSmallTemplate.circularTemplate = innerCircleTemplate
                 circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: "WEATHER")
-                template = circularSmallTemplate
+                template = circularSmallTemplate*/
+                break
             case .graphicCircular: //not used
                 //let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
                 let circularSmallTemplate = CLKComplicationTemplateGraphicCircularImage()
@@ -267,6 +268,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                 circularSmallTemplate.headerTextProvider = CLKSimpleTextProvider(text: "AIRPORT")
                 circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
+        @unknown default:
+                print("unknown complication")
         }
         handler(template)
     }
