@@ -53,6 +53,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
         var timelineEntries: [CLKComplicationTimelineEntry] = []
         let metarColor = self.flightConditionsTextColor[airportsArray[0].flightConditions]
         let largeText = airportsArray[0].airportName
+        var shortName = String(largeText[largeText.index(largeText.startIndex, offsetBy: 1)...largeText.index(largeText.startIndex, offsetBy: 3)]) //how to get the 2nd, 3rd and 4th characters
+        if largeText.count == 5 {
+            shortName = String(largeText[largeText.index(largeText.startIndex, offsetBy: 2)...largeText.index(largeText.startIndex, offsetBy: 4)]) //how to get the 3nd, 4rd and 5th characters
+        }
         let veryLargeText = "\(airportsArray[0].airportName) - \(airportsArray[0].city)"
         let nextTaf = "\(airportsArray[0].nextForecastHeader + airportsArray[0].nextFlightConditions)"
         var runwayString = nextTaf
@@ -170,15 +174,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                     let entry = CLKComplicationTimelineEntry(date: NSDate().addingTimeInterval(TimeInterval((limit-1) * 60)) as Date, complicationTemplate : graphicBezelTemplate)
                     timelineEntries.append(entry)
             }
-            /*case .graphicCircular: // not used
-                let circularSmallTemplate =  CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
-                let cornerImage = UIImage(named: "Graphic Corner")
-                circularSmallTemplate.
-                circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
-                circularSmallTemplate.textProvider = CLKSimpleTextProvider(text: largeText)
-                circularSmallTemplate.textProvider.tintColor = metarColor ?? UIColor.white
-                let entry = CLKComplicationTimelineEntry(date: NSDate() as Date, complicationTemplate : circularSmallTemplate)
-                timelineEntries.append(entry)*/
+            case .graphicCircular: 
+                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : shortName)
+                circularSmallTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: metarColor ?? UIColor.white, fillFraction: 1.0)
+                for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
+                    let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
+                    circularSmallTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "\(age)'")
+                    let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
+                    let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : circularSmallTemplate)
+                    timelineEntries.append(entry)
+                }
             case .graphicRectangular:
                 let graphicRectangularTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()
                 graphicRectangularTemplate.headerTextProvider = CLKSimpleTextProvider(text: veryLargeText)
@@ -255,13 +261,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                 template = circularSmallTemplate*/
                 break
             case .graphicCircular: //not used
-                //let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
-                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularImage()
-                let cornerImage = UIImage(named: "Graphic Corner")
-                circularSmallTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: cornerImage!)
-                //circularSmallTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
-                //circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
-                //circularSmallTemplate.gaugeProvider = CLKGaugeProvider()
+                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                circularSmallTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "WEATHER", shortText: "WEATHER")
+                circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : "AIRPORT")
+                circularSmallTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: UIColor.cyan, fillFraction: 1.0)
                 template = circularSmallTemplate 
             case .graphicRectangular:
                 let circularSmallTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()

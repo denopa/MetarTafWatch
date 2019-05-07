@@ -17,14 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>CFBundleVersion</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
 	<key>CLKComplicationSupportedFamilies</key>
 	<array>
 		<string>CLKComplicationFamilyExtraLarge</string>
+		<string>CLKComplicationFamilyGraphicCircular</string>
 		<string>CLKComplicationFamilyGraphicCorner</string>
 		<string>CLKComplicationFamilyGraphicRectangular</string>
 		<string>CLKComplicationFamilyModularLarge</string>
