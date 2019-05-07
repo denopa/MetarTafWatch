@@ -175,12 +175,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                     timelineEntries.append(entry)
             }
             case .graphicCircular: 
-                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                let circularSmallTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeRangeText()
                 circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : shortName)
-                circularSmallTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: metarColor ?? UIColor.white, fillFraction: 1.0)
                 for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
                     let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
-                    circularSmallTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "\(age)'")
+                    circularSmallTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColor: metarColor ?? UIColor.white, fillFraction: min(1.0,Float(age)/60.0))
+                    circularSmallTemplate.leadingTextProvider = CLKSimpleTextProvider(text: "\(age)'")
+                    circularSmallTemplate.leadingTextProvider.tintColor = metarColor ?? UIColor.white
+                    circularSmallTemplate.trailingTextProvider = CLKSimpleTextProvider(text: "ago")
+                    circularSmallTemplate.trailingTextProvider.tintColor = metarColor ?? UIColor.white
                     let complicationDate = Date().addingTimeInterval(TimeInterval(minute * 60)).zeroSeconds
                     let entry = CLKComplicationTimelineEntry(date: complicationDate, complicationTemplate : circularSmallTemplate)
                     timelineEntries.append(entry)
