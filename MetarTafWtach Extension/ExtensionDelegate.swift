@@ -338,7 +338,7 @@ class Forecast: Codable {
     let startTime: Time?
     let turbulance: [JSONAny]?
     let type: String?
-    let windShear: JSONNull?
+    let windShear: String?
     
     enum CodingKeys: String, CodingKey {
         case altimeter, clouds
@@ -354,7 +354,7 @@ class Forecast: Codable {
         case windShear = "wind_shear"
     }
     
-    init(altimeter: String?, clouds: [JSONAny]?, flightRules: String?, other: [String]?, sanitized: String?, visibility: Probability?, windDirection: Probability?, windGust: Probability?, windSpeed: Probability?, endTime: Time?, icing: [JSONAny]?, probability: Probability?, raw: String?, startTime: Time?, turbulance: [JSONAny]?, type: String?, windShear: JSONNull?) {
+    init(altimeter: String?, clouds: [JSONAny]?, flightRules: String?, other: [String]?, sanitized: String?, visibility: Probability?, windDirection: Probability?, windGust: Probability?, windSpeed: Probability?, endTime: Time?, icing: [JSONAny]?, probability: Probability?, raw: String?, startTime: Time?, turbulance: [JSONAny]?, type: String?, windShear: String?) {
         self.altimeter = altimeter
         self.clouds = clouds
         self.flightRules = flightRules
@@ -662,7 +662,7 @@ extension Forecast {
         startTime: Time?? = nil,
         turbulance: [JSONAny]?? = nil,
         type: String?? = nil,
-        windShear: JSONNull?? = nil
+        windShear: String?? = nil
         ) -> Forecast {
         return Forecast(
             altimeter: altimeter ?? self.altimeter,
