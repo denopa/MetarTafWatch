@@ -13,7 +13,8 @@ import CoreMotion
 class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDelegate {
     
     let flightConditionsTextColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.44, green: 0.78, blue: 0.86, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.4, green: 0.85, blue: 0.49, alpha: 1), "IFR" : UIColor(displayP3Red: 1, green: 0.58, blue: 0.25, alpha: 1), "LIFR": UIColor(displayP3Red: 0.92, green: 0.30, blue: 0.24, alpha: 1)] //describes the color the lettering will take depending on weather conditions
-    
+    let colorRange = [UIColor(displayP3Red: 0.44, green: 0.78, blue: 0.86, alpha: 1), UIColor(displayP3Red: 0.4, green: 0.85, blue: 0.49, alpha: 1), UIColor(displayP3Red: 1, green: 0.58, blue: 0.25, alpha: 1), UIColor(displayP3Red: 0.92, green: 0.30, blue: 0.24, alpha: 1)] //color range for the gauge
+    let gaugeLocationDic = [" " : 0, "VFR" : 0.05, "MVFR" : 0.3, "IFR" : 0.55, "LIFR": 0.8]
     var altitudeText = "Altitude"
     var altitudeShortText = "Alt"
     
@@ -52,6 +53,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
         // Call the handler with the timeline entries after to the given date
         var timelineEntries: [CLKComplicationTimelineEntry] = []
         let metarColor = self.flightConditionsTextColor[airportsArray[0].flightConditions]
+        let gaugeLocation = Float(self.gaugeLocationDic[airportsArray[0].flightConditions] ?? 0)
         let largeText = airportsArray[0].airportName
         var shortName = String(largeText[largeText.index(largeText.startIndex, offsetBy: 1)...largeText.index(largeText.startIndex, offsetBy: 3)]) //how to get the 2nd, 3rd and 4th characters
         if largeText.count == 5 {
@@ -179,7 +181,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                 circularSmallTemplate.centerTextProvider = CLKSimpleTextProvider(text : shortName)
                 for minute in 0..<(limit - ((limit > 1) ? 1 : 0)) { // the last bit takes off 1 if limit>1
                     let age = minute + (Int(airportsArray[0].metarAge) ?? 0)
-                    circularSmallTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColor: metarColor ?? UIColor.white, fillFraction: min(1.0,Float(age)/60.0))
+                    circularSmallTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: colorRange, gaugeColorLocations: [0,0.25,0.5,0.75], fillFraction: gaugeLocation)
                     circularSmallTemplate.leadingTextProvider = CLKSimpleTextProvider(text: "\(age)'")
                     circularSmallTemplate.leadingTextProvider.tintColor = metarColor ?? UIColor.white
                     circularSmallTemplate.trailingTextProvider = CLKSimpleTextProvider(text: "ago")
