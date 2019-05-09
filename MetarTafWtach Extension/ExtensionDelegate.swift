@@ -389,10 +389,10 @@ class Probability: Codable {
 
 class Altimeter: Codable {
     let repr: String?
-    let value: Int?
+    let value: Double?
     let spoken: String?
     
-    init(repr: String?, value: Int?, spoken: String?) {
+    init(repr: String?, value: Double?, spoken: String?) {
         self.repr = repr
         self.value = value
         self.spoken = spoken
@@ -451,14 +451,14 @@ class Meta: Codable {
 }
 
 class RemarksInfo: Codable {
-    let dewpointDecimal, temperatureDecimal: JSONNull?
+    let dewpointDecimal, temperatureDecimal: Altimeter?
     
     enum CodingKeys: String, CodingKey {
         case dewpointDecimal = "dewpoint_decimal"
         case temperatureDecimal = "temperature_decimal"
     }
     
-    init(dewpointDecimal: JSONNull?, temperatureDecimal: JSONNull?) {
+    init(dewpointDecimal: Altimeter?, temperatureDecimal: Altimeter?) {
         self.dewpointDecimal = dewpointDecimal
         self.temperatureDecimal = temperatureDecimal
     }
@@ -751,7 +751,7 @@ extension Altimeter {
     
     func with(
         repr: String?? = nil,
-        value: Int?? = nil,
+        value: Double?? = nil,
         spoken: String?? = nil
         ) -> Altimeter {
         return Altimeter(
@@ -918,8 +918,8 @@ extension RemarksInfo {
     }
     
     func with(
-        dewpointDecimal: JSONNull?? = nil,
-        temperatureDecimal: JSONNull?? = nil
+        dewpointDecimal: Altimeter?? = nil,
+        temperatureDecimal: Altimeter?? = nil
         ) -> RemarksInfo {
         return RemarksInfo(
             dewpointDecimal: dewpointDecimal ?? self.dewpointDecimal,

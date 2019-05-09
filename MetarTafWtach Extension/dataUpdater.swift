@@ -16,11 +16,14 @@ class dataUpdater {
         let urlString = "http://avwx.rest/api/metar/\(String(describing: airport!))?options=info&format=json&onfail=error"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
+        print("getting METAR for \(String(describing: airport!))")
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
+                print("got METAR for \(String(describing: airport!))")
                 if let metarDic = try? MetarData(String(data :data!, encoding: .utf8)!) {
                     if (metarDic.flightRules) != nil {
+                        print("inside metarDic for \(String(describing: airport!))")
                         let flightConditions = metarDic.flightRules ?? " "
                         var metarText = metarDic.sanitized ?? "missing sanitized"
                         let metarTime = metarDic.time?.repr ?? "missing time"
@@ -112,7 +115,6 @@ class dataUpdater {
             if data != nil {
                 if let tafDic = try? TafData(String(data :data!, encoding: .utf8)!) {
                     //if let is a failsafe, checking a json object was actually returned
-                    print("i'm inside the tafDic try for \(String(describing: airport!))")
                     if (tafDic.station) != nil { //using tafDic? because not sure if there is a Station field, but this line allows us to check the tafDic has the right kind of data before loading everything
                         let forecast = tafDic.forecast
                         let tafTime = tafDic.time?.repr ?? ""
