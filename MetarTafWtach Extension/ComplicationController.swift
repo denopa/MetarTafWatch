@@ -39,7 +39,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
     // MARK: - Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        print("getting current timeline entry")
         getTimelineEntries(for: complication, after : NSDate() as Date, limit: 1) {(entries) -> Void in handler(entries?.first)}
     }
     

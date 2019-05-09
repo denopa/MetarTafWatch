@@ -50,7 +50,6 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLoc
             self.startZuluWatch()
             self.startupdateAge()
         }
-        print("number of rows \(self.airportTable.numberOfRows)")
         if self.airportTable.numberOfRows == 0 {//if the table has not yet been set, set it
             loadAirportsList() //load defaults
             print("first time user ? \(firstTimeUser)")
@@ -91,14 +90,12 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLoc
     }
     
     func updateDisplay(){
-        NSLog("updating display only")
         for count in 0...3 {
             self.updateRow(count: count)
         }
     }
     
     func updateDataAndDisplay(){
-        NSLog("updating data and display")
         self.getLocation()
         for count in 0...3 {
             let row = self.airportTable.rowController(at: count) as! airportRowController
@@ -200,7 +197,6 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLoc
             if CLLocationManager.locationServicesEnabled() {
                 self.locationManager.delegate = self
                 locationManager.requestLocation()
-                print("requesting location from MainInterfaceController")
             } else {
                 locationManager.requestWhenInUseAuthorization()
                 print("location not authorized")
@@ -220,8 +216,6 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLoc
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Prblem getting the location")
-        print(error.localizedDescription)
     }
     
 }
