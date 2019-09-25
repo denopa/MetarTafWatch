@@ -30,6 +30,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLoc
     
     //let flightConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.09, green: 0.15, blue: 0.19, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.06, green: 0.17, blue: 0.09, alpha: 1), "IFR" : UIColor(displayP3Red: 0.19, green: 0.12, blue: 0.02, alpha: 1), "LIFR": UIColor(displayP3Red: 0.18, green: 0.05, blue: 0.05, alpha: 1)] //alternative pastel scheme
     let flightConditionsColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" :  UIColor.blue.withAlphaComponent(0.3), "MVFR" : UIColor.green.withAlphaComponent(0.3), "IFR" : UIColor.orange.withAlphaComponent(0.87), "LIFR": UIColor.red.withAlphaComponent(0.7)] //describes the color the row will take depending on weather conditions
+    let nextFlightConditionsTextColor = [" " : UIColor.init(white: 0.1, alpha: 1), "VFR" : UIColor(displayP3Red: 0.44, green: 0.78, blue: 0.86, alpha: 1), "MVFR" : UIColor(displayP3Red: 0.4, green: 0.85, blue: 0.49, alpha: 1), "IFR" : UIColor(displayP3Red: 1, green: 0.58, blue: 0.25, alpha: 1), "LIFR": UIColor(displayP3Red: 0.92, green: 0.30, blue: 0.24, alpha: 1)] //describes the color the TAF lettering will take depending on weather conditions
     var timerSeconds = Timer() //used to refresh Zulu watch
     var timerMinutes = Timer() //used to refresh Metar age
     
@@ -131,6 +132,10 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLoc
                             airportsArray[count].nextWindSymbol = "💨"
                         }
                         row.self.tafLabel.setText("\(airportsArray[count].nextForecastHeader + airportsArray[count].nextFlightConditions)")
+                        if airportsArray[count].nextFlightConditions != airportsArray[count].flightConditions {
+                            let tafTextColor = self.nextFlightConditionsTextColor[airportsArray[count].nextFlightConditions]
+                            row.self.tafLabel.setTextColor(tafTextColor)
+                        }
                     }
                 }
             }
