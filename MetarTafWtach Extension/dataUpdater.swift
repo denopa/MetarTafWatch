@@ -208,7 +208,7 @@ class dataUpdater {
                     let stationDic = station as? [String: Any]
                     if (stationDic?["name"]) != nil {
                         let city = stationDic?["city"] as? String ?? " "
-                        let elevation = stationDic?["elevation"] as? NSNumber ?? -999
+                        let elevation = stationDic?["elevation_ft"] as? NSNumber ?? -999
                         let runways = stationDic?["runways"] as? [[String: Any]] ?? [["ident1":"37","ident2":"37"]]
                         var runwayList : [Double] = []
                         for i in runways.indices {
