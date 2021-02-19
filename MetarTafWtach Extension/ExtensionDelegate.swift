@@ -11,6 +11,7 @@ import UserNotifications
 import UIKit
 import CoreMotion
 import Foundation
+import ClockKit
 
 class airportClass : NSObject {
     var airportName : String
@@ -1022,8 +1023,8 @@ class JSONNull: Codable, Hashable {
         return true
     }
     
-    public var hashValue: Int {
-        return 0
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(0)
     }
     
     public init() {}

@@ -275,6 +275,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
                 circularSmallTemplate.headerTextProvider = CLKSimpleTextProvider(text: "AIRPORT")
                 circularSmallTemplate.body1TextProvider = CLKSimpleTextProvider(text: "WEATHER")
                 template = circularSmallTemplate
+        case .graphicExtraLarge:
+            if #available(watchOSApplicationExtension 7.0, *) {
+                let circularSmallTemplate = CLKComplicationTemplateGraphicExtraLargeCircular()
+                template = circularSmallTemplate
+            } else {
+                break// Fallback on earlier versions
+            }
         @unknown default:
                 print("unknown complication")
         }
