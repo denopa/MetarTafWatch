@@ -147,7 +147,7 @@ class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLoc
                 }
             }
         }
-        self.lastUpdateLabel.setText("Force touch for menu")
+        
     }
     
     func startupdateAge(){

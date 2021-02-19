@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch44" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch44"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
     </dependencies>
     <scenes>
         <!--mainController-->
@@ -56,10 +54,6 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <label alignment="left" text="Force touch for menu" id="RPI-ng-blz">
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                        </label>
                     </items>
                     <menu key="menu" id="nrS-at-Fav">
                         <items>
@@ -87,7 +81,6 @@
                     </menu>
                     <connections>
                         <outlet property="airportTable" destination="ghz-BX-UyU" id="55u-Mx-XNP"/>
-                        <outlet property="lastUpdateLabel" destination="RPI-ng-blz" id="Sp3-V5-uSq"/>
                     </connections>
                 </controller>
             </objects>
