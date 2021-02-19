@@ -57,7 +57,7 @@
                         <separator alignment="center" id="dgr-g8-RFt">
                             <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </separator>
-                        <group width="1" height="42" alignment="center" verticalAlignment="center" id="f2c-n8-eUh" userLabel="Menu Group 1">
+                        <group width="1" height="52" alignment="center" verticalAlignment="center" id="f2c-n8-eUh" userLabel="Menu Group 1">
                             <items>
                                 <button alignment="left" id="OAt-Ir-joc" userLabel="Refresh Button">
                                     <group key="contentGroup" width="0.5" height="1" alignment="left" layout="vertical" radius="15" id="H1h-0r-WNV">
@@ -65,7 +65,7 @@
                                             <imageView width="0.80000000000000004" height="0.69999999999999996" alignment="center" image="goforward" catalog="system" contentMode="scaleAspectFit" id="iWL-Ot-f5f">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
-                                            <label width="1" height="0.29999999999999999" heightAdjustment="-2" alignment="center" verticalAlignment="center" text="Refresh" textAlignment="center" id="G0Y-3B-lJy">
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Refresh" textAlignment="center" id="G0Y-3B-lJy">
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
@@ -82,7 +82,7 @@
                                             <imageView width="0.5" height="0.69999999999999996" alignment="center" image="airplane" catalog="system" contentMode="scaleAspectFit" id="Kaf-Zo-1PJ">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
-                                            <label width="1" widthAdjustment="-2" height="0.29999999999999999" alignment="center" verticalAlignment="center" text="Set Airports" textAlignment="center" id="Nz0-bL-iVe">
+                                            <label width="1" widthAdjustment="-2" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Airports" textAlignment="center" id="Nz0-bL-iVe">
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
@@ -95,7 +95,7 @@
                                 </button>
                             </items>
                         </group>
-                        <group width="1" height="42" alignment="center" verticalAlignment="center" id="har-z8-69b" userLabel="Menu Group 2">
+                        <group width="1" height="52" alignment="center" verticalAlignment="center" id="har-z8-69b" userLabel="Menu Group 2">
                             <items>
                                 <button alignment="left" id="CZa-Vh-6YK" userLabel="Legend Button">
                                     <group key="contentGroup" width="0.5" height="1" alignment="left" layout="vertical" radius="15" id="QCy-UH-EQJ">
@@ -103,7 +103,7 @@
                                             <imageView width="0.5" height="0.69999999999999996" alignment="center" image="info" catalog="system" contentMode="scaleAspectFit" id="axf-8P-MYJ">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
-                                            <label width="1" height="0.29999999999999999" heightAdjustment="-2" alignment="center" verticalAlignment="center" text="Legend" textAlignment="center" id="QOT-56-UDh">
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Legend" textAlignment="center" id="QOT-56-UDh">
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
@@ -115,12 +115,12 @@
                                     </connections>
                                 </button>
                                 <button alignment="left" id="OeQ-ra-aPz" userLabel="Altitude Button">
-                                    <group key="contentGroup" width="0.5" height="42" alignment="left" layout="vertical" radius="15" id="J59-Lb-Gyh">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" layout="vertical" radius="15" id="J59-Lb-Gyh">
                                         <items>
                                             <imageView width="0.5" height="0.69999999999999996" alignment="center" image="dial.max" catalog="system" contentMode="scaleAspectFit" id="Pbv-5p-dbU">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
-                                            <label width="1" height="0.29999999999999999" heightAdjustment="-2" alignment="center" verticalAlignment="center" text="Altitude" textAlignment="center" id="Rkf-1N-H3A">
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Altitude" textAlignment="center" id="Rkf-1N-H3A">
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
@@ -193,22 +193,14 @@
                                     </items>
                                     <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </group>
-                                <label alignment="left" text="Forcetouch for explanations" numberOfLines="0" id="ID4-Ip-39G">
+                                <label alignment="left" numberOfLines="0" id="ID4-Ip-39G">
+                                    <string key="text">A QNH  is derived from the difference between pressure and GPS altitude. If this difference is larger than 2000 feet, your watch will assume you are in a pressurised vessel and calculate the pressure differential. If you do not receive GPS altitude updates, open the app on your iPhone and request location services.</string>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                 </label>
                             </items>
                         </group>
                     </items>
-                    <menu key="menu" id="BKx-iE-3ZQ">
-                        <items>
-                            <menuItem title="Info" icon="info" id="Ej2-6S-fSc">
-                                <connections>
-                                    <action selector="altitudeInfo" destination="kfj-Vc-MY2" id="1mP-Gb-FHW"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <connections>
                         <outlet property="altitudeLabel" destination="C3v-Qb-yyQ" id="eMV-IT-WTR"/>
                         <outlet property="gpsAltitudeLabel" destination="6s9-2K-2D2" id="dcT-US-omL"/>
@@ -218,20 +210,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="219" y="651"/>
-        </scene>
-        <!--Info-->
-        <scene sceneID="grb-hW-exe">
-            <objects>
-                <controller identifier="altitudeInfo" title="Info" id="Hm6-tg-eAb">
-                    <items>
-                        <label width="1" alignment="center" verticalAlignment="center" numberOfLines="0" id="uX1-c0-HY4">
-                            <string key="text">A QNH  is derived from the difference between pressure and GPS altitude. If this difference is larger than 2000 feet, your watch will assume you are in a pressurised vessel and calculate the pressure differential. If you do not receive GPS altitude updates, open the app on your iPhone and request location services.</string>
-                        </label>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="220" y="963"/>
+            <point key="canvasLocation" x="214" y="670"/>
         </scene>
         <!--Input Airport-->
         <scene sceneID="uja-4e-Mzb">

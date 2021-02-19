@@ -19,11 +19,6 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
     @IBOutlet weak var qnhOrDeltaP: WKInterfaceLabel!
     @IBOutlet weak var qnhLabel: WKInterfaceLabel!
     
-    
-    @IBAction func altitudeInfo() {
-        self.pushController(withName: "altitudeInfo", context: Any?.self)
-    }
-    
     lazy var altimeter = CMAltimeter()
     let locationManager = CLLocationManager()
     var altitude : Double = -3000
