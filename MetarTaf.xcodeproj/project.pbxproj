@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		596D37E225E06549007B5E3D /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = 596D37E125E06549007B5E3D /* Solar */; };
 		CD2EF24221EE6F12000F62B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EF24121EE6F12000F62B5 /* ViewController.swift */; };
 		CD698CD221F7C44700D1CD79 /* dataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD698CD121F7C44700D1CD79 /* dataUpdater.swift */; };
 		CD73B9BA21D0C8C4000B12CE /* weatherSymbolKeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73B9B921D0C8C4000B12CE /* weatherSymbolKeyCode.swift */; };
@@ -162,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				596D37E225E06549007B5E3D /* Solar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +352,9 @@
 			dependencies = (
 			);
 			name = "MetarTafWtach Extension";
+			packageProductDependencies = (
+				596D37E125E06549007B5E3D /* Solar */,
+			);
 			productName = "MetarTafWtach Extension";
 			productReference = CD7A671021CAE62D00BE499F /* MetarTafWtach Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -417,6 +422,9 @@
 				Base,
 			);
 			mainGroup = CD7A66C621CADFB100BE499F;
+			packageReferences = (
+				596D37E025E06549007B5E3D /* XCRemoteSwiftPackageReference "Solar" */,
+			);
 			productRefGroup = CD7A66D021CADFB100BE499F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -962,6 +970,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		596D37E025E06549007B5E3D /* XCRemoteSwiftPackageReference "Solar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ceeK/Solar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		596D37E125E06549007B5E3D /* Solar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 596D37E025E06549007B5E3D /* XCRemoteSwiftPackageReference "Solar" */;
+			productName = Solar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CD7A66C721CADFB100BE499F /* Project object */;
 }

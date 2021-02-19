@@ -37,6 +37,8 @@ class airportClass : NSObject {
     var elevation: String
     var runwayList: [Double]
     var location : String
+    var sunrise : String
+    var sunset : String
     init(ICAO : String) {
         airportName = ICAO
         nearest  = false
@@ -61,6 +63,8 @@ class airportClass : NSObject {
         elevation = "0"
         runwayList = []
         location = "50.47,-0.1" //latitude, longgitude. Used only if nearest = true
+        sunrise = "NA"
+        sunset = "NA"
     }
 }
 

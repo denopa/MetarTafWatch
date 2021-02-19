@@ -340,13 +340,17 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Q7y-d7-R5F">
                             <items>
-                                <group width="1" alignment="left" id="hl0-2i-VJn">
+                                <group width="1" alignment="left" layout="vertical" id="hl0-2i-VJn">
                                     <items>
                                         <label alignment="left" text="City" id="EZx-6k-5nZ">
                                             <color key="textColor" red="0.0" green="0.59741545373835625" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
                                         </label>
-                                        <label alignment="right" text="Elevation" id="1f8-iO-eza">
+                                        <label alignment="left" verticalAlignment="bottom" text="Elevation" id="1f8-iO-eza">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                        <label alignment="left" verticalAlignment="bottom" text="Label" id="aDh-Aj-1dC" userLabel="Day Label">
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                         </label>
@@ -412,6 +416,7 @@
                     <connections>
                         <outlet property="changeAirport" destination="Efb-HJ-RIK" id="wE0-cR-2It"/>
                         <outlet property="cityLabel" destination="EZx-6k-5nZ" id="Dd2-AZ-awi"/>
+                        <outlet property="dayLabel" destination="aDh-Aj-1dC" id="q9t-Sn-oQR"/>
                         <outlet property="elevationLabel" destination="1f8-iO-eza" id="OKB-gK-wBD"/>
                         <outlet property="metarGroup" destination="Ph4-ML-3GV" id="qOh-c8-8sT"/>
                         <outlet property="metarHeader" destination="zJd-JJ-DGD" id="vWx-ap-RzO"/>

@@ -22,6 +22,7 @@ class airportDetailCode: WKInterfaceController {
     @IBOutlet weak var metarLabel: WKInterfaceLabel!
     @IBOutlet weak var tafHeader: WKInterfaceLabel!
     @IBOutlet weak var elevationLabel: WKInterfaceLabel!
+    @IBOutlet weak var dayLabel: WKInterfaceLabel!
     @IBOutlet weak var runwaysLabel: WKInterfaceLabel!
     @IBOutlet weak var cityLabel: WKInterfaceLabel!
     @IBOutlet weak var metarGroup: WKInterfaceGroup!
@@ -49,6 +50,8 @@ class airportDetailCode: WKInterfaceController {
         //airport section
         self.cityLabel.setText(airportsArray[rowIndex].city)
         self.elevationLabel.setText("\(airportsArray[rowIndex].elevation) feet")
+        print(airportsArray[rowIndex].sunset)
+        self.dayLabel.setText("Day \(airportsArray[rowIndex].sunrise)/\(airportsArray[rowIndex].sunset)z")
         if (airportsArray[rowIndex].runwayList != [])&&(airportsArray[rowIndex].windDirection != 999){
             let bestRunwayArray : [String] = runwayCalculations().findBestRunway(runwayNames: airportsArray[rowIndex].runwayList, windDirection: airportsArray[rowIndex].windDirection, windSpeed: airportsArray[rowIndex].windSpeed)
             if bestRunwayArray[0] != "998" {
