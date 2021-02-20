@@ -87,9 +87,15 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
                     self.pressureLabel.setText("\(String(format: "%.00f", pressure*10)) hPa")
                     if self.gpsAltitude > -1000 {
                         if abs(self.altitude - self.gpsAltitude) < 1999 { //estimate QNH if gps and pressure altitudes are close enough
-                            let qnh = (1013 + (self.gpsAltitude - self.altitude) * 0.036622931)
                             self.qnhOrDeltaP.setText("GPS derived QNH")
-                            self.qnhLabel.setText("\(String(format: "%.00f", qnh)) hPa")
+                            if pressureUnit == "hPa" {
+                                let qnh = (1013 + (self.gpsAltitude - self.altitude) * 0.036622931)
+                                self.qnhLabel.setText("\(String(format: "%.00f", qnh)) hPa")
+                            }
+                            else {
+                                let qnh = (1013 + (self.gpsAltitude - self.altitude) * 0.036622931) / 33.6585
+                                self.qnhLabel.setText("\(String(format: "%.2f", qnh)) InHg")
+                            }
                         }
                         else { //calculate DeltaP
                             self.qnhOrDeltaP.setText("GPS derived DeltaP")
