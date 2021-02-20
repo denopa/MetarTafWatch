@@ -196,7 +196,7 @@ class dataUpdater {
         return airportsArray
     }
     
-    func getStation(airport : String!, completionHandler: @escaping (String?, String?, [Double?], String?, String?, NSError?) -> Void) {
+    func getStation(airport : String!, completionHandler: @escaping (String?, String?, [Double?], [Double?], String?, String?, NSError?) -> Void) {
         //get Station information
         let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))"
         let url = URL(string: urlString)!
@@ -216,21 +216,24 @@ class dataUpdater {
                         let solar = Solar(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long))
                         let dateFormatter = DateFormatter()
                         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                        dateFormatter.dateFormat = "HH:mm"
+                        dateFormatter.dateFormat = "HHmm"
                         let sunrise = dateFormatter.string(from: solar?.sunrise ?? Date.init())
                         let sunset = dateFormatter.string(from: solar?.sunset ?? Date.init())
-                        print(sunrise + "/" + sunset + "z")
                         var runwayList : [Double] = []
+                        var runwayLengthList : [Double] = []
                         for i in runways.indices {
                             var runwayName = String(describing: runways[i]["ident1"] ?? "37")
+                            let runwayLength = runways[i]["length_ft"] as? Double ?? 0
                             var runway = Double(runwayName[..<runwayName.index(runwayName.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
                             runwayList.append(runway ?? 0)
+                            runwayLengthList.append(runwayLength)
                             runwayName = String(describing: runways[i]["ident2"] ?? "37") //take the reciprocal
                             runway = Double(runwayName[..<runwayName.index(runwayName.startIndex, offsetBy: 2)]) //getting rid of the "R" or "L" designator if present
                             runwayList.append(runway ?? 0)
+                            runwayLengthList.append(runwayLength)
                         }
-                        runwayList = Array(Set(runwayList)) //making it a set to remove duplicates, then back to array
-                        completionHandler(city, NumberFormatter().string(from: elevation), runwayList, sunrise, sunset, nil)
+                        //runwayList = Array(Set(runwayList)) //making it a set to remove duplicates, then back to array
+                        completionHandler(city, NumberFormatter().string(from: elevation), runwayList, runwayLengthList, sunrise, sunset, nil)
                     }
                 }
             }
@@ -240,7 +243,7 @@ class dataUpdater {
     
     func updateStationForRow(count : Int!, completionHandler: @escaping (NSError?) -> Void){
         // puts in static airport data
-        self.getStation(airport: airportsArray[count].airportName.replacingOccurrences(of: "⊕", with: "")) { (city, elevation, runwayList, sunrise, sunset, error) -> Void in
+        self.getStation(airport: airportsArray[count].airportName.replacingOccurrences(of: "⊕", with: "")) { (city, elevation, runwayList, runwayLengthList, sunrise, sunset, error) -> Void in
             if error != nil{
                 print(error!)
                 completionHandler(error!)
@@ -249,6 +252,8 @@ class dataUpdater {
                 airportsArray[count].city = city ?? "missing"
                 airportsArray[count].elevation = elevation ?? "missing"
                 airportsArray[count].runwayList = runwayList as! [Double]
+                    completionHandler(nil)
+                airportsArray[count].runwayLengthList = runwayLengthList as! [Double]
                     completionHandler(nil)
                 airportsArray[count].sunrise = sunrise ?? "missing"
                 airportsArray[count].sunset = sunset ?? "missing"

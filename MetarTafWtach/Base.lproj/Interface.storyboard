@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch44"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
     </dependencies>
@@ -346,20 +345,28 @@
                                             <color key="textColor" red="0.0" green="0.59741545373835625" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
                                         </label>
-                                        <label alignment="left" verticalAlignment="bottom" text="Elevation" id="1f8-iO-eza">
+                                        <label alignment="left" verticalAlignment="bottom" text="Altitude 359 ft" id="1f8-iO-eza">
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                         </label>
-                                        <label alignment="left" verticalAlignment="bottom" text="Label" id="aDh-Aj-1dC" userLabel="Day Label">
+                                        <label alignment="left" verticalAlignment="bottom" text="Day 09:10/16:54z" id="aDh-Aj-1dC" userLabel="Day Label">
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                         </label>
                                     </items>
                                 </group>
-                                <label alignment="left" text="RW24 🔽16KT ◀️9KT" id="YzN-Pg-8uF">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
-                                </label>
+                                <group width="1" alignment="left" layout="vertical" id="RjX-Sb-Etr">
+                                    <items>
+                                        <label alignment="left" text="RW24 9810ft" id="YzN-Pg-8uF">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                        <label alignment="left" verticalAlignment="bottom" text="🔽16KT ◀️19KT" id="Kjt-Qf-qJC" userLabel="Wind Label">
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                    </items>
+                                </group>
                                 <separator alignment="left" id="erj-Yr-tfS">
                                     <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </separator>
@@ -424,6 +431,7 @@
                         <outlet property="runwaysLabel" destination="YzN-Pg-8uF" id="0Ba-8I-Ygj"/>
                         <outlet property="tafHeader" destination="79v-5x-ASD" id="QuP-Sc-EHC"/>
                         <outlet property="tafTable" destination="X2P-CX-T89" id="vyH-Fb-yGQ"/>
+                        <outlet property="windsLabel" destination="Kjt-Qf-qJC" id="OA1-uB-VsR"/>
                     </connections>
                 </controller>
             </objects>

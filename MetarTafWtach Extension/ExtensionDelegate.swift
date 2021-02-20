@@ -36,6 +36,7 @@ class airportClass : NSObject {
     var city: String
     var elevation: String
     var runwayList: [Double]
+    var runwayLengthList: [Double]
     var location : String
     var sunrise : String
     var sunset : String
@@ -62,6 +63,7 @@ class airportClass : NSObject {
         city = ""
         elevation = "0"
         runwayList = []
+        runwayLengthList = []
         location = "50.47,-0.1" //latitude, longgitude. Used only if nearest = true
         sunrise = "NA"
         sunset = "NA"
@@ -70,6 +72,7 @@ class airportClass : NSObject {
 
 var airportsArray = [airportClass(ICAO : "EGLL"), airportClass(ICAO : "LFOV"), airportClass(ICAO : "EBFN"), airportClass(ICAO : "EBBR")]
 var airportsList = ["EGLF", "EGBB", "LFTH", "LFPO"]
+var runwayUnit = "feet"
 var nearestList = [true, false, false, false]
 var hasAirportChanged: Bool = false
 var firstTimeUser: Bool = false
@@ -89,6 +92,12 @@ func loadAirportsList(){
     } else {
         firstTimeUser = true
         defaults?.register(defaults: ["nearest" : nearestList])
+    }
+    if let runwayUnitSetting = defaults?.object(forKey: "runwayUnit"){
+        runwayUnit = runwayUnitSetting as! String
+    } else {
+        firstTimeUser = true
+        defaults?.register(defaults: ["runwayUnitSetting" : "feet"])
     }
 }
 

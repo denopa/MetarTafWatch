@@ -61,8 +61,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource, URLSessionDel
         let veryLargeText = "\(airportsArray[0].airportName) - \(airportsArray[0].city)"
         let nextTaf = "\(airportsArray[0].nextForecastHeader + airportsArray[0].nextFlightConditions)"
         var runwayString = nextTaf
-        if (airportsArray[0].runwayList != [])&&(airportsArray[0].windDirection != 999){
-            let bestRunwayArray : [String] = runwayCalculations().findBestRunway(runwayNames: airportsArray[0].runwayList, windDirection: airportsArray[0].windDirection, windSpeed: airportsArray[0].windSpeed)
+        if (airportsArray[0].runwayList != [])&&(airportsArray[0].windDirection != 999)&&(airportsArray[0].runwayLengthList != []){
+            let bestRunwayArray : [String] = runwayCalculations().findBestRunway(runwayNames: airportsArray[0].runwayList, runwayLengths: airportsArray[0].runwayLengthList, windDirection: airportsArray[0].windDirection, windSpeed: airportsArray[0].windSpeed)
             if bestRunwayArray[0] != "998" {
                 let bestRunway = bestRunwayArray[0]
                 let headwind = bestRunwayArray[1]
