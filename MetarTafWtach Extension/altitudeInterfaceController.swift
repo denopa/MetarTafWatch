@@ -84,7 +84,12 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
                     let pressure = altitudeData!.pressure.floatValue            // Pressure in kilopascals
                     // Update labels, truncate float to 0 decimal points
                     self.altitudeLabel.setText("\(String(format: "%.00f", self.altitude)) ft")
-                    self.pressureLabel.setText("\(String(format: "%.00f", pressure*10)) hPa")
+                    if pressureUnit == "hPa" {
+                        self.pressureLabel.setText("\(String(format: "%.00f", pressure*10)) hPa")
+                    }
+                    else {
+                        self.pressureLabel.setText("\(String(format: "%.00f", pressure*10/33.6585)) InHg")
+                    }
                     if self.gpsAltitude > -1000 {
                         if abs(self.altitude - self.gpsAltitude) < 1999 { //estimate QNH if gps and pressure altitudes are close enough
                             self.qnhOrDeltaP.setText("GPS derived QNH")
