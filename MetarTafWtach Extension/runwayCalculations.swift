@@ -60,7 +60,7 @@ class runwayCalculations {
                 let bestRunwayString = String(format: "%.00f", (bestRunway))
                 let minCrosswindString = String(format: "%.00f", (minCrosswind))
                 if runwayUnit != "feet" {
-                    bestRunwayLength = bestRunwayLength * 3.048
+                    bestRunwayLength = bestRunwayLength * 0.3048
                 }
                 let bestRunwayLengthString = String(format: "%.00f", (bestRunwayLength))
                 return [bestRunwayString, String(format: "%.00f", (headwind(runwayHeading: bestRunway, windDirection: windDirection, windSpeed: windSpeed))), minCrosswindString, crosswindIndicator, bestRunwayLengthString]

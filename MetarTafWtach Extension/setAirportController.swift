@@ -13,6 +13,21 @@ import Foundation
 class setAirportController: WKInterfaceController {
 
     @IBOutlet weak var setAirportTable: WKInterfaceTable!
+    @IBOutlet weak var runwayUnitSelector: WKInterfaceSwitch!
+    
+    @IBAction func runwayUnitSwitch(_ value: Bool) {
+        let appGroupId = "group.com.nonneville.com.metarTaf"
+        let defaults = UserDefaults(suiteName: appGroupId)
+        if value {
+            defaults?.register(defaults: ["runwayUnit" : "feet"])
+            runwayUnit = "feet"
+        }
+        else {
+            defaults?.register(defaults: ["runwayUnit" : "m"])
+            runwayUnit = "m"
+        }
+        print("runway unit: \(runwayUnit)")
+    }
     
     var airportsList = ["EGLL", "EHAM", "LFLY", "LFTH"]
     
@@ -26,10 +41,15 @@ class setAirportController: WKInterfaceController {
         print("setAirport Table set")
     }
     
+    func setRunwaySwitch(){
+        self.runwayUnitSelector.setOn(runwayUnit == "feet")
+    }
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         loadAirports()
         setTheTable()
+        setRunwaySwitch()
         // Configure interface objects here.
     }
     

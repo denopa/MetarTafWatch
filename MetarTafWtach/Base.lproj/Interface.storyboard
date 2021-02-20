@@ -293,8 +293,14 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <switch width="1" alignment="left" value="YES" title="Runway length in feet?" id="ewd-Ll-SLv">
+                            <connections>
+                                <action selector="runwayUnitSwitch:" destination="e3D-rd-kfz" id="Fhu-bb-pWt"/>
+                            </connections>
+                        </switch>
                     </items>
                     <connections>
+                        <outlet property="runwayUnitSelector" destination="ewd-Ll-SLv" id="Xiy-eL-hiM"/>
                         <outlet property="setAirportTable" destination="U0I-ne-UP7" id="mUa-2d-9hY"/>
                     </connections>
                 </controller>
