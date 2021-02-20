@@ -123,7 +123,7 @@ class dataUpdater {
                         let tafTime = tafDic.time?.repr ?? ""
                         let (forecastArray, numberOfForecasts) = self.createForecastArray(forecast: forecast!)
                         for i in forecast!.indices {//running through all the forecasts to find the next one
-                            let endTime = (forecast![i].endTime?.repr as! NSString).integerValue
+                            let endTime = ((forecast![i].endTime?.repr ?? "0000") as NSString).integerValue
                             if (nextForecast == "...") && (endTime > currentTime) && (i > 0){ //last condition avoids taking the first taf
                                 if forecast![i].flightRules != nil {
                                     nextFlightConditions = forecast![i].flightRules ?? ""
