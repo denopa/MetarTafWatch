@@ -298,8 +298,14 @@
                                 <action selector="runwayUnitSwitch:" destination="e3D-rd-kfz" id="Fhu-bb-pWt"/>
                             </connections>
                         </switch>
+                        <switch width="1" alignment="left" title="Switch" id="jhV-Bb-b8z">
+                            <connections>
+                                <action selector="altitudeUnitSwitch:" destination="e3D-rd-kfz" id="rAX-et-ruq"/>
+                            </connections>
+                        </switch>
                     </items>
                     <connections>
+                        <outlet property="altitudeUnitSelector" destination="jhV-Bb-b8z" id="KaQ-X2-soc"/>
                         <outlet property="runwayUnitSelector" destination="ewd-Ll-SLv" id="Xiy-eL-hiM"/>
                         <outlet property="setAirportTable" destination="U0I-ne-UP7" id="mUa-2d-9hY"/>
                     </connections>
