@@ -708,13 +708,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTaf/MetarTaf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				INFOPLIST_FILE = MetarTaf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -729,13 +730,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTaf/MetarTaf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				INFOPLIST_FILE = MetarTaf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -832,6 +834,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "MetarTafWtach Extension/MetarTafWtach Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				INFOPLIST_FILE = "MetarTafWtach Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -839,13 +842,14 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -855,6 +859,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "MetarTafWtach Extension/MetarTafWtach Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				INFOPLIST_FILE = "MetarTafWtach Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -862,13 +867,14 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -879,9 +885,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTafWtach/MetarTafWtach.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				IBSC_MODULE = MetarTafWtach_Extension;
 				INFOPLIST_FILE = MetarTafWtach/Info.plist;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -899,9 +907,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTafWtach/MetarTafWtach.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				IBSC_MODULE = MetarTafWtach_Extension;
 				INFOPLIST_FILE = MetarTafWtach/Info.plist;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

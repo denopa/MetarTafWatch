@@ -59,13 +59,13 @@
                         <group width="1" height="52" alignment="center" verticalAlignment="center" id="f2c-n8-eUh" userLabel="Menu Group 1">
                             <items>
                                 <button alignment="left" id="OAt-Ir-joc" userLabel="Refresh Button">
-                                    <group key="contentGroup" width="0.5" height="1" alignment="left" layout="vertical" radius="15" id="H1h-0r-WNV">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="H1h-0r-WNV">
                                         <items>
                                             <imageView width="0.80000000000000004" height="0.69999999999999996" alignment="center" image="goforward" catalog="system" contentMode="scaleAspectFit" id="iWL-Ot-f5f">
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
-                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Refresh" textAlignment="center" id="G0Y-3B-lJy">
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Refresh" textAlignment="center" id="G0Y-3B-lJy">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
@@ -76,13 +76,13 @@
                                     </connections>
                                 </button>
                                 <button alignment="left" id="iUA-ZM-pYB" userLabel="Airport Button">
-                                    <group key="contentGroup" width="0.5" height="1" alignment="left" layout="vertical" radius="15" id="Ydz-be-Yao">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="Ydz-be-Yao">
                                         <items>
-                                            <imageView width="0.5" height="0.69999999999999996" alignment="center" image="airplane" catalog="system" contentMode="scaleAspectFit" id="Kaf-Zo-1PJ">
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageView width="0.5" height="0.69999999999999996" alignment="center" image="gear" catalog="system" contentMode="scaleAspectFit" id="Kaf-Zo-1PJ">
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
-                                            <label width="1" widthAdjustment="-2" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Airports" textAlignment="center" id="Nz0-bL-iVe">
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label width="1" widthAdjustment="-2" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Settings" textAlignment="center" id="Nz0-bL-iVe">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
@@ -97,13 +97,13 @@
                         <group width="1" height="52" alignment="center" verticalAlignment="center" id="har-z8-69b" userLabel="Menu Group 2">
                             <items>
                                 <button alignment="left" id="CZa-Vh-6YK" userLabel="Legend Button">
-                                    <group key="contentGroup" width="0.5" height="1" alignment="left" layout="vertical" radius="15" id="QCy-UH-EQJ">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="QCy-UH-EQJ">
                                         <items>
                                             <imageView width="0.5" height="0.69999999999999996" alignment="center" image="info" catalog="system" contentMode="scaleAspectFit" id="axf-8P-MYJ">
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
-                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Legend" textAlignment="center" id="QOT-56-UDh">
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Legend" textAlignment="center" id="QOT-56-UDh">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
@@ -114,13 +114,13 @@
                                     </connections>
                                 </button>
                                 <button alignment="left" id="OeQ-ra-aPz" userLabel="Altitude Button">
-                                    <group key="contentGroup" width="0.5" height="1" alignment="left" layout="vertical" radius="15" id="J59-Lb-Gyh">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="J59-Lb-Gyh">
                                         <items>
                                             <imageView width="0.5" height="0.69999999999999996" alignment="center" image="dial.max" catalog="system" contentMode="scaleAspectFit" id="Pbv-5p-dbU">
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
-                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" text="Altitude" textAlignment="center" id="Rkf-1N-H3A">
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Altitude" textAlignment="center" id="Rkf-1N-H3A">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
@@ -476,8 +476,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="airplane" catalog="system" width="128" height="115"/>
         <image name="dial.max" catalog="system" width="128" height="107"/>
+        <image name="gear" catalog="system" width="128" height="118"/>
         <image name="goforward" catalog="system" width="124" height="128"/>
         <image name="info" catalog="system" width="92" height="128"/>
     </resources>

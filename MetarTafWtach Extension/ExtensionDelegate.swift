@@ -73,6 +73,7 @@ class airportClass : NSObject {
 var airportsArray = [airportClass(ICAO : "EGLL"), airportClass(ICAO : "LFOV"), airportClass(ICAO : "EBFN"), airportClass(ICAO : "EBBR")]
 var airportsList = ["EGLF", "EGBB", "LFTH", "LFPO"]
 var runwayUnit = "feet"
+var pressureUnit = "hPa"
 var nearestList = [true, false, false, false]
 var hasAirportChanged: Bool = false
 var firstTimeUser: Bool = false
@@ -98,6 +99,12 @@ func loadAirportsList(){
     } else {
         firstTimeUser = true
         defaults?.register(defaults: ["runwayUnitSetting" : "feet"])
+    }
+    if let pressureUnitSetting = defaults?.object(forKey: "pressureUnit"){
+        pressureUnit = pressureUnitSetting as! String
+    } else {
+        firstTimeUser = true
+        defaults?.register(defaults: ["pressureUnit" : "hPa"])
     }
 }
 

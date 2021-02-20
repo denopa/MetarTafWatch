@@ -14,6 +14,7 @@ class setAirportController: WKInterfaceController {
 
     @IBOutlet weak var setAirportTable: WKInterfaceTable!
     @IBOutlet weak var runwayUnitSelector: WKInterfaceSwitch!
+    @IBOutlet weak var altitudeUnitSelector: WKInterfaceSwitch!
     
     @IBAction func runwayUnitSwitch(_ value: Bool) {
         let appGroupId = "group.com.nonneville.com.metarTaf"
@@ -26,8 +27,22 @@ class setAirportController: WKInterfaceController {
             defaults?.register(defaults: ["runwayUnit" : "m"])
             runwayUnit = "m"
         }
-        print("runway unit: \(runwayUnit)")
     }
+    
+    @IBAction func altitudeUnitSwitch(_ value: Bool) {
+        let appGroupId = "group.com.nonneville.com.metarTaf"
+        let defaults = UserDefaults(suiteName: appGroupId)
+        if value {
+            defaults?.register(defaults: ["pressureUnit" : "InHg"])
+            pressureUnit = "InHg"
+        }
+        else {
+            defaults?.register(defaults: ["pressureUnit" : "hPa"])
+            pressureUnit = "hPa"
+        }
+        print("pressure unit \(pressureUnit)")
+    }
+    
     
     var airportsList = ["EGLL", "EHAM", "LFLY", "LFTH"]
     
@@ -45,11 +60,16 @@ class setAirportController: WKInterfaceController {
         self.runwayUnitSelector.setOn(runwayUnit == "feet")
     }
     
+    func setAltitudeSwitch(){
+        self.altitudeUnitSelector.setOn(pressureUnit == "InHg")
+    }
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         loadAirports()
         setTheTable()
         setRunwaySwitch()
+        setAltitudeSwitch()
         // Configure interface objects here.
     }
     
