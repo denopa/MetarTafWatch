@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch44" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch44"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
     </dependencies>
     <scenes>
         <!--mainController-->
@@ -56,38 +53,88 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <label alignment="left" text="Force touch for menu" id="RPI-ng-blz">
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                        </label>
+                        <separator alignment="center" id="dgr-g8-RFt">
+                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </separator>
+                        <group width="1" height="52" alignment="center" verticalAlignment="center" id="f2c-n8-eUh" userLabel="Menu Group 1">
+                            <items>
+                                <button alignment="left" id="OAt-Ir-joc" userLabel="Refresh Button">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="H1h-0r-WNV">
+                                        <items>
+                                            <imageView width="0.80000000000000004" height="0.69999999999999996" alignment="center" image="goforward" catalog="system" contentMode="scaleAspectFit" id="iWL-Ot-f5f">
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Refresh" textAlignment="center" id="G0Y-3B-lJy">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </group>
+                                    <connections>
+                                        <action selector="Updatedisplay" destination="AgC-eL-Hgc" id="FmP-Rh-zXh"/>
+                                    </connections>
+                                </button>
+                                <button alignment="left" id="iUA-ZM-pYB" userLabel="Airport Button">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="Ydz-be-Yao">
+                                        <items>
+                                            <imageView width="0.5" height="0.69999999999999996" alignment="center" image="gear" catalog="system" contentMode="scaleAspectFit" id="Kaf-Zo-1PJ">
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                            <label width="1" widthAdjustment="-2" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Settings" textAlignment="center" id="Nz0-bL-iVe">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </group>
+                                    <connections>
+                                        <action selector="setAirports" destination="AgC-eL-Hgc" id="nW8-wK-0Uz"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="52" alignment="center" verticalAlignment="center" id="har-z8-69b" userLabel="Menu Group 2">
+                            <items>
+                                <button alignment="left" id="CZa-Vh-6YK" userLabel="Legend Button">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="QCy-UH-EQJ">
+                                        <items>
+                                            <imageView width="0.5" height="0.69999999999999996" alignment="center" image="info" catalog="system" contentMode="scaleAspectFit" id="axf-8P-MYJ">
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Legend" textAlignment="center" id="QOT-56-UDh">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </group>
+                                    <connections>
+                                        <action selector="seeWeatherKey" destination="AgC-eL-Hgc" id="ZOG-pf-ubY"/>
+                                    </connections>
+                                </button>
+                                <button alignment="left" id="OeQ-ra-aPz" userLabel="Altitude Button">
+                                    <group key="contentGroup" width="0.5" height="1" alignment="left" alpha="0.84999999999999998" layout="vertical" radius="15" id="J59-Lb-Gyh">
+                                        <items>
+                                            <imageView width="0.5" height="0.69999999999999996" alignment="center" image="dial.max" catalog="system" contentMode="scaleAspectFit" id="Pbv-5p-dbU">
+                                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="0.30024096430000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                            <label width="1" height="0.40000000000000002" heightAdjustment="-3" alignment="center" verticalAlignment="center" alpha="0.84999999999999998" text="Altitude" textAlignment="center" id="Rkf-1N-H3A">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </group>
+                                    <connections>
+                                        <action selector="seeAltitude" destination="AgC-eL-Hgc" id="CUx-n5-cN9"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                     </items>
-                    <menu key="menu" id="nrS-at-Fav">
-                        <items>
-                            <menuItem title="Refresh" icon="resume" id="JCU-Gm-PtR">
-                                <connections>
-                                    <action selector="Updatedisplay" destination="AgC-eL-Hgc" id="dax-U5-jvv"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Set Airports" icon="shuffle" id="OPj-Vu-ZNJ">
-                                <connections>
-                                    <action selector="setAirports" destination="AgC-eL-Hgc" id="Pe6-Ce-UVq"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Legend" icon="info" id="2xa-3l-ykz">
-                                <connections>
-                                    <action selector="seeWeatherKey" destination="AgC-eL-Hgc" id="66k-0e-xtY"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Altitude" icon="more" id="xFH-9Q-BL2" userLabel="Altitude">
-                                <connections>
-                                    <action selector="seeAltitude" destination="AgC-eL-Hgc" id="ydy-h4-7vo"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <connections>
                         <outlet property="airportTable" destination="ghz-BX-UyU" id="55u-Mx-XNP"/>
-                        <outlet property="lastUpdateLabel" destination="RPI-ng-blz" id="Sp3-V5-uSq"/>
                     </connections>
                 </controller>
             </objects>
@@ -96,7 +143,7 @@
         <!--Altitude-->
         <scene sceneID="9bR-4A-JGO">
             <objects>
-                <controller identifier="altitudeAlerter" title="Altitude" fullScreen="YES" id="kfj-Vc-MY2" customClass="altitudeInterfaceController" customModule="MetarTafWtach_Extension">
+                <controller identifier="altitudeAlerter" title="Altitude" id="kfj-Vc-MY2" customClass="altitudeInterfaceController" customModule="MetarTafWtach_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="n8c-i1-l54">
                             <items>
@@ -145,22 +192,14 @@
                                     </items>
                                     <color key="backgroundColor" red="0.050477594139999998" green="0.047974415120000002" blue="0.1477369368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </group>
-                                <label alignment="left" text="Forcetouch for explanations" numberOfLines="0" id="ID4-Ip-39G">
+                                <label alignment="left" numberOfLines="0" id="ID4-Ip-39G">
+                                    <string key="text">A QNH  is derived from the difference between pressure and GPS altitude. If this difference is larger than 2000 feet, your watch will assume you are in a pressurised vessel and calculate the pressure differential. If you do not receive GPS altitude updates, open the app on your iPhone and request location services.</string>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                 </label>
                             </items>
                         </group>
                     </items>
-                    <menu key="menu" id="BKx-iE-3ZQ">
-                        <items>
-                            <menuItem title="Info" icon="info" id="Ej2-6S-fSc">
-                                <connections>
-                                    <action selector="altitudeInfo" destination="kfj-Vc-MY2" id="1mP-Gb-FHW"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <connections>
                         <outlet property="altitudeLabel" destination="C3v-Qb-yyQ" id="eMV-IT-WTR"/>
                         <outlet property="gpsAltitudeLabel" destination="6s9-2K-2D2" id="dcT-US-omL"/>
@@ -170,20 +209,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="219" y="651"/>
-        </scene>
-        <!--Info-->
-        <scene sceneID="grb-hW-exe">
-            <objects>
-                <controller identifier="altitudeInfo" title="Info" id="Hm6-tg-eAb">
-                    <items>
-                        <label width="1" alignment="center" verticalAlignment="center" numberOfLines="0" id="uX1-c0-HY4">
-                            <string key="text">A QNH  is derived from the difference between pressure and GPS altitude. If this difference is larger than 2000 feet, your watch will assume you are in a pressurised vessel and calculate the pressure differential. If you do not receive GPS altitude updates, open the app on your iPhone and request location services.</string>
-                        </label>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="220" y="963"/>
+            <point key="canvasLocation" x="214" y="670"/>
         </scene>
         <!--Input Airport-->
         <scene sceneID="uja-4e-Mzb">
@@ -267,8 +293,20 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <switch width="1" alignment="left" value="YES" title="Runway length in feet?" id="ewd-Ll-SLv">
+                            <connections>
+                                <action selector="runwayUnitSwitch:" destination="e3D-rd-kfz" id="Fhu-bb-pWt"/>
+                            </connections>
+                        </switch>
+                        <switch width="1" alignment="left" title="Switch" id="jhV-Bb-b8z">
+                            <connections>
+                                <action selector="altitudeUnitSwitch:" destination="e3D-rd-kfz" id="rAX-et-ruq"/>
+                            </connections>
+                        </switch>
                     </items>
                     <connections>
+                        <outlet property="altitudeUnitSelector" destination="jhV-Bb-b8z" id="KaQ-X2-soc"/>
+                        <outlet property="runwayUnitSelector" destination="ewd-Ll-SLv" id="Xiy-eL-hiM"/>
                         <outlet property="setAirportTable" destination="U0I-ne-UP7" id="mUa-2d-9hY"/>
                     </connections>
                 </controller>
@@ -278,7 +316,7 @@
         <!--Weather Legend-->
         <scene sceneID="OVg-iv-IUH">
             <objects>
-                <controller identifier="weatherLegend" title="Weather Legend" fullScreen="YES" id="7Vp-Bn-fvv" customClass="weatherSymbolKeyCode" customModule="MetarTafWtach_Extension">
+                <controller identifier="weatherLegend" title="Weather Legend" id="7Vp-Bn-fvv" customClass="weatherSymbolKeyCode" customModule="MetarTafWtach_Extension">
                     <items>
                         <table alignment="left" id="Ndx-Au-MqI" userLabel="Weather Legend Table">
                             <items>
@@ -313,22 +351,34 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Q7y-d7-R5F">
                             <items>
-                                <group width="1" alignment="left" id="hl0-2i-VJn">
+                                <group width="1" alignment="left" layout="vertical" id="hl0-2i-VJn">
                                     <items>
                                         <label alignment="left" text="City" id="EZx-6k-5nZ">
                                             <color key="textColor" red="0.0" green="0.59741545373835625" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
                                         </label>
-                                        <label alignment="right" text="Elevation" id="1f8-iO-eza">
+                                        <label alignment="left" verticalAlignment="bottom" text="Altitude 359 ft" id="1f8-iO-eza">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                        <label alignment="left" verticalAlignment="bottom" text="Day 09:10/16:54z" id="aDh-Aj-1dC" userLabel="Day Label">
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                         </label>
                                     </items>
                                 </group>
-                                <label alignment="left" text="RW24 🔽16KT ◀️9KT" id="YzN-Pg-8uF">
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
-                                </label>
+                                <group width="1" alignment="left" layout="vertical" id="RjX-Sb-Etr">
+                                    <items>
+                                        <label alignment="left" text="RW24 9810ft" id="YzN-Pg-8uF">
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                        <label alignment="left" verticalAlignment="bottom" text="🔽16KT ◀️19KT" id="Kjt-Qf-qJC" userLabel="Wind Label">
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                    </items>
+                                </group>
                                 <separator alignment="left" id="erj-Yr-tfS">
                                     <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </separator>
@@ -385,6 +435,7 @@
                     <connections>
                         <outlet property="changeAirport" destination="Efb-HJ-RIK" id="wE0-cR-2It"/>
                         <outlet property="cityLabel" destination="EZx-6k-5nZ" id="Dd2-AZ-awi"/>
+                        <outlet property="dayLabel" destination="aDh-Aj-1dC" id="q9t-Sn-oQR"/>
                         <outlet property="elevationLabel" destination="1f8-iO-eza" id="OKB-gK-wBD"/>
                         <outlet property="metarGroup" destination="Ph4-ML-3GV" id="qOh-c8-8sT"/>
                         <outlet property="metarHeader" destination="zJd-JJ-DGD" id="vWx-ap-RzO"/>
@@ -392,6 +443,7 @@
                         <outlet property="runwaysLabel" destination="YzN-Pg-8uF" id="0Ba-8I-Ygj"/>
                         <outlet property="tafHeader" destination="79v-5x-ASD" id="QuP-Sc-EHC"/>
                         <outlet property="tafTable" destination="X2P-CX-T89" id="vyH-Fb-yGQ"/>
+                        <outlet property="windsLabel" destination="Kjt-Qf-qJC" id="OA1-uB-VsR"/>
                     </connections>
                 </controller>
             </objects>
@@ -429,4 +481,10 @@
             <point key="canvasLocation" x="220" y="1490"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dial.max" catalog="system" width="128" height="107"/>
+        <image name="gear" catalog="system" width="128" height="118"/>
+        <image name="goforward" catalog="system" width="124" height="128"/>
+        <image name="info" catalog="system" width="92" height="128"/>
+    </resources>
 </document>

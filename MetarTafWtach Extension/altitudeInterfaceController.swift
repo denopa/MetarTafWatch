@@ -19,11 +19,6 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
     @IBOutlet weak var qnhOrDeltaP: WKInterfaceLabel!
     @IBOutlet weak var qnhLabel: WKInterfaceLabel!
     
-    
-    @IBAction func altitudeInfo() {
-        self.pushController(withName: "altitudeInfo", context: Any?.self)
-    }
-    
     lazy var altimeter = CMAltimeter()
     let locationManager = CLLocationManager()
     var altitude : Double = -3000
@@ -89,12 +84,23 @@ class altitudeInterfaceController: WKInterfaceController, CLLocationManagerDeleg
                     let pressure = altitudeData!.pressure.floatValue            // Pressure in kilopascals
                     // Update labels, truncate float to 0 decimal points
                     self.altitudeLabel.setText("\(String(format: "%.00f", self.altitude)) ft")
-                    self.pressureLabel.setText("\(String(format: "%.00f", pressure*10)) hPa")
+                    if pressureUnit == "hPa" {
+                        self.pressureLabel.setText("\(String(format: "%.00f", pressure*10)) hPa")
+                    }
+                    else {
+                        self.pressureLabel.setText("\(String(format: "%.00f", pressure*10/33.6585)) InHg")
+                    }
                     if self.gpsAltitude > -1000 {
                         if abs(self.altitude - self.gpsAltitude) < 1999 { //estimate QNH if gps and pressure altitudes are close enough
-                            let qnh = (1013 + (self.gpsAltitude - self.altitude) * 0.036622931)
                             self.qnhOrDeltaP.setText("GPS derived QNH")
-                            self.qnhLabel.setText("\(String(format: "%.00f", qnh)) hPa")
+                            if pressureUnit == "hPa" {
+                                let qnh = (1013 + (self.gpsAltitude - self.altitude) * 0.036622931)
+                                self.qnhLabel.setText("\(String(format: "%.00f", qnh)) hPa")
+                            }
+                            else {
+                                let qnh = (1013 + (self.gpsAltitude - self.altitude) * 0.036622931) / 33.6585
+                                self.qnhLabel.setText("\(String(format: "%.2f", qnh)) InHg")
+                            }
                         }
                         else { //calculate DeltaP
                             self.qnhOrDeltaP.setText("GPS derived DeltaP")
