@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		596D37E225E06549007B5E3D /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = 596D37E125E06549007B5E3D /* Solar */; };
+		59DADC6D25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */; };
+		59DADC6E25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */; };
 		CD2EF24221EE6F12000F62B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EF24121EE6F12000F62B5 /* ViewController.swift */; };
 		CD698CD221F7C44700D1CD79 /* dataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD698CD121F7C44700D1CD79 /* dataUpdater.swift */; };
 		CD73B9BA21D0C8C4000B12CE /* weatherSymbolKeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73B9B921D0C8C4000B12CE /* weatherSymbolKeyCode.swift */; };
@@ -95,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		CD2EF24121EE6F12000F62B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD698CD121F7C44700D1CD79 /* dataUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataUpdater.swift; sourceTree = "<group>"; };
 		CD73B9B921D0C8C4000B12CE /* weatherSymbolKeyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherSymbolKeyCode.swift; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 				CD7A672021CAE62E00BE499F /* PushNotificationPayload.apns */,
 				CDC28A39220721F200DD3B0F /* runwayCalculations.swift */,
 				CD947DEE222EB0D30044D55D /* locationTools.swift */,
+				59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */,
 			);
 			path = "MetarTafWtach Extension";
 			sourceTree = "<group>";
@@ -468,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD7A670A21CAE62D00BE499F /* Assets.xcassets in Resources */,
+				59DADC6D25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */,
 				CD7A670821CAE62B00BE499F /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DADC6E25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */,
 				CD7A671E21CAE62E00BE499F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -832,6 +838,7 @@
 		};
 		CD7A672521CAE62E00BE499F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "MetarTafWtach Extension/MetarTafWtach Extension.entitlements";
@@ -857,6 +864,7 @@
 		};
 		CD7A672621CAE62E00BE499F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "MetarTafWtach Extension/MetarTafWtach Extension.entitlements";

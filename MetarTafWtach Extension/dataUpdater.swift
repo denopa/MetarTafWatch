@@ -12,12 +12,14 @@ import Solar
 
 class dataUpdater {
     //
+    let AVWX_API_KEY = Bundle.main.infoDictionary?["AVWX_API_KEY"] as? String
+    
     func getMetar(airport : String!, completionHandler: @escaping ([String?], Error?) -> Void) {
         // the getTaf method has more detailed comments. 'airport' can actually be a location in the format of a string "lat, lont"
         let urlString = "http://avwx.rest/api/metar/\(String(describing: airport!))?options=info&format=json&onfail=error"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
-        request.addValue("iFtgN28rRlUgF1g-TNlG12SuCenxmZUkxn3teRyKPx8", forHTTPHeaderField: "Authorization")
+        request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
         print("getting METAR for \(String(describing: airport!))")
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -112,7 +114,7 @@ class dataUpdater {
         var nextWindSpeed = "0"
         var nextForecast = "..."
         var request = URLRequest(url: url)
-        request.addValue("iFtgN28rRlUgF1g-TNlG12SuCenxmZUkxn3teRyKPx8", forHTTPHeaderField: "Authorization")
+        request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData //otherwise it just keeps loading the same data from the local cache
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
@@ -201,7 +203,7 @@ class dataUpdater {
         let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
-        request.addValue("iFtgN28rRlUgF1g-TNlG12SuCenxmZUkxn3teRyKPx8", forHTTPHeaderField: "Authorization")
+        request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
