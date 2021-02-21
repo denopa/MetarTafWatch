@@ -298,7 +298,7 @@
                                 <action selector="runwayUnitSwitch:" destination="e3D-rd-kfz" id="Fhu-bb-pWt"/>
                             </connections>
                         </switch>
-                        <switch width="1" alignment="left" title="Switch" id="jhV-Bb-b8z">
+                        <switch width="1" alignment="left" title="Pressure in InHg?" id="jhV-Bb-b8z">
                             <connections>
                                 <action selector="altitudeUnitSwitch:" destination="e3D-rd-kfz" id="rAX-et-ruq"/>
                             </connections>

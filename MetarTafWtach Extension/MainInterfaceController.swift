@@ -14,7 +14,7 @@ import CoreLocation
 
 class MainInterfaceController: WKInterfaceController , URLSessionDelegate, CLLocationManagerDelegate {
 
-    // todo: fix complication, add option for nearest airport, add explanations, add feature to change units from hPa to InHG
+    // todo: 
     
     @IBAction func Updatedisplay() {updateDataAndDisplay()}
     
