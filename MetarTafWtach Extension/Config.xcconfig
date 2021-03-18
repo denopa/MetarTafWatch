@@ -1,0 +1,13 @@
+//
+//  Config.xcconfig
+//  MetarTaf
+//
+//  Created by October on 21/02/2021.
+//  Copyright © 2021 Patrick de Nonneville. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+AVWX_API_KEY = LvU3lFzUVHIYv6iyGjKLJiKPnCqPz9OlPTSPgW2doyQ
+
