@@ -5,9 +5,9 @@
         "package": "Solar",
         "repositoryURL": "https://github.com/ceeK/Solar.git",
         "state": {
-          "branch": null,
-          "revision": "eacab01aa732612d97c723ceb77c748aaba54c82",
-          "version": "2.2.0"
+          "branch": "master",
+          "revision": "bd2ecd620f19a16d9614f9bee2fc42b012bb0019",
+          "version": null
         }
       }
     ]

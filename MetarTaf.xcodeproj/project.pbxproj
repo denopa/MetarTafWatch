@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		596D37E225E06549007B5E3D /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = 596D37E125E06549007B5E3D /* Solar */; };
 		59DADC6D25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */; };
 		59DADC6E25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */; };
 		CD2EF24221EE6F12000F62B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EF24121EE6F12000F62B5 /* ViewController.swift */; };
+		CD431FB32690E31F00B92935 /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = CD431FB22690E31F00B92935 /* Solar */; };
 		CD698CD221F7C44700D1CD79 /* dataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD698CD121F7C44700D1CD79 /* dataUpdater.swift */; };
 		CD73B9BA21D0C8C4000B12CE /* weatherSymbolKeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73B9B921D0C8C4000B12CE /* weatherSymbolKeyCode.swift */; };
 		CD73BBD821D0F881001206A0 /* weatherLegendRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BBD721D0F881001206A0 /* weatherLegendRowController.swift */; };
@@ -166,7 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				596D37E225E06549007B5E3D /* Solar in Frameworks */,
+				CD431FB32690E31F00B92935 /* Solar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +286,8 @@
 				CD7A672221CAE62E00BE499F /* PBXTargetDependency */,
 			);
 			name = MetarTaf;
+			packageProductDependencies = (
+			);
 			productName = MetarTaf;
 			productReference = CD7A66CF21CADFB100BE499F /* MetarTaf.app */;
 			productType = "com.apple.product-type.application";
@@ -357,7 +359,7 @@
 			);
 			name = "MetarTafWtach Extension";
 			packageProductDependencies = (
-				596D37E125E06549007B5E3D /* Solar */,
+				CD431FB22690E31F00B92935 /* Solar */,
 			);
 			productName = "MetarTafWtach Extension";
 			productReference = CD7A671021CAE62D00BE499F /* MetarTafWtach Extension.appex */;
@@ -427,7 +429,7 @@
 			);
 			mainGroup = CD7A66C621CADFB100BE499F;
 			packageReferences = (
-				596D37E025E06549007B5E3D /* XCRemoteSwiftPackageReference "Solar" */,
+				CD431FB12690E31F00B92935 /* XCRemoteSwiftPackageReference "Solar" */,
 			);
 			productRefGroup = CD7A66D021CADFB100BE499F /* Products */;
 			projectDirPath = "";
@@ -992,20 +994,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		596D37E025E06549007B5E3D /* XCRemoteSwiftPackageReference "Solar" */ = {
+		CD431FB12690E31F00B92935 /* XCRemoteSwiftPackageReference "Solar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ceeK/Solar.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		596D37E125E06549007B5E3D /* Solar */ = {
+		CD431FB22690E31F00B92935 /* Solar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 596D37E025E06549007B5E3D /* XCRemoteSwiftPackageReference "Solar" */;
+			package = CD431FB12690E31F00B92935 /* XCRemoteSwiftPackageReference "Solar" */;
 			productName = Solar;
 		};
 /* End XCSwiftPackageProductDependency section */

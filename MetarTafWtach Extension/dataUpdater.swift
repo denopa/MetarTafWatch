@@ -16,10 +16,9 @@ class dataUpdater {
     
     func getMetar(airport : String!, completionHandler: @escaping ([String?], Error?) -> Void) {
         // the getTaf method has more detailed comments. 'airport' can actually be a location in the format of a string "lat, lont"
-        let urlString = "http://avwx.rest/api/metar/\(String(describing: airport!))?options=info&format=json&onfail=error"
+        let urlString = "http://avwx.rest/api/metar/\(String(describing: airport!))?options=info&format=json&onfail=error&token=\(AVWX_API_KEY!)"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
-        request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
         print("getting METAR for \(String(describing: airport!))")
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -27,7 +26,7 @@ class dataUpdater {
                 print("got METAR for \(String(describing: airport!))")
                 if let metarDic = try? MetarData(String(data :data!, encoding: .utf8)!) {
                     if (metarDic.flightRules) != nil {
-                        print("inside metarDic for \(String(describing: airport!))")
+                        print("inside metarDic for \(String(describing: airport!)), conditions \(String(describing: metarDic.flightRules!))")
                         let flightConditions = metarDic.flightRules ?? " "
                         var metarText = metarDic.sanitized ?? "missing sanitized"
                         let metarTime = metarDic.time?.repr ?? "missing time"
@@ -39,7 +38,7 @@ class dataUpdater {
                         completionHandler([flightConditions, metarText, metarTime, windDirection, windSpeed, metarAge, station], nil)
                     }
                     else {
-                        
+                        print("metar data could not be jsonified")
                     }
                 }
             }
@@ -103,7 +102,7 @@ class dataUpdater {
     func getTaf(airport : String!, completionHandler: @escaping ([Any?], NSError?) -> Void) {
         //using  completion handler to deal with asynchronous process
         var nextFlightConditions = ""
-        let urlString = "http://avwx.rest/api/taf/\(String(describing: airport!))?options=info&format=json&onfail=error"
+        let urlString = "http://avwx.rest/api/taf/\(String(describing: airport!))?options=info&format=json&onfail=error&token=\(AVWX_API_KEY!)"
         let url = URL(string: urlString)!
         let date = NSDate.init() as Date //UTC time to compare with the info on TAFS
         let calendar = Calendar.current
@@ -114,7 +113,7 @@ class dataUpdater {
         var nextWindSpeed = "0"
         var nextForecast = "..."
         var request = URLRequest(url: url)
-        request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
+        //request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData //otherwise it just keeps loading the same data from the local cache
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
@@ -200,10 +199,10 @@ class dataUpdater {
     
     func getStation(airport : String!, completionHandler: @escaping (String?, String?, [Double?], [Double?], String?, String?, NSError?) -> Void) {
         //get Station information
-        let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))"
+        let urlString = "http://avwx.rest/api/station/\(String(describing: airport!))?token=\(AVWX_API_KEY!)"
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
-        request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
+        //request.addValue(AVWX_API_KEY!, forHTTPHeaderField: "Authorization")
         request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
