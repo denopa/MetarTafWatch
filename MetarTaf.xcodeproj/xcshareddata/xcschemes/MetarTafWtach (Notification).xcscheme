@@ -65,8 +65,10 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "MetarTafWtach Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/MetarTaf">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD7A670321CAE62B00BE499F"
@@ -74,7 +76,7 @@
             BlueprintName = "MetarTafWtach"
             ReferencedContainer = "container:MetarTaf.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
       <LocationScenarioReference
          identifier = "London, England"
          referenceType = "1">
@@ -88,8 +90,10 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "MetarTafWtach Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/MetarTaf">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD7A670321CAE62B00BE499F"
@@ -97,7 +101,16 @@
             BlueprintName = "MetarTafWtach"
             ReferencedContainer = "container:MetarTaf.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CD7A670321CAE62B00BE499F"
+            BuildableName = "MetarTafWtach.app"
+            BlueprintName = "MetarTafWtach"
+            ReferencedContainer = "container:MetarTaf.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

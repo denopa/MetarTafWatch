@@ -712,7 +712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTaf/MetarTaf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.04;
+				CURRENT_PROJECT_VERSION = 2.05;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				INFOPLIST_FILE = MetarTaf/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -720,7 +720,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.04;
+				MARKETING_VERSION = 2.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -735,7 +735,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTaf/MetarTaf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.04;
+				CURRENT_PROJECT_VERSION = 2.05;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				INFOPLIST_FILE = MetarTaf/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -743,7 +743,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.04;
+				MARKETING_VERSION = 2.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -893,11 +893,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTafWtach/MetarTafWtach.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.04;
+				CURRENT_PROJECT_VERSION = 2.05;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				IBSC_MODULE = MetarTafWtach_Extension;
 				INFOPLIST_FILE = MetarTafWtach/Info.plist;
-				MARKETING_VERSION = 2.04;
+				MARKETING_VERSION = 2.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -915,11 +915,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetarTafWtach/MetarTafWtach.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.04;
+				CURRENT_PROJECT_VERSION = 2.05;
 				DEVELOPMENT_TEAM = LR23F9534M;
 				IBSC_MODULE = MetarTafWtach_Extension;
 				INFOPLIST_FILE = MetarTafWtach/Info.plist;
-				MARKETING_VERSION = 2.04;
+				MARKETING_VERSION = 2.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nonneville.com.metarTaf.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
