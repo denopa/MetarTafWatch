@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59DADC6D25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */; };
-		59DADC6E25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 59DADC6C25E2CA3D00DB3CA3 /* Config.xcconfig */; };
 		CD2EF24221EE6F12000F62B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EF24121EE6F12000F62B5 /* ViewController.swift */; };
 		CD431FB32690E31F00B92935 /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = CD431FB22690E31F00B92935 /* Solar */; };
 		CD698CD221F7C44700D1CD79 /* dataUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD698CD121F7C44700D1CD79 /* dataUpdater.swift */; };
@@ -372,7 +370,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Patrick de Nonneville";
 				TargetAttributes = {
 					CD7A66CE21CADFB100BE499F = {
@@ -474,7 +472,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD7A670A21CAE62D00BE499F /* Assets.xcassets in Resources */,
-				59DADC6D25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */,
 				CD7A670821CAE62B00BE499F /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +480,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59DADC6E25E2CA3D00DB3CA3 /* Config.xcconfig in Resources */,
 				CD7A671E21CAE62E00BE499F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
